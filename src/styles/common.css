@@ -1,0 +1,27 @@
+/* Reset and base styles  */
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+a {
+  text-decoration: none; /* Убираем подчеркивание с ссылок */
+}
+
+
+* {
+  box-sizing: border-box; /* Учитываем паддинги и границы при расчете размеров элементов */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+}

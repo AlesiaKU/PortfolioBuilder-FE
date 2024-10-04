@@ -1,0 +1,53 @@
+.generat-start {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Текст и изображение располагаются по разные стороны */
+  align-items: center; /* Вертикальное выравнивание по центру */
+  margin-top: 56px;
+}
+
+.gener-txt1 {
+  font-family: "Inter", sans-serif;
+  margin-left: 143px;
+}
+
+.gener-txt1-1, .gener-txt1-2, .gener-txt1-3 {
+  font-size: 64px;
+  font-weight: bold;
+  color: #4D4D4D;
+}
+
+.gener-txt1-3 {
+  color: #4CAF4F;
+}
+
+.gener-txt1-4 {
+  margin-top: 35px;
+  font-size: 16px;
+  color: #717171;
+}
+
+.generator-phot1 {
+  margin-right: 120px;
+  max-width: 100%;
+  height: auto; /* Автоматическое изменение высоты пропорционально ширине */
+}
+
+@media (max-width: 1024px) {
+  .generat-start {
+    flex-direction: column; /* Элементы располагаются вертикально при сжатии экрана */
+    align-items: center; /* Выравниваем элементы по центру */
+    margin-right: 0; /* Убираем правый отступ для изображения на маленьких экранах */
+  }
+  .gener-txt1 {
+    margin-left: 0; /* Убираем отступы для текста на маленьких экранах */
+    text-align: center; /* Текст по центру на маленьких экранах */
+  }
+
+  .generator-phot1 {
+    margin-right: 0; /* Убираем правый отступ для изображения на маленьких экранах */
+    margin-top: 20px; /* Добавляем отступ сверху для изображения */
+    width: 70%; /* Изображение растягивается на всю ширину экрана */
+    height: auto; /* Пропорциональная высота изображения */
+  }
+}

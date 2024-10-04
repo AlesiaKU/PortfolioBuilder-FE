@@ -1,0 +1,141 @@
+.header {
+  padding: 0 0 10px;
+  background-color: #F5F7FA;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.header_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 30px;
+  flex-wrap: wrap; /* Позволяет перенос элементов на новую строку при уменьшении экрана */
+}
+
+.header_logo span {
+  font-weight: 400px;
+  font-size: 30px;
+  line-height: 50px;
+  color: black;
+}
+
+.header_logo {
+  display: flex;
+  align-items: center;
+  column-gap: 13px;
+  margin-left: 20px;
+}
+
+.header_nav {
+  position: relative;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 40px;
+  color: #18191F;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1; /* Навигация будет занимать доступное пространство */
+}
+
+.header_nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #18191F;
+  padding: 0;
+  margin: 0;
+}
+
+.header_nav li {
+  list-style: none; /* Уберите маркеры списка */
+  color: #18191F;
+}
+
+.headerbtn-lr {
+  display: flex;
+  column-gap: 20px; /* Пространство между кнопками */
+}
+
+.cherta {
+  width: 0.5px;
+  height: 40px;
+  background-color: #000;
+  margin: 0 40px;
+}
+
+.btn-log {
+  background: none; /* Убираем фон кнопки */
+  border: none; /* Убираем границу кнопки, если она есть */
+  cursor: pointer; /* Устанавливаем курсор в виде указателя */
+  margin: 0 0 0 auto;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #4CAF4F;
+}
+
+.btn-reg {
+  margin-right: 50px;
+  width: 95px; /* Ширина кнопки. */
+  height: 35px; /* Высота кнопки. */
+  background-color: #4CAF4F;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center; /* Центрируем текст по горизонтали */
+  align-items: center; /* Центрируем текст по вертикали */
+}
+
+.active {
+  font-weight: bold;
+  /* Дополнительные стили по вашему желанию */
+}
+
+/* Медиа-запрос для экрана шириной меньше 1024 пикселей */
+@media (max-width: 1024px) {
+  .header_row {
+    column-gap: 15px; /* Уменьшите пробел до минимума */
+  }
+  
+  .header_nav ul {
+    column-gap: 15px; /* Минимальный отступ между элементами навигации */
+  }
+
+  .headerbtn-lr {
+    margin-left: auto; /* Для выравнивания кнопок по правому краю */
+  }
+
+  .cherta{
+    margin: 0 15px;
+  }
+}
+
+/* Медиа-запрос для экрана шириной меньше 768 пикселей */
+@media (max-width: 768px) {
+  .header_row {
+    flex-wrap: wrap;
+    justify-content: space-between; /* Навигация переносится на вторую строку */
+  }
+
+  .header_nav {
+    order: 2; /* Переносим навигацию вниз */
+    width: 100%; /* Навигация занимает всю ширину */
+    justify-content: center; /* Центрируем навигацию */
+    margin-top: 20px;
+  }
+
+  .headerbtn-lr {
+    order: 1; /* Кнопки остаются на месте */
+    margin-left: auto;
+  }
+
+  .header_logo {
+    order: 1; /* Лого остаётся на первой строке */
+  }
+}
