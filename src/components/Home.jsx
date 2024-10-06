@@ -36,7 +36,7 @@ function Home() {
         <div className='text-ban2'>
           <div>Create your portfolio </div>
           <div>in a single system</div>
-          <div className='who-is'>Who is Ilya&Masha Corp. suitable for?</div>
+          <div className='who-is'>Who is PortfolioBuilder suitable for?</div>
         </div>
         <div className="icon-text-ban2">
           <div className="icon-text-ban2-1">
@@ -87,12 +87,14 @@ function Home() {
           </div>
 
           <div className='text-6line'>
-            <div>Donec a eros justo. Fusce egestas tristique ultrices. Nam tempor, augue nec tincidunt</div>
-            <div>molestie, massa nunc varius arcu, at scelerisque elit erat a magna. Donec quis erat at </div>
-            <div>libero ultrices mollis. In hac habitasse platea dictumst. Vivamus vehicula leo dui, at porta </div>
-            <div>nisi facilisis finibus. In euismod augue vitae nisi ultricies, non aliquet urna tincidunt. Integer</div>
-            <div>in nisi eget nulla commodo faucibus efficitur quis massa. Praesent felis est, finibus et nisi </div>
-            <div>ac, hendrerit venenatis libero. Donec consectetur faucibus ipsum id gravida.</div>
+            <div>Creating a portfolio in our software is quick and easy. First, choose one of our customized plans</div>
+            <div>depending on your needs — whether you are looking for a free option or a premium plan with advanced</div>
+            <div>features. After selecting a plan, you will be asked to enter your portfolio data, such as personal</div>
+             <div>such as personal data, project descriptions, and images. If you have chosen a paid plan, you will</div>
+            <div>need to complete the secure payment process before moving on. After confirming the payment, you will</div>
+            <div>have full access to customize the design and layout of your portfolio. You can customize each</div>
+            <div>element according to your style and professional needs. Finally, review your portfolio, make the latest</div>
+            <div>changes, and you're ready to publish it and share it with potential clients or employers. It's so easy!</div>
           </div>
           <button>Learn More</button>
 
@@ -106,10 +108,10 @@ function Home() {
           </div>
 
           <div className='text-4line'>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet justo ipsum. Sed </div>
-            <div>accumsan quam vitae est varius fringilla. Pellentesque placerat vestibulum lorem sed  </div>
-            <div>porta. Nullam mattis tristique iaculis. Nullam pulvinar sit amet risus pretium auctor. Etiam </div>
-            <div>quis massa pulvinar, aliquam quam vitae, tempus sem. Donec elementum pulvinar odio.</div>
+            <div>Our application simplifies the process of creating a portfolio in just a few steps.</div>
+            <div>First, you choose the plan that suits your needs, free or paid. Then enter data about your </div>
+            <div>project and customize the layout according to your style. Finally, if you have chosen a paid plan,</div>
+            <div>complete the payment and your portfolio is ready to be published worldwide!</div>
           </div>
           <button>Learn More</button>
 

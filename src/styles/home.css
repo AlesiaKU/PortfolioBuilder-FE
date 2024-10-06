@@ -142,14 +142,12 @@
   width: 100%; 
   height: auto;
   margin-left: 144px;
-  margin-right: 20px; 
 }
 
 .text-banner3, .text-banner4 {
   max-width: 661px;
   width: 100%;
   font-family: "Inter", sans-serif;
-  margin-left: 20px;
 }
 
 .text-ban3-1, .text-ban4-1 {
@@ -160,6 +158,8 @@
 .text-6line, .text-4line {
   font-size: 14px;
   margin-top: 16px;
+  width: 800px;
+  margin-right: 20px;
 }
 
 .text-banner3 button, .text-banner4 button {
