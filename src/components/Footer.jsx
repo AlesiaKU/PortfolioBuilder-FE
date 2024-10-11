@@ -6,6 +6,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
+import Footerlogo from '../img/logo.svg';
 
 function Footer() {
   const location = useLocation(); // Используем хук для получения текущего маршрута
@@ -26,9 +27,12 @@ function Footer() {
   return (
     <div className="footer">
       <div className="name_logo">
-        Logo
-        <span>Your Portfolio</span>
-
+        <div className="footerlogo">
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+  <img src={Footerlogo} className="footlogo" alt="Logo" style={{ marginRight: '10px' }} />
+  <span>Your Portfolio</span>
+</div>
+        </div>
         <div className="name_logo-1">
           <p>Copyright © 2024 Nexcent ltd.</p>
           <p className="f-p1">All rights reserved</p>

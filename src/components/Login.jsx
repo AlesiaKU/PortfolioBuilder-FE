@@ -56,7 +56,7 @@ function Login() {
         <div className="image-container"></div>
         <div className="container2">
           <RxExit className="exit-icon" onClick={handleExitClick} style={{ cursor: 'pointer' }} />
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="reglogform">
             <h1>Welcome to Generator</h1>
             <div className="input-box">
               <label className="email">Email</label>

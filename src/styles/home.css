@@ -158,9 +158,16 @@
 .text-6line, .text-4line {
   font-size: 14px;
   margin-top: 16px;
-  width: 800px;
+  max-width: 600px; /* Ограничиваем максимальную ширину */
   margin-right: 20px;
+  word-wrap: break-word;
+  line-height: 1.25;
+  text-align: justify;
+  width: 100%; /* Устанавливаем адаптивную ширину */
+  padding-right: 20px;
 }
+
+
 
 .text-banner3 button, .text-banner4 button {
   margin-top: 32px;
@@ -545,6 +552,10 @@
     flex-direction: column; /* Переносим изображение под текст */
     gap: 50px; /* Устанавливаем отступ между текстом и изображением, когда они находятся в колонке */
     margin-top: 10px;
+  }
+
+  .text-6line, .text-4line {
+    max-width: 100%; /* Ширина будет адаптироваться к экрану */
   }
 
   .icon-text-ban2 {

@@ -1,6 +1,7 @@
 .header {
   padding: 0 0 10px;
   background-color: #F5F7FA;
+  font-family: "Inter", sans-serif;
 }
 
 .container {
@@ -25,8 +26,13 @@
 .header_logo {
   display: flex;
   align-items: center;
-  column-gap: 13px;
+  column-gap: 5px;
   margin-left: 20px;
+}
+
+.header_logo img{
+  width: 30px;
+  height: 30px;
 }
 
 .header_nav {

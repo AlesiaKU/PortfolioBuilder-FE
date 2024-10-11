@@ -1,6 +1,5 @@
-// App.jsx
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom'; // Импортируем необходимые хуки и компоненты
+import { Routes, Route, useLocation } from 'react-router-dom'; 
 import Header from './components/header/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -14,7 +13,6 @@ import ScrollToTop from './components/ScrollToTop';
 function App() {
   const location = useLocation();
 
-  // Проверяем, находимся ли мы на страницах логина или регистрации
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
 
   return (

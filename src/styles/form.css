@@ -16,10 +16,10 @@
 .image-container {
         height: 100vh;
         flex: 1; /* Занимает все доступное пространство */
-        background-image: url('https://img.freepik.com/premium-photo/a-waterfall-with-a-picture-of-a-waterfall-that-says-waterfall_1072191-119067.jpg'); /* Путь к изображению */
+        background-image: url('../img/form.svg'); /* Путь к изображению */
         background-size: cover; /* Изображение будет покрывать весь контейнер */
         background-position: center; /* Центрируем изображение */
-        opacity: 0.5;
+
     }
 
   .container2 {
@@ -51,7 +51,7 @@ h1{
     justify-content: center;
 }
 
-form {
+.reglogform {
     margin: 0 0 0 auto;
     width: 700px;
     height: auto;
@@ -127,25 +127,52 @@ form {
 }
 
 .input-box {
-  margin-bottom: 15px; /* Отступ между полями */
+  margin-bottom: 15px;     
   overflow: hidden; /* Скрываем переполнение */
   transition: height 1s ease, opacity 1s ease; /* Плавный переход для высоты и opacity */
 }
 
 .fade {
   opacity: 0;
-  height: 0; /* Скрываем элемент */
-  transition: opacity 1s ease, height 1s ease; /* Плавный переход */
+  height: 0; 
+  transition: opacity 1s ease, height 1s ease; 
 }
 
 .error-message {
-  color: red; /* Цвет текста */
-  font-size: 16px; /* Размер шрифта */
-  margin-top: 0px; /* Отступ сверху */
+  color: red; 
+  font-size: 16px; 
+  margin-top: 0px;
 }
 
 @media (max-width: 768px) {
   .container2 {
-      margin: 0 5px 0 auto; /* Уменьшаем сдвиг влево при более узком экране */
+      margin: 0 5px 0 5px;
+      width: 100%;
+  }
+  
+  .reglogform {
+      width: 100%;
+  }
+  
+  .exit-icon {
+      margin-left: auto;
+      margin-right: 10px;
+  }
+
+  h1 {
+      font-size: 36px; 
+      text-align: center; 
+  }
+
+  .input-box input {
+      width: 350px;
+  }
+
+  .btn-form {
+      width: 250px; 
+  }
+
+  .register-link {
+      font-size: 14px;
   }
 }

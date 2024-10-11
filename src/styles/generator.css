@@ -30,8 +30,472 @@
 .generator-phot1 {
   margin-right: 120px;
   max-width: 100%;
-  height: auto; /* Автоматическое изменение высоты пропорционально ширине */
+  height: auto; 
 }
+
+.generat2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 100px;
+  margin-top: 40px;
+  flex-wrap: wrap; 
+}
+
+.block-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.generated-block {
+  width: 400px;
+  height: 400px;
+  background-color: #E8F5E9;
+  margin-top: 10px;
+  border-radius: 51px;
+  padding-top: 50px;
+}
+
+h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.generated-block1 {
+  font-size: 36px;
+  font-weight: 400;
+  color: #4D4D4D;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+
+.text-gen1 {
+  width: 350px;
+  font-size: 16px;
+  font-weight: 100;
+  color: #717171;
+  word-wrap: break-word;
+  line-height: 1.25;
+  text-align: justify;
+  margin: 55px auto 0;
+}
+
+
+
+.line-with-text-gener {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 36px;
+}
+
+.line-with-text-gener::before,
+.line-with-text-gener::after {
+  content: "";
+  flex: 1;
+  border-bottom: 2px solid #000; 
+}
+
+.line-with-text-gener::before {
+  margin-right: 15px;          /* Отступ справа от первой линии */
+}
+
+.line-with-text-gener::after {
+  margin-left: 15px;           /* Отступ слева от второй линии */
+}
+
+
+.generstep {
+  width: 100%;
+  height: auto;
+  margin-top: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  margin-bottom: 100px;
+  font-family: "DM Sans", sans-serif;
+  flex-wrap: wrap; 
+  box-sizing: border-box;
+}
+
+.gener-home-name{
+  width: 100%;
+  height: 100px;
+  text-align: center; 
+  margin-bottom: 0px;
+}
+
+.gener-home-name1{
+  font-size: 18px;
+  font-weight: bold;
+  color: #4CAF4F;
+  font-family: "DM Sans", sans-serif;
+}
+.gener-home-name2{
+  font-size: 50px;
+  font-weight: bold;
+  color: #170F49;
+  font-family: "DM Sans", sans-serif;
+}
+
+.gener-plan {
+  width: 380px;
+  height: 450px;
+  margin-top: 20px;
+  margin-left: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 24px;
+  display: flex;
+  cursor: default;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.gener-plan.active {
+  background-color: #4CAF4F;
+  color: #ffffff;
+}
+
+.gener-plan.active .gener-text-plan1-1-1,
+.gener-plan.active .gener-text-plan1-1-2,
+.gener-plan.active .gener-text-plan1-2,
+.gener-plan.active .gener-text-plan1-3-1,
+.gener-plan.active .gener-text-plan1-3-2,
+.gener-plan.active .gener-one-portfolio,
+.gener-plan.active .gener-cross-text-dov,
+.gener-plan.active .gener-text-plan2-1-1,
+.gener-plan.active .gener-text-plan2-1-2,
+.gener-plan.active .gener-text-plan2-2,
+.gener-plan.active .gener-text-plan2-3-1,
+.gener-plan.active .gener-text-plan2-3-2,
+.gener-plan.active .gener-eleps-chek-text,
+.gener-plan.active .gener-eleps-chek-text-2,
+.gener-plan.active .gener-text-plan3-1-1,
+.gener-plan.active .gener-text-plan3-1-2,
+.gener-plan.active .gener-text-plan3-2,
+.gener-plan.active .gener-text-plan3-3-1,
+.gener-plan.active .gener-text-plan3-3-2{
+  color: white;
+}
+
+.gener-plan.active .gener-eleps-chek,
+.gener-plan.active .gener-eleps-cross {
+  color: white;
+}
+
+.gener-circle-rec, .gener-rectangle, .gener-rectangle-pl3{
+  width: 72px;
+  height: 72px;
+  margin-top: 50px;
+  margin-left: 40px;
+  border-radius: 10px;
+  background-color: #E8F5E9;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.gener-rectangle-pl3 img{
+  width: 42.58px;
+  height: 45.18px;
+}
+
+.gener-half-circle1 {
+  width: 19px;
+  height: 38px;
+  background-color: #4CAF50; 
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.gener-half-circle2 {
+  width: 19px;
+  height: 38px;
+  background-color: #A5D6A7;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.gener-rectang1{
+  width: 19px;
+  height: 38px;
+  background-color: #4CAF4F;
+}
+.gener-rectang-container {
+  display: flex;
+  flex-direction: column; 
+}
+
+.gener-rectang2{
+  width: 19px;
+  height: 19px;
+  background-color: #A5D6A7;
+}
+.gener-rectang3{
+  width: 19px;
+  height: 19px;
+  background-color: #C8E6C9;
+}
+
+.gener-text-plan1-1, .gener-text-plan2-1, .gener-text-plan3-1{
+  margin-top: 55px;
+  margin-left: 20px;
+  text-align: left;
+}
+
+.gener-text-plan1-1-1, .gener-text-plan2-1-1, .gener-text-plan3-1-1{
+  font-size: 18px;
+  color: #6F6C90;
+}
+
+.gener-text-plan1-1-2, .gener-text-plan2-1-2, .gener-text-plan3-1-2{
+  font-size: 24px;
+  font-weight: bold;
+  color: #170F49;
+}
+.gener-text-plan1-2, .gener-text-plan2-2, .gener-text-plan3-2{
+  position: absolute;
+  margin-top: 150px;
+  margin-left: 40px;
+  text-align: left;
+  font-size: 18px;
+  color: #6F6C90;
+  margin-bottom: 5px;
+}
+
+.gener-text-plan1-3, .gener-text-plan2-3, .gener-text-plan3-3{
+  position: absolute;
+  margin-top: 200px;
+  margin-left: 40px;
+  text-align: left;
+}
+
+.gener-text-plan1-3-1, .gener-text-plan2-3-1, .gener-text-plan3-3-1{
+  font-size: 54px;
+  font-weight: bold;
+  color: #170F49;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.gener-text-plan1-3-2, .gener-text-plan2-3-2, .gener-text-plan3-3-2{
+  font-size: 18px;
+  color: #170F49;
+}
+
+.gener-check, .gener-check2{
+  display: flex;
+  margin-top: 15px;
+}
+
+.gener-eleps-chek{
+  height: 26px;
+  width: 26px;
+  color: #4CAF50;
+  margin-left: 3px;
+}
+
+.gener-eleps-chek-text, .gener-eleps-chek-text-2{
+  margin-left: 10px;
+  font-size: 18px;
+  color: #170F49;
+  margin-top: 5px;
+}
+
+.gener-eleps-cross{
+  height: 32px;
+  width: 32px;
+  color: #ff3131;
+  margin-top: 5px;
+  
+}
+.gener-crosss{
+  display: flex;
+}
+.gener-cross-text-dov{
+  margin-left: 10px;
+  font-size: 18px;
+  color: #170F49;
+  margin-top: 12px;
+}
+
+/* Основной контейнер формы */
+.gener-form-cont1 {
+  display: flex;
+  justify-content: flex-start; /* Выравнивание по левому краю */
+  align-items: flex-start; /* Выравнивание по верхнему краю */
+  height: auto; /* Высота контейнера на всю высоту экрана */
+  padding: 0; /* Убираем отступы у всего контейнера */
+}
+
+.user-form1 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Три колонки одинаковой ширины */
+  grid-gap: 20px; /* Отступы между колонками */
+  padding: 20px 0; /* Отступы только сверху и снизу */
+  margin-left: 125px;
+}
+
+
+/* Стили для колонок */
+.column {
+  display: flex;
+  flex-direction: column; /* Расположение элементов по вертикали в колонках */
+}
+
+.gener-form-cont1 label{
+    font-weight: bold;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 5px;
+    color: #4CAF4F; /* Белый цвет для текста */
+}
+
+.column input{
+  width: 250px;
+  height: 20px;
+    border: none;
+    border-bottom: 2px solid #4CAF4F;
+    margin-bottom: 20px;
+    padding: 3px;
+    background-color: #ffffff; /* Фон для полей ввода */
+    outline: none;
+}
+
+.column input:focus {
+  border-bottom: 3px solid #4CAF4F; /* Оставляем ту же нижнюю границу при фокусе */
+  outline: none; /* Убираем стандартный outline при фокусе */
+}
+
+#country{
+  width: 320px;
+}
+
+#photo{
+  width: 250px;
+  height: 250px;
+  border: 2px solid #4CAF4F; /* Задаем зеленую границу */
+  object-fit: cover; /* Обеспечивает правильное отображение фото внутри квадрата */
+  padding: 5px; /* Отступ внутри границ */
+  background-color: #fff; /* Фон внутри поля */
+  border-radius: 10px;
+}
+
+.column select {
+  width: 250px;
+  height: 30px;
+  border: 2px solid #4CAF4F; /* Нижняя граница зеленого цвета */
+  padding: 3px;
+  background-color: #fff; /* Фон для select */
+  outline: none;
+  margin-bottom: 25px;
+  border-radius: 10px;
+}
+
+/* Сохраняем зеленую границу при фокусе */
+.column select:focus {
+  border-bottom: 3px solid #4CAF4F; /* При фокусе нижняя граница становится толще */
+  outline: none;
+}
+
+.gener-form-cont2 {
+  display: flex;
+  flex-direction: row; /* Выравнивание блоков в ряд */
+  align-items: flex-start; /* Выравнивание блоков по верхнему краю */
+  width: 100%;
+}
+.upload-wrapper{
+  margin-left: 125px;
+}
+
+
+.gener-form-cont2 label {
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 10px; /* Отступ между лейблом и блоком */
+  color: #4CAF4F;
+}
+
+.upload-block {
+  height: 100px; /* Высота только для блока загрузки */
+  width: 250px;
+  display: flex;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid #4CAF4F;
+  padding-left: 10px;
+}
+
+textarea {
+  width: 550px; /* Фиксированная ширина поля */
+  height: 100px; /* Фиксированная высота поля */
+  resize: none; /* Отключение возможности изменять размер поля вручную */
+  border-radius: 10px;
+  border: 2px solid #4CAF4F;
+  padding: 10px;
+  overflow-y: auto; /* Вертикальная прокрутка при переполнении */
+  font-size: 16px;
+}
+
+textarea:focus {
+  outline: none; /* Убираем стандартное выделение при фокусе */
+  border-color: #81c784; /* Изменяем цвет рамки при фокусе */
+}
+
+.gener-tatarea{
+  margin-left: 100px;
+}
+
+
+
+
+
+/* Адаптивное поведение при сужении экрана */
+@media (max-width: 1200px) {
+  .generat2 {
+    gap: 20px; /* Уменьшение расстояния между блоками при меньшей ширине экрана */
+  }
+}
+
+@media (max-width: 768px) {
+  .generat2 {
+    gap: 10px; /* Еще меньшее расстояние между блоками */
+  }
+}
+
+@media (max-width: 600px) {
+  .generat2 {
+    flex-direction: column; /* Блоки переносятся на новые строки */
+    align-items: center; /* Блоки по центру */
+    gap: 30px; /* Между блоками расстояние снова увеличивается, чтобы не было тесноты */
+    padding: 20px; /* Уменьшение отступов */
+  }
+
+  .generated-block {
+    margin-left: 30px;
+    height: 400px; /* Высота становится автоматической */
+  }
+
+  .text-gen1 {
+    width: 90%; /* Текст в блоке растягивается вместе с блоком */
+  }
+}
+
+
+
+
 
 @media (max-width: 1024px) {
   .generat-start {

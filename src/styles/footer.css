@@ -18,6 +18,11 @@
   color: #ffffff;
 }
 
+.footerlogo img{
+width: 30px;
+height: 30px;
+}
+
 .name_logo-1 {
   font-family: "Inter", sans-serif;
   font-size: 11px;

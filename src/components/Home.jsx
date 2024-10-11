@@ -14,11 +14,12 @@ import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 
 
+
 function Home() {
-  const [activePlan, setActivePlan] = useState(null); // состояние для отслеживания активного плана
+  const [activePlan, setActivePlan] = useState(null);
 
   const handlePlanClick = (planNumber) => {
-    setActivePlan(planNumber); // устанавливаем активный план при клике
+    setActivePlan(planNumber); 
   };
 
   return (
@@ -87,14 +88,14 @@ function Home() {
           </div>
 
           <div className='text-6line'>
-            <div>Creating a portfolio in our software is quick and easy. First, choose one of our customized plans</div>
-            <div>depending on your needs — whether you are looking for a free option or a premium plan with advanced</div>
-            <div>features. After selecting a plan, you will be asked to enter your portfolio data, such as personal</div>
-             <div>such as personal data, project descriptions, and images. If you have chosen a paid plan, you will</div>
-            <div>need to complete the secure payment process before moving on. After confirming the payment, you will</div>
-            <div>have full access to customize the design and layout of your portfolio. You can customize each</div>
-            <div>element according to your style and professional needs. Finally, review your portfolio, make the latest</div>
-            <div>changes, and you're ready to publish it and share it with potential clients or employers. It's so easy!</div>
+          Creating a portfolio in our software is quick and easy. First, choose one of our customized plans
+depending on your needs — whether you are looking for a free option or a premium plan with advanced
+features. After selecting a plan, you will be asked to enter your portfolio data, such as personal
+such as personal data, project descriptions, and images. If you have chosen a paid plan, you will
+need to complete the secure payment process before moving on. After confirming the payment, you will
+have full access to customize the design and layout of your portfolio. You can customize each
+element according to your style and professional needs. Finally, review your portfolio, make the latest
+changes, and you're ready to publish it and share it with potential clients or employers. It's so easy!
           </div>
           <button>Learn More</button>
 
@@ -108,10 +109,10 @@ function Home() {
           </div>
 
           <div className='text-4line'>
-            <div>Our application simplifies the process of creating a portfolio in just a few steps.</div>
-            <div>First, you choose the plan that suits your needs, free or paid. Then enter data about your </div>
-            <div>project and customize the layout according to your style. Finally, if you have chosen a paid plan,</div>
-            <div>complete the payment and your portfolio is ready to be published worldwide!</div>
+          Our application simplifies the process of creating a portfolio in just a few steps.
+First, you choose the plan that suits your needs, free or paid. Then enter data about your
+project and customize the layout according to your style. Finally, if you have chosen a paid plan,
+complete the payment and your portfolio is ready to be published worldwide!
           </div>
           <button>Learn More</button>
 
@@ -175,7 +176,7 @@ function Home() {
               <div className="cross-text-dov">Downloading</div>
             </div>
           </div>
-          <Link to="/payment" className={`inner-btn ${activePlan === 1 ? 'active-btn' : ''}`}>Get started</Link>
+          <Link to="/generator#gener-plan1" className={`inner-btn ${activePlan === 1 ? 'active-btn' : ''}`}>Get started</Link>
         </button>
 
         <button
@@ -212,7 +213,7 @@ function Home() {
 
 
           </div>
-          <Link to="/payment" className={`inner-btn ${activePlan === 2 ? 'active-btn' : ''}`}>Get started</Link>
+          <Link to="/generator#gener-plan2" className={`inner-btn ${activePlan === 2 ? 'active-btn' : ''}`}>Get started</Link>
         </button>
 
         <button
@@ -245,7 +246,7 @@ function Home() {
 
 
           </div>
-          <Link to="/payment" className={`inner-btn ${activePlan === 3 ? 'active-btn' : ''}`}>Get started</Link>
+          <Link to="/generator#gener-plan3" className={`inner-btn ${activePlan === 3 ? 'active-btn' : ''}`}>Get started</Link>
         </button>
       </div>
     </div>

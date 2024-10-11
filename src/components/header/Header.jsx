@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './header.css';
+import logo from './logo.svg';
 
 function Header() {
   const location = useLocation();
@@ -10,7 +11,7 @@ function Header() {
       <div className="container">
         <div className="header_row">
           <div className="header_logo">
-            Logo
+          <img src={logo} className="headerlogo" />
             <span>Your Portfolio</span>
           </div>
 

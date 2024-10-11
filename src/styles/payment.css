@@ -93,7 +93,7 @@
 .payment-cont2{
   flex: 1; /* Занимает все доступное пространство */
   height: 953px;
-
+  flex-wrap: wrap;
   margin: 0 0 0 auto;
   margin-top: 32px;
   padding-top: 32px;
@@ -297,4 +297,20 @@
   color: #ffffff;
   cursor: pointer;
   margin-top: 45px;
+}
+
+@media (max-width: 768px) {
+  .payconteiners {
+    flex-direction: column; /* Изменяем направление на колонку */
+    align-items: center; /* Центрируем элементы по горизонтали */
+  }
+
+  .payment-cont1, .payment-cont2 {
+    width: 100%; /* Делаем контейнеры 100% ширины экрана */
+    max-width: 100%; /* Максимальная ширина также 100% */
+  }
+
+  .payment-cont2 {
+    margin-top: 20px; /* Добавляем отступ между строками */
+  }
 }
