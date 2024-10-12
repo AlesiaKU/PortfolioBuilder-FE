@@ -401,6 +401,7 @@ h2 {
   outline: none;
   margin-bottom: 25px;
   border-radius: 10px;
+  color: #4CAF4F; 
 }
 
 /* Сохраняем зеленую границу при фокусе */
@@ -409,11 +410,16 @@ h2 {
   outline: none;
 }
 
+.column select:hover {
+  border-color: #81c784; /* Зеленая рамка при наведении */
+}
+
 .gener-form-cont2 {
   display: flex;
   flex-direction: row; /* Выравнивание блоков в ряд */
   align-items: flex-start; /* Выравнивание блоков по верхнему краю */
   width: 100%;
+  margin-top: 30px;
 }
 .upload-wrapper{
   margin-left: 125px;
@@ -438,7 +444,7 @@ h2 {
   padding-left: 10px;
 }
 
-textarea {
+.gener-textarea textarea {
   width: 550px; /* Фиксированная ширина поля */
   height: 100px; /* Фиксированная высота поля */
   resize: none; /* Отключение возможности изменять размер поля вручную */
@@ -449,18 +455,186 @@ textarea {
   font-size: 16px;
 }
 
-textarea:focus {
+.gener-textarea textarea:focus {
   outline: none; /* Убираем стандартное выделение при фокусе */
   border-color: #81c784; /* Изменяем цвет рамки при фокусе */
 }
 
-.gener-tatarea{
+.gener-textarea{
   margin-left: 100px;
 }
 
 
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Убедитесь, что окно выше остальных элементов */
+}
 
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 600px; /* Можете настроить ширину по желанию */
+  border: 5px solid #4CAF4F;
+  border-radius: 20px;
+  max-height: 80vh; /* Ограничиваем максимальную высоту до 80% от высоты экрана */
+  overflow-y: auto; 
+}
+
+.add-education-button, .add-job-button{
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  color: #4CAF4F;
+  font-size: 22px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #4CAF4F;
+  cursor: pointer;
+}
+
+.education, .job {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.add-education-button:hover,
+.add-job-button:hover {
+  background-color: #4CAF4F; /* Цвет фона при наведении */
+  color: white;
+}
+
+.modal-content h2{
+  color: #4CAF4F;
+}
+
+.education-field{
+  margin-top: 20px;
+}
+
+.education-field label{
+  font-weight: bold;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 5px;
+  color: #4CAF4F; /* Белый цвет для текста */
+}
+
+.education-field input{
+  border: 2px solid #4CAF4F;
+  padding: 3px;
+  background-color: #ffffff; /* Фон для полей ввода */
+  outline: none;
+  border-radius: 5px;
+}
+
+.specialization input{
+  width: 550px;
+  height: 30px;
+}
+.specialization input:focus {
+  border: 3px solid #4CAF4F; /* Оставляем ту же нижнюю границу при фокусе */
+  outline: none; /* Убираем стандартный outline при фокусе */
+}
+
+.educate-city{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.educate-city input{
+  width: 270px;
+  height: 30px;
+}
+
+.startEndDate{
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-top: 15px;
+}
+.startEndDate input{
+  width: 150px;
+  height: 30px;
+}
+
+.startname,
+.enddate {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Расстояние между лейблом и полем */
+}
+
+.delete-education-button{
+  width: 80px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #71c672;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.lineBtn{
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+}
+.lineBtn div{
+  width: 100%;
+  height: 1px;
+  background-color: #4CAF4F;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.btnSaveClose {
+  display: flex;
+  justify-content: flex-end; /* Переносим кнопки вправо */
+  gap: 10px; /* Зазор между кнопками */
+  margin-top: 20px; /* Отступ сверху для отделения от контента */
+}
+.btnSaveClose button{
+  width: 50px;
+  background-color: #71c672;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.infoeducate {
+  margin-top: 20px;
+}
+
+
+.infoeducate textarea{
+  width: 550px; /* Фиксированная ширина поля */
+  height: 100px; /* Фиксированная высота поля */
+  resize: none; /* Отключение возможности изменять размер поля вручную */
+  border-radius: 10px;
+  border: 2px solid #4CAF4F;
+  padding: 10px;
+  overflow-y: auto; /* Вертикальная прокрутка при переполнении */
+  font-size: 16px;
+}
+
+.infoeducate textarea:focus {
+  outline: none; /* Убираем стандартное выделение при фокусе */
+  border-color: #81c784; /* Изменяем цвет рамки при фокусе */
+}
 
 /* Адаптивное поведение при сужении экрана */
 @media (max-width: 1200px) {

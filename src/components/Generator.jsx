@@ -4,42 +4,29 @@ import banner6Image1 from '../img/Group39506.svg';
 import React, { useState, useEffect } from 'react';
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
-import { useLocation } from 'react-router-dom';  // для получения хеша из URL
+import { useGeneratorLogic } from '../JavaScript/Generator2'
 
 function Generator() {
-  const [activePlan, setActivePlan] = useState(null); // состояние для отслеживания активного плана
-  const location = useLocation(); // получаем текущий URL с хешем
-  
- // Создаем состояние для хранения выбранного пола
- const [gender, setGender] = useState('');
+  const {
+    activePlan,
+    isModalOpen,
+    isWorkModalOpen,
+    newEducations,
+    newJobs,
+    openModal,
+    closeModal,
+    openWorkModal,
+    closeWorkModal,
+    handlePlanClick,
+    addEducationField,
+    addWorkField,
+    handleChange,
+    deleteEducationField,
+    deleteWorkField,
+    saveEducations,
+    saveJobs,
+  } = useGeneratorLogic();
 
- // Обработчик изменения радиокнопки
- const handleChange = (event) => {
-     setGender(event.target.value);
- };
-
-  useEffect(() => {
-    // Проверяем, если в URL есть хеш, прокручиваем к соответствующему элементу
-    if (location.hash) {
-      const elementId = location.hash.substring(1); // убираем символ '#'
-      const element = document.getElementById(elementId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' }); // плавная прокрутка
-        // Определяем, какой план активен, в зависимости от хеша
-        if (elementId === 'gener-plan1') {
-          setActivePlan(1); // Устанавливаем план 1 активным
-        } else if (elementId === 'gener-plan2') {
-          setActivePlan(2); // Устанавливаем план 2 активным
-        } else if (elementId === 'gener-plan3') {
-          setActivePlan(3); // Устанавливаем план 3 активным
-        }
-      }
-    }
-  }, [location]); // Зависимость от изменения URL
-
-  const handlePlanClick = (planNumber) => {
-    setActivePlan(planNumber); // устанавливаем активный план при клике
-  };
 
   return (
     <div className="generator-page">
@@ -225,7 +212,15 @@ function Generator() {
  
 
 
+      <div>
+    <label for="phone">Номер телефона:</label>
+    <input type="tel" id="phone" name="phone"></input>
   </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="emailfoot" name="email"></input>
+  </div>
+</div>
 
   <div class="column">
   <div>
@@ -235,15 +230,18 @@ function Generator() {
   </div>
 
   <div class="column">
+  <div className="gender">
+    <label for = "gender">
+      Пол:
+    </label>
+    <select id="business-trips" name="business-trips">
+      <option value="not-specified">Женщина</option>
+      <option value="possible">Мужчина</option>
+      <option value="impossible">Неважно</option>
+    </select>
+</div>
 
-  <div>
-    <label for="phone">Номер телефона:</label>
-    <input type="tel" id="phone" name="phone"></input>
-  </div>
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="emailfoot" name="email"></input>
-  </div>
+
 
   <div>
     <label for="business-trips">Командировки:</label>
@@ -276,6 +274,16 @@ function Generator() {
       <option value="rotation">Вахтовый метод</option>
     </select>
   </div>
+
+  <div className="education ">
+  <label>Education</label>
+  <button className="add-education-button" onClick={openModal}>+</button>
+ </div>
+
+ <div className="job">
+   <label>Job</label>
+   <button className="add-job-button" onClick={openWorkModal}>+</button>
+</div>
   </div>
 
   </form>
@@ -297,7 +305,7 @@ function Generator() {
   </div>
 </div>
 
-<div className="gener-tatarea">
+<div className="gener-textarea">
     <label for="additional-info">Дополнительная информация:</label>
     <textarea id="additional-info" name="additional-info"></textarea>
   </div>
@@ -306,6 +314,128 @@ function Generator() {
   </form>
   <button type="submit">Отправить</button>
 
+  {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Education</h2>
+            {newEducations.map((education, index) => (
+              <div key={index} className="education-field">
+                <div className= "specialization">
+                  <label>Specialization</label>
+                <input type="text" placeholder=" " value={education.specialization}
+                  onChange={(e) => handleChange(index, 'specialization', e.target.value)}
+                />
+                </div>
+                <div className="educate-city">
+                <div className="institution">
+                <label>Educational institution</label>
+                <input type="text" placeholder="institution" value={education.institution}
+                  onChange={(e) => handleChange(index, 'institution', e.target.value)}
+                /></div>
+                <div className="city">
+                <label>City</label>
+                <input type="text" placeholder="institution" value={education.city}
+                  onChange={(e) => handleChange(index, 'city', e.target.value)}
+                /></div>
+                </div>
+                <div className="startEndDate">
+                <div className="startname">
+                  <label>Start date</label>
+                <input type="date"  value={education.startDate}
+                  onChange={(e) => handleChange(index, 'startDate', e.target.value)}
+                /></div>
+                <div className="enddate">
+                  <label>End date</label>
+                <input type="date" value={education.endDate}
+                  onChange={(e) => handleChange(index, 'endDate', e.target.value)}
+                />
+                </div>
+                </div>
+                <div className="infoeducate">
+                <label for="education-info">Дополнительная информация:</label>
+                <textarea id="education-info" name="education-info"></textarea>
+                </div>
+
+                {/* Кнопка для удаления текущего набора полей */}
+                <div className="lineBtn">
+                <button className="delete-education-button" onClick={() => deleteEducationField(index)}>Delete</button>
+                <div></div>
+                </div>
+              </div>
+            ))}
+            <div className="btnSaveClose">
+            <button onClick={addEducationField}>Add</button>
+            <button onClick={saveEducations}>Save</button>
+            <button onClick={closeModal}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+{isWorkModalOpen && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <h2>Work</h2>
+      {newJobs.map((job, index) => (
+        <div key={index} className="job-field">
+          <div className="position">
+            <label>Position</label>
+            <input
+              type="text"
+              placeholder="Position"
+              value={job.position}
+              onChange={(e) => handleChange(index, 'position', e.target.value, 'job')}
+            />
+          </div>
+          <div className="work-city">
+            <div className="company">
+              <label>Company</label>
+              <input
+                type="text"
+                placeholder="Company"
+                value={job.company}
+                onChange={(e) => handleChange(index, 'company', e.target.value, 'job')}
+              />
+            </div>
+            <div className="city">
+              <label>City</label>
+              <input
+                type="text"
+                placeholder="City"
+                value={job.city}
+                onChange={(e) => handleChange(index, 'city', e.target.value, 'job')}
+              />
+            </div>
+          </div>
+          <div className="startEndDate">
+            <div className="startname">
+              <label>Start date</label>
+              <input
+                type="date"
+                value={job.startDate}
+                onChange={(e) => handleChange(index, 'startDate', e.target.value, 'job')}
+              />
+            </div>
+            <div className="enddate">
+              <label>End date</label>
+              <input
+                type="date"
+                value={job.endDate}
+                onChange={(e) => handleChange(index, 'endDate', e.target.value, 'job')}
+              />
+            </div>
+          </div>
+
+          {/* Кнопка для удаления текущего набора полей */}
+          <button className="delete-job-button" onClick={() => deleteWorkField(index)}>Delete</button>
+        </div>
+      ))}
+      <button onClick={addWorkField}>Add</button>
+      <button onClick={saveJobs}>Save</button>
+      <button onClick={closeWorkModal}>Close</button>
+    </div>
+  </div>
+)}
 
     </div>
   );
