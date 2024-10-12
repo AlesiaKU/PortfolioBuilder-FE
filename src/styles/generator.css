@@ -673,7 +673,7 @@ h2 {
 
 @media (max-width: 1024px) {
   .generat-start {
-    flex-direction: column; /* Элементы располагаются вертикально при сжатии экрана */
+    flex-direction: column; 
     align-items: center; /* Выравниваем элементы по центру */
     margin-right: 0; /* Убираем правый отступ для изображения на маленьких экранах */
   }
