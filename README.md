@@ -4,8 +4,4 @@
 
 Ссылка на прототипы страниц: https://www.figma.com/design/ORRzhj5Q2pVT1Wnpk4gxJc/Untitled?node-id=1-1630&node-type=frame&t=lV9lktfXTp730Q6v-0
 
-<<<<<<< HEAD
 На данный момент используется ссылка на локальный API: http://localhost:5000/api/message
-=======
-На данный момент используется ссылка на локальный API: http://localhost:5000/api/message
->>>>>>> 5d99e98d23cce47652a58ca00c8d47d72c7cb919
