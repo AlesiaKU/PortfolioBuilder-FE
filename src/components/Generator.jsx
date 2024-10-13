@@ -4,6 +4,8 @@ import banner6Image1 from '../img/Group39506.svg';
 import React, { useState, useEffect } from 'react';
 import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
+import { TbPhoto } from "react-icons/tb";
+import { MdOutlineFileUpload } from "react-icons/md";
 import { useGeneratorLogic } from '../JavaScript/Generator2'
 
 function Generator() {
@@ -13,6 +15,7 @@ function Generator() {
     isWorkModalOpen,
     newEducations,
     newJobs,
+    newLanguages,
     openModal,
     closeModal,
     openWorkModal,
@@ -25,7 +28,44 @@ function Generator() {
     deleteWorkField,
     saveEducations,
     saveJobs,
+    isLanguageModalOpen,
+    openLanguageModal, // Добавлено открытие окна для языков
+    closeLanguageModal, // Закрытие окна для языков
+    addLanguageField, 
+    saveLanguages,
+    deleteLanguageField,
+    handleSubmit,
   } = useGeneratorLogic();
+
+  const [photo, setPhoto] = useState(null); // Состояние для хранения загруженного фото
+
+  // Функция для загрузки и отображения фото
+  const handlePhotoChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setPhoto(imageUrl); // Устанавливаем фото в состояние
+    }
+  };
+
+  const [fileName, setFileName] = useState(null); // Состояние для хранения имени файла
+  const [videoName, setVideoName] = useState(null); // Состояние для хранения имени видео
+
+  // Функция для обработки загрузки файла
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFileName(file.name); // Устанавливаем название файла в состояние
+    }
+  };
+
+  // Функция для обработки загрузки видео
+  const handleVideoChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setVideoName(file.name); // Устанавливаем название видео в состояние
+    }
+  };
 
 
   return (
@@ -183,37 +223,37 @@ function Generator() {
 
       <div className="line-with-text-gener">Step 2</div>
   <div className="gener-form-cont1">
-      <form class="user-form1">
+      <form class="user-form1" onSubmit={handleSubmit}>
       <div class="column">
   <div>
-    <label for="first-name">Имя:</label>
+    <label for="first-name">Name:</label>
     <input type="text" id="first-name" name="first-name"></input>
   </div>
 
   <div>
-    <label for="last-name">Фамилия:</label>
+    <label for="last-name">Surname:</label>
     <input type="text" id="last-name" name="last-name"></input>
   </div>
 
   <div>
-    <label for="middle-name">Отчество:</label>
+    <label for="middle-name">Middle name:</label>
     <input type="text" id="middle-name" name="middle-name"></input>
   </div>
 
   <div>
-    <label for="dob">Дата рождения:</label>
+    <label for="dob">Date of birth:</label>
     <input type="date" id="dob" name="dob"></input>
   </div>
 
   <div>
-    <label for="country">Место проживания(Страна, город):</label>
+    <label for="country">Place of residence (country, city):</label>
     <input type="text" id="country" name="country"></input>
   </div>
  
 
 
       <div>
-    <label for="phone">Номер телефона:</label>
+    <label for="phone">Phone number:</label>
     <input type="tel" id="phone" name="phone"></input>
   </div>
   <div>
@@ -223,28 +263,36 @@ function Generator() {
 </div>
 
   <div class="column">
-  <div>
-    <label for="photo">Фото:</label>
-    <input type="file" id="photo" name="photo" accept="image/*"></input>
+  <div className="photoBlock">
+  <label for="photo">Photo(250/250):</label>
+  <div  className="photo-block" onClick={() => document.getElementById('photo').click()}>
+   <input type="file" id="photo" name="photo" accept="image/*" style={{ display: 'none' }}  onChange={handlePhotoChange} />
+   {/* Если фото загружено, отображаем его, если нет - показываем иконку */}
+   {photo ? (
+          <img src={photo} alt="Selected" className="photo-preview" />
+        ) : (
+          <TbPhoto className="photo-icon" />
+        )}
+  </div>
   </div>
   </div>
 
   <div class="column">
   <div className="gender">
-    <label for = "gender">
-      Пол:
-    </label>
-    <select id="business-trips" name="business-trips">
-      <option value="not-specified">Женщина</option>
-      <option value="possible">Мужчина</option>
-      <option value="impossible">Неважно</option>
-    </select>
+  <label htmlFor="gender">
+    Gender:
+  </label>
+  <select id="gender" name="gender">
+    <option value="female">Женщина</option>
+    <option value="male">Мужчина</option>
+    <option value="not-specified">Неважно</option>
+  </select>
 </div>
 
 
 
   <div>
-    <label for="business-trips">Командировки:</label>
+    <label for="business-trips">Business trips:</label>
     <select id="business-trips" name="business-trips">
       <option value="not-specified">Не указано</option>
       <option value="possible">Возможны</option>
@@ -254,7 +302,7 @@ function Generator() {
   </div>
 
   <div>
-    <label for="employment">Занятость:</label>
+    <label for="employment">Busyness:</label>
     <select id="employment" name="employment">
       <option value="full">Полная</option>
       <option value="part-time">Частичная</option>
@@ -265,7 +313,7 @@ function Generator() {
 
 
   <div>
-    <label for="work-schedule">График работы:</label>
+    <label for="work-schedule">Work schedule :</label>
     <select id="work-schedule" name="work-schedule">
       <option value="fixed">Фиксированный</option>
       <option value="full-day">Полный рабочий день</option>
@@ -280,39 +328,55 @@ function Generator() {
   <button className="add-education-button" onClick={openModal}>+</button>
  </div>
 
+ <div className="language">
+        <label>Languages</label>
+        <button className="add-language-button" onClick={openLanguageModal}>+</button>
+      </div>
+
  <div className="job">
    <label>Job</label>
    <button className="add-job-button" onClick={openWorkModal}>+</button>
 </div>
   </div>
 
-  </form>
+  <div className="upload-wrapper">
+  <label htmlFor="file-upload">Загрузка файла:</label>
+  <div className="upload-block" onClick={() => document.getElementById('file-upload').click()}>
+    <input type="file" id="file-upload" name="file-upload" accept=".pdf, .doc, .docx" style={{ display: 'none' }} onChange={handleFileChange}/>
+    {fileName ? (
+            <span className="file-name">{fileName}</span>
+          ) : (
+            <MdOutlineFileUpload className="upload-icon" />
+          )}
   </div>
+</div>
 
-<form className="generform">
-  <div className="gener-form-cont2">
-  <div class="upload-wrapper">
-  <label for="file-upload">Загрузка файла:</label>
-  <div class="upload-block" onclick="document.getElementById('file-upload').click();">
-    <input type="file" id="file-upload" name="file-upload" accept=".pdf, .doc, .docx"></input>
+<div className="upload-wrapper">
+  <label htmlFor="video-upload">Загрузка видео:</label>
+  <div className="upload-block" onClick={() => document.getElementById('video-upload').click()}>
+    <input type="file" id="video-upload" name="video-upload" accept="video/*" style={{ display: 'none' }} onChange={handleVideoChange}/>
+    {videoName ? (
+            <span className="file-name">{videoName}</span>
+          ) : (
+            <MdOutlineFileUpload className="upload-icon" />
+          )}
   </div>
 </div>
 
-<div class="upload-wrapper">
-  <label for="video-upload">Загрузка видео:</label>
-  <div class="upload-block" onclick="document.getElementById('video-upload').click();">
-    <input type="file" id="video-upload" name="video-upload" accept="video/*"></input>
-  </div>
-</div>
 
 <div className="gener-textarea">
     <label for="additional-info">Дополнительная информация:</label>
     <textarea id="additional-info" name="additional-info"></textarea>
   </div>
 
-  </div>
+  <div className="generformbtn-container">
+  <button type="submit" className="generformbtn">Continue</button>
+</div>
   </form>
-  <button type="submit">Отправить</button>
+  </div>
+
+
+ 
 
   {isModalOpen && (
         <div className="modal-overlay">
@@ -329,12 +393,12 @@ function Generator() {
                 <div className="educate-city">
                 <div className="institution">
                 <label>Educational institution</label>
-                <input type="text" placeholder="institution" value={education.institution}
+                <input type="text" placeholder="" value={education.institution}
                   onChange={(e) => handleChange(index, 'institution', e.target.value)}
                 /></div>
                 <div className="city">
                 <label>City</label>
-                <input type="text" placeholder="institution" value={education.city}
+                <input type="text" placeholder="" value={education.city}
                   onChange={(e) => handleChange(index, 'city', e.target.value)}
                 /></div>
                 </div>
@@ -380,29 +444,20 @@ function Generator() {
         <div key={index} className="job-field">
           <div className="position">
             <label>Position</label>
-            <input
-              type="text"
-              placeholder="Position"
-              value={job.position}
+            <input type="text" placeholder="" value={job.position}
               onChange={(e) => handleChange(index, 'position', e.target.value, 'job')}
             />
           </div>
           <div className="work-city">
             <div className="company">
               <label>Company</label>
-              <input
-                type="text"
-                placeholder="Company"
-                value={job.company}
+              <input type="text" placeholder="" value={job.company}
                 onChange={(e) => handleChange(index, 'company', e.target.value, 'job')}
               />
             </div>
             <div className="city">
               <label>City</label>
-              <input
-                type="text"
-                placeholder="City"
-                value={job.city}
+              <input type="text" placeholder="" value={job.city}
                 onChange={(e) => handleChange(index, 'city', e.target.value, 'job')}
               />
             </div>
@@ -410,32 +465,72 @@ function Generator() {
           <div className="startEndDate">
             <div className="startname">
               <label>Start date</label>
-              <input
-                type="date"
-                value={job.startDate}
+              <input type="date" value={job.startDate}
                 onChange={(e) => handleChange(index, 'startDate', e.target.value, 'job')}
               />
             </div>
             <div className="enddate">
               <label>End date</label>
-              <input
-                type="date"
-                value={job.endDate}
+              <input type="date" value={job.endDate}
                 onChange={(e) => handleChange(index, 'endDate', e.target.value, 'job')}
               />
             </div>
           </div>
+          <div className="infojob">
+                <label for="job-info">Additional information:</label>
+                <textarea id="job-info" name="job-info"></textarea>
+                </div>
 
           {/* Кнопка для удаления текущего набора полей */}
+          <div className="lineBtn">
           <button className="delete-job-button" onClick={() => deleteWorkField(index)}>Delete</button>
+          <div></div>
+          </div>
         </div>
       ))}
+      <div className="btnSaveClose">
       <button onClick={addWorkField}>Add</button>
       <button onClick={saveJobs}>Save</button>
       <button onClick={closeWorkModal}>Close</button>
+      </div>
     </div>
   </div>
 )}
+
+{isLanguageModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Languages</h2>
+            {newLanguages.map((language, index) => (
+              <div key={index} className="language-field">
+                <div className="language-name">
+                  <label>Language</label>
+                  <input type="text" placeholder="" value={language.name}
+                    onChange={(e) => handleChange(index, 'name', e.target.value, 'language')}
+                  />
+                </div>
+                <div className="language-level">
+                  <label>Proficiency Level</label>
+                  <input type="range" min="1" max="5" value={language.level}
+                    onChange={(e) => handleChange(index, 'level', e.target.value, 'language')}
+                  />
+                  <span>{["Novice", "Intermediate", "Good", "Very Good", "Fluent"][language.level - 1]}</span>
+                </div>
+                {/* Кнопка для удаления текущего языка */}
+                <div className="lineBtn">
+                  <button className="delete-language-button" onClick={() => deleteLanguageField(index)}>Delete</button>
+                  <div></div>
+                </div>
+              </div>
+            ))}
+            <div className="btnSaveClose">
+              <button onClick={addLanguageField}>Add</button>
+              <button onClick={saveLanguages}>Save</button>
+              <button onClick={closeLanguageModal}>Close</button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

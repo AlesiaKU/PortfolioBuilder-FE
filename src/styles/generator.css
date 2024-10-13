@@ -382,15 +382,6 @@ h2 {
   width: 320px;
 }
 
-#photo{
-  width: 250px;
-  height: 250px;
-  border: 2px solid #4CAF4F; /* Задаем зеленую границу */
-  object-fit: cover; /* Обеспечивает правильное отображение фото внутри квадрата */
-  padding: 5px; /* Отступ внутри границ */
-  background-color: #fff; /* Фон внутри поля */
-  border-radius: 10px;
-}
 
 .column select {
   width: 250px;
@@ -414,38 +405,81 @@ h2 {
   border-color: #81c784; /* Зеленая рамка при наведении */
 }
 
-.gener-form-cont2 {
-  display: flex;
-  flex-direction: row; /* Выравнивание блоков в ряд */
-  align-items: flex-start; /* Выравнивание блоков по верхнему краю */
-  width: 100%;
-  margin-top: 30px;
-}
-.upload-wrapper{
-  margin-left: 125px;
+.select option:hover,
+.select option:focus {
+  background-color: lightgreen;
 }
 
-
-.gener-form-cont2 label {
-  font-weight: bold;
-  font-size: 20px;
-  display: block;
-  margin-bottom: 10px; /* Отступ между лейблом и блоком */
-  color: #4CAF4F;
+.upload-wrapper, .gener-textarea{
+  margin-top: 50px;
 }
-
 .upload-block {
-  height: 100px; /* Высота только для блока загрузки */
   width: 250px;
+  height: 100px; /* Высота блока */
+  border: 2px solid #4CAF50; /* Зеленая граница */
+  background-color: #fff; /* Белый фон */
+  border-radius: 10px; /* Скругленные углы */
+  position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center; /* Центрирование контента */
   cursor: pointer;
+  padding: 10px;
+  overflow: hidden; /* Скрытие слишком длинного текста */
+  text-overflow: ellipsis; /* Добавляем многоточие, если текст не вмещается */
+}
+
+.upload-block:hover {
+  background-color: #e8f5e9; /* Светло-зеленый фон при наведении */
+}
+
+.upload-icon {
+  font-size: 35px; /* Размер иконки */
+  color: #4CAF50; /* Зеленый цвет иконки */
+}
+
+.file-name {
+  font-size: 14px; /* Размер текста названия файла */
+  color: #333; /* Цвет текста */
+  white-space: nowrap; /* Не переносить текст на новую строку */
+  overflow: hidden; /* Скрывать текст, если он выходит за пределы */
+  text-overflow: ellipsis; /* Отображать многоточие для длинного текста */
+}
+
+.photoBlock{margin-top: 100px;}
+
+.photo-block {
+  width: 250px;
+  height: 250px;
+  border: 2px solid #4CAF50; /* Зеленая граница */
+  background-color: #fff; /* Белый фон */
   border-radius: 10px;
-  border: 2px solid #4CAF4F;
-  padding-left: 10px;
+  position: relative; /* Относительное позиционирование для иконки */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer; /* Указатель мыши при наведении */
+  overflow: hidden; /* Чтобы изображение не выходило за границы блока */
+}
+
+.photo-block:hover {
+  background-color: #e8f5e9; /* Светло-зеленый фон при наведении */
+}
+
+.photo-icon {
+  font-size: 48px; /* Размер иконки */
+  color: #4CAF50; /* Зеленый цвет иконки */
+}
+
+.photo-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Обеспечивает заполнение блока изображением без искажений */
+  border-radius: 10px;
 }
 
 .gener-textarea textarea {
-  width: 550px; /* Фиксированная ширина поля */
+  width: 300px; /* Фиксированная ширина поля */
   height: 100px; /* Фиксированная высота поля */
   resize: none; /* Отключение возможности изменять размер поля вручную */
   border-radius: 10px;
@@ -458,10 +492,6 @@ h2 {
 .gener-textarea textarea:focus {
   outline: none; /* Убираем стандартное выделение при фокусе */
   border-color: #81c784; /* Изменяем цвет рамки при фокусе */
-}
-
-.gener-textarea{
-  margin-left: 100px;
 }
 
 
@@ -491,7 +521,7 @@ h2 {
   overflow-y: auto; 
 }
 
-.add-education-button, .add-job-button{
+.add-education-button, .add-job-button, .add-language-button{
   width: 30px;
   height: 30px;
   border-radius: 50px;
@@ -504,7 +534,7 @@ h2 {
   cursor: pointer;
 }
 
-.education, .job {
+.education, .job, .language {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
@@ -512,7 +542,8 @@ h2 {
 }
 
 .add-education-button:hover,
-.add-job-button:hover {
+.add-job-button:hover,
+.add-language-button:hover{
   background-color: #4CAF4F; /* Цвет фона при наведении */
   color: white;
 }
@@ -521,11 +552,11 @@ h2 {
   color: #4CAF4F;
 }
 
-.education-field{
+.education-field, .job-field, .infoeducate, .language-level{
   margin-top: 20px;
 }
 
-.education-field label{
+.education-field label, .job-field label, .language-field label{
   font-weight: bold;
   font-size: 20px;
   display: block;
@@ -533,7 +564,7 @@ h2 {
   color: #4CAF4F; /* Белый цвет для текста */
 }
 
-.education-field input{
+.education-field input, .job-field input, .language-field input{
   border: 2px solid #4CAF4F;
   padding: 3px;
   background-color: #ffffff; /* Фон для полей ввода */
@@ -541,22 +572,24 @@ h2 {
   border-radius: 5px;
 }
 
-.specialization input{
+.specialization input, .position input, .language-name input{
   width: 550px;
   height: 30px;
 }
-.specialization input:focus {
+.specialization input:focus,
+.position input:focus
+.language-name input:focus {
   border: 3px solid #4CAF4F; /* Оставляем ту же нижнюю границу при фокусе */
   outline: none; /* Убираем стандартный outline при фокусе */
 }
 
-.educate-city{
+.educate-city, .work-city{
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
 
-.educate-city input{
+.educate-city input, .work-city input{
   width: 270px;
   height: 30px;
 }
@@ -579,7 +612,7 @@ h2 {
   gap: 5px; /* Расстояние между лейблом и полем */
 }
 
-.delete-education-button{
+.delete-education-button, .delete-job-button, .delete-language-button{
   width: 80px;
   height: 20px;
   border-radius: 10px;
@@ -615,12 +648,10 @@ h2 {
   border-radius: 5px;
   cursor: pointer;
 }
-.infoeducate {
-  margin-top: 20px;
-}
 
 
-.infoeducate textarea{
+
+.infoeducate textarea, .infojob textarea{
   width: 550px; /* Фиксированная ширина поля */
   height: 100px; /* Фиксированная высота поля */
   resize: none; /* Отключение возможности изменять размер поля вручную */
@@ -629,11 +660,56 @@ h2 {
   padding: 10px;
   overflow-y: auto; /* Вертикальная прокрутка при переполнении */
   font-size: 16px;
+  font-weight: 300px;
 }
 
-.infoeducate textarea:focus {
+.infoeducate textarea:focus,
+.infojob textarea:focus  {
   outline: none; /* Убираем стандартное выделение при фокусе */
   border-color: #81c784; /* Изменяем цвет рамки при фокусе */
+}
+
+.language-level span{
+  margin-left: 20px;
+  color: #4CAF4F;
+}
+
+
+
+.language-level input {
+  -webkit-appearance: none;
+  width: 300px;
+  height: 10px;
+  background: linear-gradient(to right, green 0%, green calc((var(--value) - 1) * 25%), #ccc calc((var(--value) - 1) * 25%), #ccc 100%);
+  border-radius: 5px;
+}
+
+.language-level input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: green;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.language-level input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: green;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.generformbtn{
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: #4CAF4F;
+  color: white;
+  margin-top: 20px;
 }
 
 /* Адаптивное поведение при сужении экрана */
