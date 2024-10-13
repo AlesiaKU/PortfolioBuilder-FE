@@ -1,0 +1,37 @@
+/* Контейнер для текста и изображения */
+.faqBan1 {
+  display: flex;
+  flex-direction: row; /* Располагаем текст и изображение рядом */
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  margin-top: 10px;
+  background-color: #F5F7FA;
+  gap: 250px; /* Отступ в 30px между текстом и изображением */
+  flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку, если не хватает места */
+  box-sizing: border-box;
+}
+
+/* Текст */
+.faq-txt1 {
+  font-family: "Inter", sans-serif;
+  font-size: 64px;
+  font-weight: 600;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  color: #4D4D4D;
+}
+
+.faq-phot1 {
+  width: 550px;
+  height: 670px;
+}
+
+.faq-txt1-3{
+  font-size: 16px;
+  font-weight: lighter;
+  margin-top: 30px;
+}

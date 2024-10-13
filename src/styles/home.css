@@ -22,6 +22,7 @@
   flex-direction: column;
   align-items: left;
   text-align: left;
+  color: #4D4D4D;
 }
 
 .min15 {
@@ -70,12 +71,14 @@
   font-family: "Inter", sans-serif;
   font-size: 35px;
   font-weight: bold;
+  color: #4D4D4D;
 }
 
 .who-is {
   font-size: 16px;
   font-weight: normal;
   margin-top: 13px;
+  color: #4D4D4D;
 }
 
 /* Контейнер для иконок и текста */
@@ -114,6 +117,7 @@
   font-size: 28px;
   font-weight: bold;
   margin-top: 10px;
+  color: #4D4D4D;
 }
 
 .text-ban2-1-1, .text-ban2-2-2, .text-ban2-3-3 {
@@ -135,6 +139,7 @@
   justify-content: space-between;
   flex-wrap: nowrap; /* Не переносить элементы на новую строку пока экран не слишком мал */
   box-sizing: border-box;
+  color: #4D4D4D;
 }
 
 .banner3-home img, .banner4-home img {
@@ -200,6 +205,7 @@
   font-weight: bold;
   margin-left: 100px;
   box-sizing: border-box;
+  color: #4D4D4D;
 }
 
 .great {

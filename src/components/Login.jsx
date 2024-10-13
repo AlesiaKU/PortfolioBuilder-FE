@@ -1,29 +1,25 @@
 import React, { useState } from 'react';
-import '../styles/form.css'; // Импортируем CSS файл
-import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
+import '../styles/form.css'; 
+import { useNavigate } from 'react-router-dom';
 import { RxExit } from "react-icons/rx";
 
 function Login() {
-  const navigate = useNavigate(); // Хук для навигации
+  const navigate = useNavigate(); 
 
-  // Стейты для хранения данных формы
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegisterClick = () => {
-    navigate('/register'); // Переход на страницу регистрации
+    navigate('/register'); 
   };
 
   const handleExitClick = () => {
-    // Перенаправление на главную страницу
     navigate('/');
   };
 
-  // Обработка отправки формы
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Отключаем стандартное поведение формы
+    e.preventDefault(); 
 
-    // Данные, которые будут отправлены на сервер
     const userData = { email, password };
 
     console.log('Sending user data to API:', userData);
@@ -33,10 +29,10 @@ function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData), // Отправляем данные в формате JSON
+        body: JSON.stringify(userData), 
       });
 
-      // Обработка ответа от сервера
+      
       if (response.ok) {
         const data = await response.json();
         console.log('Success:', data); // Выводим ответ сервера в консоль
@@ -66,7 +62,7 @@ function Login() {
                 placeholder="Enter your email"
                 className="form-style"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} // Обновляем стейт при вводе
+                onChange={(e) => setEmail(e.target.value)} 
                 required
               />
             </div>
@@ -77,7 +73,7 @@ function Login() {
                 placeholder="Enter your password"
                 className="form-style"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} // Обновляем стейт при вводе
+                onChange={(e) => setPassword(e.target.value)} 
                 required
               />
             </div>

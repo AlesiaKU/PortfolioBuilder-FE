@@ -29,41 +29,40 @@ function Generator() {
     saveEducations,
     saveJobs,
     isLanguageModalOpen,
-    openLanguageModal, // Добавлено открытие окна для языков
-    closeLanguageModal, // Закрытие окна для языков
+    openLanguageModal, 
+    closeLanguageModal, 
     addLanguageField, 
     saveLanguages,
     deleteLanguageField,
     handleSubmit,
   } = useGeneratorLogic();
 
-  const [photo, setPhoto] = useState(null); // Состояние для хранения загруженного фото
+  const [photo, setPhoto] = useState(null); 
 
-  // Функция для загрузки и отображения фото
+  
   const handlePhotoChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setPhoto(imageUrl); // Устанавливаем фото в состояние
+      setPhoto(imageUrl); 
     }
   };
 
-  const [fileName, setFileName] = useState(null); // Состояние для хранения имени файла
-  const [videoName, setVideoName] = useState(null); // Состояние для хранения имени видео
+  const [fileName, setFileName] = useState(null); 
+  const [videoName, setVideoName] = useState(null); 
 
-  // Функция для обработки загрузки файла
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setFileName(file.name); // Устанавливаем название файла в состояние
+      setFileName(file.name); 
     }
   };
 
-  // Функция для обработки загрузки видео
+  
   const handleVideoChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setVideoName(file.name); // Устанавливаем название видео в состояние
+      setVideoName(file.name); 
     }
   };
 
@@ -82,7 +81,7 @@ function Generator() {
       <div className="generat2">
         <div className="block-container">
           <h2>Step 1</h2>
-          <div className="generated-block">      
+          <div className="generated-block">
             <div className="generated-block1">Choose a service</div>
             <div className="generated-block1">and a plan</div>
             <div className="text-gen1">
@@ -420,7 +419,6 @@ function Generator() {
                 <textarea id="education-info" name="education-info"></textarea>
                 </div>
 
-                {/* Кнопка для удаления текущего набора полей */}
                 <div className="lineBtn">
                 <button className="delete-education-button" onClick={() => deleteEducationField(index)}>Delete</button>
                 <div></div>

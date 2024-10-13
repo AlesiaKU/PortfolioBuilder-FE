@@ -1,22 +1,20 @@
-// Register.jsx
 import React,{ useState} from 'react';
-import '../styles/form.css'; // Импортируем CSS файл
-import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
+import '../styles/form.css'; 
+import { useNavigate } from 'react-router-dom'; 
 import { RxExit } from "react-icons/rx";
 
 function Register() {
-  const navigate = useNavigate(); // Хук для навигации
+  const navigate = useNavigate(); 
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleLoginClick = () => {
-    navigate('/login'); // Переход на страницу логина
+    navigate('/login'); 
   };
 
   const handleExitClick = () => {
-    // Перенаправление на главную страницу
     navigate('/');
   };
 
@@ -29,7 +27,6 @@ function Register() {
       return;
     }*/
 
-    // Данные, которые будут отправлены на сервер
     const userData = { email, password, confirmPassword };
     
     console.log('Sending user data to API:', userData);
@@ -45,8 +42,8 @@ function Register() {
       // Обработка ответа от сервера
       if (response.ok) {
         const data = await response.json();
-        console.log('Success:', data); // Выводим ответ сервера в консоль
-        alert(`Success: ${data.message}`); // Показываем сообщение пользователю
+        console.log('Success:', data); 
+        alert(`Success: ${data.message}`); 
       } else {
         console.error('Error:', response.statusText);
         alert('Registration failed');
@@ -72,21 +69,21 @@ function Register() {
                 placeholder="Enter your email"
                 className="form-style"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} // Обновляем стейт при вводе
+                onChange={(e) => setEmail(e.target.value)} 
                 required
               />
             </div>
             <div className="input-box">
               <label className="password">Password</label>
-              <input type="password" placeholder="Enter your password" className="form-style" value={password} // Используем состояние для ввода
-                onChange={(e) => setPassword(e.target.value)} // Обновляем стейт при вводе
+              <input type="password" placeholder="Enter your password" className="form-style" value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
                 required
               />
             </div>
             <div className="input-box">
               <label className="password">Confirm Password</label>
-              <input type="password" placeholder="Enter your password" className="form-style"  value={confirmPassword} // Используем состояние для ввода
-                onChange={(e) => setConfirmPassword(e.target.value)} // Обновляем стейт при вводе
+              <input type="password" placeholder="Enter your password" className="form-style"  value={confirmPassword} 
+                onChange={(e) => setConfirmPassword(e.target.value)} 
                 required
               />
             </div>
