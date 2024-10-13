@@ -57,13 +57,13 @@
 }
 
 .header_nav li {
-  list-style: none; /* Уберите маркеры списка */
+  list-style: none; 
   color: #18191F;
 }
 
 .headerbtn-lr {
   display: flex;
-  column-gap: 20px; /* Пространство между кнопками */
+  column-gap: 20px; 
 }
 
 .cherta {
@@ -74,9 +74,9 @@
 }
 
 .btn-log {
-  background: none; /* Убираем фон кнопки */
-  border: none; /* Убираем границу кнопки, если она есть */
-  cursor: pointer; /* Устанавливаем курсор в виде указателя */
+  background: none; 
+  border: none; 
+  cursor: pointer; 
   margin: 0 0 0 auto;
   margin-top: 10px;
   font-size: 15px;
@@ -85,8 +85,8 @@
 
 .btn-reg {
   margin-right: 50px;
-  width: 95px; /* Ширина кнопки. */
-  height: 35px; /* Высота кнопки. */
+  width: 95px;
+  height: 35px; 
   background-color: #4CAF4F;
   color: white;
   border: none;
@@ -94,27 +94,25 @@
   font-size: 15px;
   border-radius: 6px;
   display: flex;
-  justify-content: center; /* Центрируем текст по горизонтали */
-  align-items: center; /* Центрируем текст по вертикали */
+  justify-content: center; 
+  align-items: center; 
 }
 
 .active {
   font-weight: bold;
-  /* Дополнительные стили по вашему желанию */
 }
 
-/* Медиа-запрос для экрана шириной меньше 1024 пикселей */
 @media (max-width: 1024px) {
   .header_row {
-    column-gap: 15px; /* Уменьшите пробел до минимума */
+    column-gap: 15px; 
   }
   
   .header_nav ul {
-    column-gap: 15px; /* Минимальный отступ между элементами навигации */
+    column-gap: 15px;
   }
 
   .headerbtn-lr {
-    margin-left: auto; /* Для выравнивания кнопок по правому краю */
+    margin-left: auto; 
   }
 
   .cherta{
@@ -122,17 +120,16 @@
   }
 }
 
-/* Медиа-запрос для экрана шириной меньше 768 пикселей */
 @media (max-width: 768px) {
   .header_row {
     flex-wrap: wrap;
-    justify-content: space-between; /* Навигация переносится на вторую строку */
+    justify-content: space-between; 
   }
 
   .header_nav {
-    order: 2; /* Переносим навигацию вниз */
-    width: 100%; /* Навигация занимает всю ширину */
-    justify-content: center; /* Центрируем навигацию */
+    order: 2; 
+    width: 100%; 
+    justify-content: center; 
     margin-top: 20px;
   }
 

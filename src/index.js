@@ -1,9 +1,9 @@
 // index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'; // Импортируем BrowserRouter
+import { BrowserRouter } from 'react-router-dom'; 
 import App from './App';
-import './styles/common.css' // Ваши глобальные стили, если есть
+import './styles/common.css' 
 
 ReactDOM.render(
   <React.StrictMode>

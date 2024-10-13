@@ -1,4 +1,3 @@
-/* Reset and base styles  */
 * {
 	padding: 0px;
 	margin: 0px;
@@ -12,7 +11,7 @@
 }
 
 a {
-  text-decoration: none; /* Убираем подчеркивание с ссылок */
+  text-decoration: none; 
 }
 
 

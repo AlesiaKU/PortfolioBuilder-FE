@@ -1,5 +1,5 @@
 import '../styles/home.css';
-import { Link } from 'react-router-dom'; // Добавляем импорт Link
+import { Link } from 'react-router-dom'; 
 import banner1Image1 from '../img/Illustration.png';
 import banner2Image1 from '../img/Icon1.png';
 import banner2Image2 from '../img/Icon2.png';

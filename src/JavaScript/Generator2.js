@@ -24,10 +24,10 @@ export const useGeneratorLogic = () => {
 
   useEffect(() => {
     if (location.hash) {
-      const elementId = location.hash.substring(1); // убираем символ '#'
+      const elementId = location.hash.substring(1); 
       const element = document.getElementById(elementId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' }); // плавная прокрутка
+        element.scrollIntoView({ behavior: 'smooth' }); 
         if (elementId === 'gener-plan1') setActivePlan(1);
         else if (elementId === 'gener-plan2') setActivePlan(2);
         else if (elementId === 'gener-plan3') setActivePlan(3);
@@ -115,7 +115,6 @@ export const useGeneratorLogic = () => {
   };
 
   const saveLanguages = () => {
-    // Логика для сохранения языков
     closeLanguageModal();
   };
 
@@ -136,9 +135,9 @@ export const useGeneratorLogic = () => {
     const formData = new FormData(event.target);
 
     // Добавляем данные из модальных окон (образование, языки, работа и т.д.)
-    const educationData = educations; // предположим, что educations хранит данные об образовании
-    const jobData = jobs; // данные о работе
-    const languageData = newLanguages; // данные о языках
+    const educationData = educations; 
+    const jobData = jobs; 
+    const languageData = newLanguages; 
   
     // Собираем все данные в один объект
     const fullFormData = {
@@ -148,9 +147,8 @@ export const useGeneratorLogic = () => {
       languages: languageData
     };
   
-    console.log('Form Data:', fullFormData); // выводим данные формы в консоль
+    console.log('Form Data:', fullFormData); 
 
-    // Дополнительно можно обновить состояние
     setFormData(formValues);
 
     if (activePlan === 2 || activePlan === 3) {
@@ -182,8 +180,8 @@ export const useGeneratorLogic = () => {
     saveEducations,
     saveJobs,
     isLanguageModalOpen,
-    openLanguageModal, // Добавлено открытие окна для языков
-    closeLanguageModal, // Закрытие окна для языков
+    openLanguageModal, 
+    closeLanguageModal, 
     addLanguageField, 
     saveLanguages,
     deleteLanguageField,

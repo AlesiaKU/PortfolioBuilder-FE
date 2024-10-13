@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from 'react-router-dom'; // Импортируем useLocation
+import { useLocation } from 'react-router-dom'; 
 import '../styles/footer.css';
 import { FaDribbble } from "react-icons/fa6";
 import { IoLogoInstagram } from "react-icons/io5";
@@ -9,21 +9,20 @@ import { FiSend } from "react-icons/fi";
 import Footerlogo from '../img/logo.svg';
 
 function Footer() {
-  const location = useLocation(); // Используем хук для получения текущего маршрута
+  const location = useLocation(); 
   const [email, setEmail] = useState("");
 
   const hideFooter = location.pathname === '/login' || location.pathname === '/register';
 
   // Если находимся на страницах логина или регистрации, не рендерим футер
   if (hideFooter) {
-    return null; // Возвращаем null, чтобы не отображать футер
+    return null; 
   }
 
   const handleSendEmail = (e) => {
     e.preventDefault();
     console.log("Email sent:", email);};
 
-  // Футер отображается только если не на страницах логина или регистрации
   return (
     <div className="footer">
       <div className="name_logo">

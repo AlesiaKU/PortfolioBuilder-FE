@@ -9,21 +9,21 @@
     font-family: 'Poppins';
     color: black;
     display: flex;
-    height: 100vh; /* Высота на весь экран */
+    height: 100vh; 
    }
 
 
 .image-container {
         height: 100vh;
         flex: 1; /* Занимает все доступное пространство */
-        background-image: url('../img/form.svg'); /* Путь к изображению */
-        background-size: cover; /* Изображение будет покрывать весь контейнер */
-        background-position: center; /* Центрируем изображение */
+        background-image: url('../img/form.svg'); 
+        background-size: cover; 
+        background-position: center; 
 
     }
 
   .container2 {
-        width: 700px; /* Ширина формы */
+        width: 700px;
         height: 100vh;
         background-color: rgb(255, 255, 255);
         margin: 0 0 0 auto;
@@ -39,7 +39,7 @@
 }
 
 h1{
-  font-weight: 700; /* Устанавливаем толщину шрифта */
+  font-weight: 700;
     color: black;
     margin-bottom: 50px;
     margin-top: 60px;
@@ -57,27 +57,26 @@ h1{
     height: auto;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Выравниваем элементы по левому краю. */
+    align-items: center; 
 }
 
 .input-box {
-    margin-bottom: 15px; /* Уменьшили отступ снизу. */
+    margin-bottom: 15px; 
 }
 
 .input-box label {
-    display: block; /* Делаем метку блочным элементом. */
-    font-weight: 200; /* Устанавливаем толщину шрифта для меток. */
-    color: black; /* Цвет текста меток. */
+    display: block;
+    font-weight: 200; 
+    color: black; 
     font-size: 15px;
 }
 
 .input-box input {
   height: 45px;
-    width: 350px; /* Поля ввода занимают всю ширину родительского элемента. */
+    width: 350px; 
     border: 1px solid #ccc;
 }
 
-/* Стили для полей ввода */
 .form-style {
     padding: 13px 20px;
     height: 20px;
@@ -100,7 +99,7 @@ h1{
 }
 
 .btn-form {
-    width: 250px; /* Кнопка занимает всю ширину. */
+    width: 250px; 
     height: 50px;
     padding: 10px;
     background-color: #4CAF4F;
@@ -112,9 +111,9 @@ h1{
 }
 
 .slka{
-  background: none; /* Убираем фон кнопки */
-  border: none; /* Убираем границу кнопки, если она есть */
-  cursor: pointer; /* Устанавливаем курсор в виде указателя */
+  background: none; 
+  border: none; 
+  cursor: pointer; 
   margin: 0 0 0 auto;
   font-size: 15px;
   color: #4CAF4F;

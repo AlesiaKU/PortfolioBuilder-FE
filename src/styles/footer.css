@@ -6,7 +6,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   padding: 25px 155px;
-  gap: 100px; /* Первоначально расстояние между блоками 100px */
+  gap: 100px; 
 }
 
 .name_logo {
@@ -57,7 +57,7 @@ height: 30px;
   gap: 40px;
   margin-top: 25px;
   font-family: "Inter", sans-serif;
-  margin-left: 200px; /* Убираем фиксированные отступы для лучшей адаптивности */
+  margin-left: 200px; 
 }
 
 .footer-block-tekst > div {
@@ -136,11 +136,10 @@ height: 30px;
   color: #ffffff;
 }
 
-/* Адаптивные стили */
 @media (max-width: 1452px) {
   .footer {
     padding: 25px 80px;
-    gap: 50px; /* Уменьшаем расстояние до 50px */
+    gap: 50px; 
   }
 
   .footer {
@@ -149,7 +148,7 @@ height: 30px;
   }
 
   .footer-block-tekst {
-    gap: 20px; /* Уменьшаем отступы между блоками текста */
+    gap: 20px; 
     margin-left: 0;
   }
 }
@@ -157,11 +156,11 @@ height: 30px;
 @media (max-width: 768px) {
   .footer {
     padding: 25px 20px;
-    gap: 30px; /* Уменьшаем расстояние до 30px */
+    gap: 30px;
   }
 
   .footer-block-tekst {
-    gap: 15px; /* Уменьшаем расстояние между блоками текста */
+    gap: 15px;
   }
 }
 
@@ -169,17 +168,17 @@ height: 30px;
   .footer {
     flex-direction: column; /* Переносим блоки на новые строки */
     align-items: flex-start; /* Выравниваем по левому краю */
-    gap: 10px; /* Минимальное расстояние между блоками */
+    gap: 10px; 
   }
 
   .name_logo,
   .footer-block-tekst {
-    width: 100%; /* Блоки занимают всю ширину */
+    width: 100%; 
     margin-left: 20px;
   }
 
   .footer-block-tekst > div {
     min-width: unset;
-    width: 100%; /* Блоки текста занимают всю ширину */
+    width: 100%; 
   }
 }

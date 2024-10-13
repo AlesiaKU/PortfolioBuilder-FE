@@ -11,13 +11,13 @@ function Payment() {
   const planFromQuery = parseInt(queryParams.get('plan'), 10); // Извлекаем план из URL
   const [savedPlan, setSavedPlan] = useState(null); // Сохраненный план
   const [cardNumber, setCardNumber] = useState('');
-  const [expiryMonth, setExpiryMonth] = useState('01'); // Месяц по умолчанию
+  const [expiryMonth, setExpiryMonth] = useState('01'); 
   const [expiryYear, setExpiryYear] = useState('');
   const [securityCode, setSecurityCode] = useState('');
-  const [error, setError] = useState(''); // Ошибка, если план не выбран
+  const [error, setError] = useState(''); 
   const [cardError, setCardError] = useState('');
   const [email, setEmail] = useState('');
-  const [country, setCountry] = useState('bl'); // Страна по умолчанию: Беларусь
+  const [country, setCountry] = useState('bl'); 
 
 
   useEffect(() => {
@@ -29,29 +29,28 @@ function Payment() {
   const handleButtonClick = (buttonIndex) => {
     // Если выбранный план отличается от текущего, сбрасываем сохраненный план
     if (activeButton !== buttonIndex) {
-      setSavedPlan(null); // Сбросить сохраненный план
+      setSavedPlan(null); 
     }
-    setActiveButton(buttonIndex); // Установить активную кнопку
-    setError(''); // Сбросить ошибку, если план выбран
+    setActiveButton(buttonIndex); 
+    setError('');
   };
   
   const handleContinue = () => {
     if (activeButton) {
-      setSavedPlan(activeButton); // Сохранить выбранный план
-      setError(''); // Очистить ошибку
-      console.log("Plan saved:", activeButton); // Для демонстрации, что план сохранён
+      setSavedPlan(activeButton); 
+      setError(''); 
+      console.log("Plan saved:", activeButton); 
     } else {
-      setError('Please select a plan before continuing.'); // Если план не выбран, показать ошибку
+      setError('Please select a plan before continuing.'); 
     }
   };
 
   const handleOrderAndPay = () => {
     if (!savedPlan) {
-      setError('Please confirm your plan before placing the order.'); // Ошибка, если план не подтверждён
+      setError('Please confirm your plan before placing the order.'); 
       return;
     }
 
-        // Если план сохранён, выводим данные в консоль
         console.log("Selected Plan:", savedPlan);
         console.log("Email:", email);
         console.log("Country:", country);

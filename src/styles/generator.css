@@ -103,11 +103,11 @@ h2 {
 }
 
 .line-with-text-gener::before {
-  margin-right: 15px;          /* Отступ справа от первой линии */
+  margin-right: 15px; 
 }
 
 .line-with-text-gener::after {
-  margin-left: 15px;           /* Отступ слева от второй линии */
+  margin-left: 15px; 
 }
 
 
@@ -330,11 +330,10 @@ h2 {
   margin-top: 12px;
 }
 
-/* Основной контейнер формы */
 .gener-form-cont1 {
   display: flex;
-  justify-content: flex-start; /* Выравнивание по левому краю */
-  align-items: flex-start; /* Выравнивание по верхнему краю */
+  justify-content: flex-start; 
+  align-items: flex-start; 
   height: auto;
   padding: 0; 
 }
@@ -360,7 +359,7 @@ h2 {
     font-size: 20px;
     display: block;
     margin-bottom: 5px;
-    color: #4CAF4F; /* Белый цвет для текста */
+    color: #4CAF4F; 
 }
 
 .column input{
@@ -713,7 +712,6 @@ h2 {
   margin-top: 20px;
 }
 
-/* Адаптивное поведение при сужении экрана */
 @media (max-width: 1200px) {
   .generat2 {
     gap: 20px; 

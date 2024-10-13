@@ -6,8 +6,8 @@
   margin-bottom: 33px;
   background-color: #F5F7FA;
   display: flex;
-  flex-direction: column; /* Чтобы элементы выстраивались вертикально */
-  padding: 32px; /* Отступы внутри контейнера */
+  flex-direction: column; 
+  padding: 32px; 
 }
 
 .cont1-txt {
@@ -25,10 +25,10 @@
   height: 170px;
   margin-top: 41px;
   border-radius: 6px;
-  border: 2px solid transparent; /* Начальная граница */
-  background-color: #ffffff; /* Цвет фона кнопки */
+  border: 2px solid transparent; 
+  background-color: #ffffff; 
   cursor: default;
-  transition: border 0.3s; /* Плавный переход границы */
+  transition: border 0.3s; 
   padding: 20px;
   text-align: left;
 }
@@ -36,7 +36,7 @@
 .cont1-plan1.active,
 .cont1-plan2.active,
 .cont1-plan3.active {
-  border-color: #4CAF50; /* Зеленая граница для активной кнопки */
+  border-color: #4CAF50; 
   font-weight: normal;
 }
 
@@ -53,7 +53,7 @@
   font-family: "DM Sans", sans-serif;
 }
 .italic{
-  font-style: italic; /* Делает текст курсивом */
+  font-style: italic; 
   font-weight: normal;
   color: #717171;
 }
@@ -115,7 +115,7 @@
   font-size: 14px;
   text-align: left;
   font-family: "Inter", sans-serif;
-  font-weight: 300; /* Лёгкая толщина текста */
+  font-weight: 300; 
 }
 
 .cont2-txt3{
@@ -257,36 +257,36 @@
 }
 
 .checkbox-label {
-  font-size: 16px; /* Размер шрифта текста */
+  font-size: 16px; 
   position: relative;
 }
 
 .checkbox {
-  appearance: none; /* Убираем стандартный вид чекбокса */
-  width: 20px; /* Ширина чекбокса */
-  height: 20px; /* Высота чекбокса */
-  border: 2px solid green; /* Зеленая граница */
-  border-radius: 4px; /* Закругление углов */
-  cursor: pointer; /* Курсор при наведении */
-  margin-right: 8px; /* Отступ между чекбоксом и текстом */
-  position: relative; /* Для псевдоэлементов */
-  top: 4px; /* Опускаем чекбокс ниже */
+  appearance: none;
+  width: 20px; 
+  height: 20px; 
+  border: 2px solid green; 
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 8px; 
+  position: relative;
+  top: 4px; 
   margin-left: 10px;
 }
 
 .checkbox:checked {
-  background-color: green; /* Зелёный фон при нажатии */
+  background-color: green; 
 }
 
 .checkbox:checked::before {
-  content: ''; /* Псевдоэлемент для галочки */
+  content: ''; 
   position: absolute;
-  left: 4px; /* Положение галочки */
-  width: 8px; /* Ширина галочки */
-  height: 12px; /* Высота галочки */
-  border: solid white; /* Цвет галочки */
-  border-width: 0 2px 2px 0; /* Формат галочки */
-  transform: rotate(45deg); /* Поворот галочки */
+  left: 4px;
+  width: 8px; 
+  height: 12px; 
+  border: solid white; 
+  border-width: 0 2px 2px 0; 
+  transform: rotate(45deg);
 }
 
 .cont2-txt4 button{
@@ -302,16 +302,16 @@
 
 @media (max-width: 768px) {
   .payconteiners {
-    flex-direction: column; /* Изменяем направление на колонку */
-    align-items: center; /* Центрируем элементы по горизонтали */
+    flex-direction: column;
+    align-items: center; 
   }
 
   .payment-cont1, .payment-cont2 {
-    width: 100%; /* Делаем контейнеры 100% ширины экрана */
-    max-width: 100%; /* Максимальная ширина также 100% */
+    width: 100%; 
+    max-width: 100%; 
   }
 
   .payment-cont2 {
-    margin-top: 20px; /* Добавляем отступ между строками */
+    margin-top: 20px;
   }
 }
