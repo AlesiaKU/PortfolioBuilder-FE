@@ -1,18 +1,64 @@
 import '../styles/payment.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import { TbLockCheck } from "react-icons/tb";
 import Card from '../img/card.svg';
 
 function Payment() {
   const [activeButton, setActiveButton] = useState(null); // Состояние для отслеживания активной кнопки
-
-  const handleButtonClick = (buttonIndex) => {
-    setActiveButton(buttonIndex); // Установите индекс активной кнопки
-  };
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const planFromQuery = parseInt(queryParams.get('plan'), 10); // Извлекаем план из URL
+  const [savedPlan, setSavedPlan] = useState(null); // Сохраненный план
   const [cardNumber, setCardNumber] = useState('');
   const [expiryMonth, setExpiryMonth] = useState('01'); // Месяц по умолчанию
   const [expiryYear, setExpiryYear] = useState('');
   const [securityCode, setSecurityCode] = useState('');
+  const [error, setError] = useState(''); // Ошибка, если план не выбран
+  const [cardError, setCardError] = useState('');
+  const [email, setEmail] = useState('');
+  const [country, setCountry] = useState('bl'); // Страна по умолчанию: Беларусь
+
+
+  useEffect(() => {
+    if (planFromQuery === 2 || planFromQuery === 3) {
+      setActiveButton(planFromQuery);
+    }
+  }, [planFromQuery]);
+
+  const handleButtonClick = (buttonIndex) => {
+    // Если выбранный план отличается от текущего, сбрасываем сохраненный план
+    if (activeButton !== buttonIndex) {
+      setSavedPlan(null); // Сбросить сохраненный план
+    }
+    setActiveButton(buttonIndex); // Установить активную кнопку
+    setError(''); // Сбросить ошибку, если план выбран
+  };
+  
+  const handleContinue = () => {
+    if (activeButton) {
+      setSavedPlan(activeButton); // Сохранить выбранный план
+      setError(''); // Очистить ошибку
+      console.log("Plan saved:", activeButton); // Для демонстрации, что план сохранён
+    } else {
+      setError('Please select a plan before continuing.'); // Если план не выбран, показать ошибку
+    }
+  };
+
+  const handleOrderAndPay = () => {
+    if (!savedPlan) {
+      setError('Please confirm your plan before placing the order.'); // Ошибка, если план не подтверждён
+      return;
+    }
+
+        // Если план сохранён, выводим данные в консоль
+        console.log("Selected Plan:", savedPlan);
+        console.log("Email:", email);
+        console.log("Country:", country);
+        console.log("Card Number:", cardNumber.replace(/\s/g, '')); // Убираем пробелы из номера карты
+        console.log("Expiry Date:", `${expiryMonth}/${expiryYear}`);
+        console.log("Security Code (CVC):", securityCode);
+      };
 
   const handleCardInput = (e) => {
     let value = e.target.value.replace(/\D/g, '');
@@ -41,11 +87,7 @@ function Payment() {
     <div className="payconteiners">
       <div className="payment-cont1">
         <div className="cont1-txt">Choose a payment plan: </div>
-        <button className={`cont1-plan1 ${activeButton === 1 ? 'active' : ''}`} onClick={() => handleButtonClick(1)}>
-          <div>Creation of your first portfolio, without download</div>
-          <div className="cost">US$0</div>
-          <div className="italic">The perfect plan to try out our generator and evaluate the results</div>
-        </button>
+       
         <button className={`cont1-plan2 ${activeButton === 2 ? 'active' : ''}`} onClick={() => handleButtonClick(2)}>
           <div>Creation of 5 first portfolio, with download</div>
           <div className="cost">US$1</div>
@@ -59,7 +101,7 @@ function Payment() {
         <div className="cont1-txt-1">
           <TbLockCheck className="lockCheck" />
           <div>Secure transaction</div>
-          <button>Continue</button>
+          <button onClick={handleContinue}>Continue</button> {/* Сохранение плана */}
         </div>
       </div>
 
@@ -67,8 +109,10 @@ function Payment() {
         <div className="cont2-txt1">Your email:</div>
         <div className="cont2-txt2">Payment information will be sent to this address</div>
         <div className="cont2-txt3">Your Country/Region:</div>
-        <input type="email" id="email" name="email" className="pay-email" placeholder="example@example.com" required></input>
-        <select id="country" name="country" className="country">
+        <input type="email" id="email" name="email" className="pay-email" placeholder="example@example.com" value={email}
+          onChange={(e) => setEmail(e.target.value)} required />
+        <select id="country" name="country" className="country"value={country}
+          onChange={(e) => setCountry(e.target.value)}>
           <option value="bl">Belarus</option>
           <option value="us">United States</option>
           <option value="ca">Canada</option>
@@ -84,9 +128,17 @@ function Payment() {
           <img src={Card} alt="Bank Card" className="bankcard" />
           <div className="form-fields">
             <div>
-
-              <input type="text" id="cardNumber" className="card-input" value={cardNumber} onChange={handleCardInput}
-                maxLength="19" placeholder="YYYY YYYY YYYY YYYY" required />
+            <input
+                type="text"
+                id="cardNumber"
+                className="card-input"
+                value={cardNumber}
+                onChange={handleCardInput}
+                maxLength="19"
+                placeholder="YYYY YYYY YYYY YYYY"
+                required
+              />
+              {cardError && <div className="error-message">{cardError}</div>} {/* Вывод ошибки */}
             </div>
             <div>
               <select id="expiryMonth" value={expiryMonth} onChange={handleMonthChange} required className="select-month">
@@ -123,7 +175,7 @@ function Payment() {
               <input type="checkbox" className="checkbox" />
             </label>
           </div>
-          <button>Order and Pay</button>
+          <button onClick={handleOrderAndPay}>Order and Pay</button> {/* Отправка данных */}
         </div>
 
       </div>

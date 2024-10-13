@@ -4,6 +4,7 @@
   justify-content: space-between; /* Текст и изображение располагаются по разные стороны */
   align-items: center; /* Вертикальное выравнивание по центру */
   margin-top: 56px;
+  font-family: "Inter", sans-serif;
 }
 
 .gener-txt1 {
@@ -334,8 +335,8 @@ h2 {
   display: flex;
   justify-content: flex-start; /* Выравнивание по левому краю */
   align-items: flex-start; /* Выравнивание по верхнему краю */
-  height: auto; /* Высота контейнера на всю высоту экрана */
-  padding: 0; /* Убираем отступы у всего контейнера */
+  height: auto;
+  padding: 0; 
 }
 
 .user-form1 {
@@ -369,13 +370,13 @@ h2 {
     border-bottom: 2px solid #4CAF4F;
     margin-bottom: 20px;
     padding: 3px;
-    background-color: #ffffff; /* Фон для полей ввода */
+    background-color: #ffffff; 
     outline: none;
 }
 
 .column input:focus {
-  border-bottom: 3px solid #4CAF4F; /* Оставляем ту же нижнюю границу при фокусе */
-  outline: none; /* Убираем стандартный outline при фокусе */
+  border-bottom: 3px solid #4CAF4F; 
+  outline: none; 
 }
 
 #country{
@@ -386,23 +387,23 @@ h2 {
 .column select {
   width: 250px;
   height: 30px;
-  border: 2px solid #4CAF4F; /* Нижняя граница зеленого цвета */
+  border: 2px solid #4CAF4F; 
   padding: 3px;
-  background-color: #fff; /* Фон для select */
+  background-color: #fff; 
   outline: none;
   margin-bottom: 25px;
   border-radius: 10px;
   color: #4CAF4F; 
 }
 
-/* Сохраняем зеленую границу при фокусе */
+
 .column select:focus {
-  border-bottom: 3px solid #4CAF4F; /* При фокусе нижняя граница становится толще */
+  border-bottom: 3px solid #4CAF4F; 
   outline: none;
 }
 
 .column select:hover {
-  border-color: #81c784; /* Зеленая рамка при наведении */
+  border-color: #81c784; 
 }
 
 .select option:hover,
@@ -415,35 +416,35 @@ h2 {
 }
 .upload-block {
   width: 250px;
-  height: 100px; /* Высота блока */
-  border: 2px solid #4CAF50; /* Зеленая граница */
-  background-color: #fff; /* Белый фон */
-  border-radius: 10px; /* Скругленные углы */
+  height: 100px; 
+  border: 2px solid #4CAF50; 
+  background-color: #fff; 
+  border-radius: 10px; 
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center; /* Центрирование контента */
+  justify-content: center; 
   cursor: pointer;
   padding: 10px;
-  overflow: hidden; /* Скрытие слишком длинного текста */
-  text-overflow: ellipsis; /* Добавляем многоточие, если текст не вмещается */
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .upload-block:hover {
-  background-color: #e8f5e9; /* Светло-зеленый фон при наведении */
+  background-color: #e8f5e9; 
 }
 
 .upload-icon {
-  font-size: 35px; /* Размер иконки */
-  color: #4CAF50; /* Зеленый цвет иконки */
+  font-size: 35px; 
+  color: #4CAF50; 
 }
 
 .file-name {
-  font-size: 14px; /* Размер текста названия файла */
-  color: #333; /* Цвет текста */
-  white-space: nowrap; /* Не переносить текст на новую строку */
-  overflow: hidden; /* Скрывать текст, если он выходит за пределы */
-  text-overflow: ellipsis; /* Отображать многоточие для длинного текста */
+  font-size: 14px; 
+  color: #333; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .photoBlock{margin-top: 100px;}
@@ -451,47 +452,47 @@ h2 {
 .photo-block {
   width: 250px;
   height: 250px;
-  border: 2px solid #4CAF50; /* Зеленая граница */
-  background-color: #fff; /* Белый фон */
+  border: 2px solid #4CAF50; 
+  background-color: #fff; 
   border-radius: 10px;
   position: relative; /* Относительное позиционирование для иконки */
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer; /* Указатель мыши при наведении */
-  overflow: hidden; /* Чтобы изображение не выходило за границы блока */
+  cursor: pointer; 
+  overflow: hidden; 
 }
 
 .photo-block:hover {
-  background-color: #e8f5e9; /* Светло-зеленый фон при наведении */
+  background-color: #e8f5e9; 
 }
 
 .photo-icon {
-  font-size: 48px; /* Размер иконки */
-  color: #4CAF50; /* Зеленый цвет иконки */
+  font-size: 48px; 
+  color: #4CAF50; 
 }
 
 .photo-preview {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Обеспечивает заполнение блока изображением без искажений */
+  object-fit: cover; 
   border-radius: 10px;
 }
 
 .gener-textarea textarea {
-  width: 300px; /* Фиксированная ширина поля */
-  height: 100px; /* Фиксированная высота поля */
-  resize: none; /* Отключение возможности изменять размер поля вручную */
+  width: 300px; 
+  height: 100px; 
+  resize: none; 
   border-radius: 10px;
   border: 2px solid #4CAF4F;
   padding: 10px;
-  overflow-y: auto; /* Вертикальная прокрутка при переполнении */
+  overflow-y: auto; 
   font-size: 16px;
 }
 
 .gener-textarea textarea:focus {
-  outline: none; /* Убираем стандартное выделение при фокусе */
-  border-color: #81c784; /* Изменяем цвет рамки при фокусе */
+  outline: none; 
+  border-color: #81c784; 
 }
 
 
@@ -506,7 +507,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Убедитесь, что окно выше остальных элементов */
+  z-index: 1000; 
 }
 
 .modal-content {
@@ -514,10 +515,10 @@ h2 {
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 600px; /* Можете настроить ширину по желанию */
+  width: 600px; 
   border: 5px solid #4CAF4F;
   border-radius: 20px;
-  max-height: 80vh; /* Ограничиваем максимальную высоту до 80% от высоты экрана */
+  max-height: 80vh; 
   overflow-y: auto; 
 }
 
@@ -544,7 +545,7 @@ h2 {
 .add-education-button:hover,
 .add-job-button:hover,
 .add-language-button:hover{
-  background-color: #4CAF4F; /* Цвет фона при наведении */
+  background-color: #4CAF4F; 
   color: white;
 }
 
@@ -561,13 +562,13 @@ h2 {
   font-size: 20px;
   display: block;
   margin-bottom: 5px;
-  color: #4CAF4F; /* Белый цвет для текста */
+  color: #4CAF4F; 
 }
 
 .education-field input, .job-field input, .language-field input{
   border: 2px solid #4CAF4F;
   padding: 3px;
-  background-color: #ffffff; /* Фон для полей ввода */
+  background-color: #ffffff; 
   outline: none;
   border-radius: 5px;
 }
@@ -579,8 +580,8 @@ h2 {
 .specialization input:focus,
 .position input:focus
 .language-name input:focus {
-  border: 3px solid #4CAF4F; /* Оставляем ту же нижнюю границу при фокусе */
-  outline: none; /* Убираем стандартный outline при фокусе */
+  border: 3px solid #4CAF4F; 
+  outline: none; 
 }
 
 .educate-city, .work-city{
@@ -609,7 +610,7 @@ h2 {
 .enddate {
   display: flex;
   align-items: center;
-  gap: 5px; /* Расстояние между лейблом и полем */
+  gap: 5px; 
 }
 
 .delete-education-button, .delete-job-button, .delete-language-button{
@@ -638,8 +639,8 @@ h2 {
 .btnSaveClose {
   display: flex;
   justify-content: flex-end; /* Переносим кнопки вправо */
-  gap: 10px; /* Зазор между кнопками */
-  margin-top: 20px; /* Отступ сверху для отделения от контента */
+  gap: 10px; 
+  margin-top: 20px; 
 }
 .btnSaveClose button{
   width: 50px;
@@ -652,21 +653,21 @@ h2 {
 
 
 .infoeducate textarea, .infojob textarea{
-  width: 550px; /* Фиксированная ширина поля */
-  height: 100px; /* Фиксированная высота поля */
-  resize: none; /* Отключение возможности изменять размер поля вручную */
+  width: 550px; 
+  height: 100px; 
+  resize: none; 
   border-radius: 10px;
   border: 2px solid #4CAF4F;
   padding: 10px;
-  overflow-y: auto; /* Вертикальная прокрутка при переполнении */
+  overflow-y: auto; 
   font-size: 16px;
   font-weight: 300px;
 }
 
 .infoeducate textarea:focus,
 .infojob textarea:focus  {
-  outline: none; /* Убираем стандартное выделение при фокусе */
-  border-color: #81c784; /* Изменяем цвет рамки при фокусе */
+  outline: none; 
+  border-color: #81c784; 
 }
 
 .language-level span{
@@ -715,31 +716,31 @@ h2 {
 /* Адаптивное поведение при сужении экрана */
 @media (max-width: 1200px) {
   .generat2 {
-    gap: 20px; /* Уменьшение расстояния между блоками при меньшей ширине экрана */
+    gap: 20px; 
   }
 }
 
 @media (max-width: 768px) {
   .generat2 {
-    gap: 10px; /* Еще меньшее расстояние между блоками */
+    gap: 10px; 
   }
 }
 
 @media (max-width: 600px) {
   .generat2 {
-    flex-direction: column; /* Блоки переносятся на новые строки */
-    align-items: center; /* Блоки по центру */
-    gap: 30px; /* Между блоками расстояние снова увеличивается, чтобы не было тесноты */
-    padding: 20px; /* Уменьшение отступов */
+    flex-direction: column; 
+    align-items: center; 
+    gap: 30px; 
+    padding: 20px; 
   }
 
   .generated-block {
     margin-left: 30px;
-    height: 400px; /* Высота становится автоматической */
+    height: 400px; 
   }
 
   .text-gen1 {
-    width: 90%; /* Текст в блоке растягивается вместе с блоком */
+    width: 90%; 
   }
 }
 
@@ -750,18 +751,18 @@ h2 {
 @media (max-width: 1024px) {
   .generat-start {
     flex-direction: column; 
-    align-items: center; /* Выравниваем элементы по центру */
-    margin-right: 0; /* Убираем правый отступ для изображения на маленьких экранах */
+    align-items: center; 
+    margin-right: 0; 
   }
   .gener-txt1 {
-    margin-left: 0; /* Убираем отступы для текста на маленьких экранах */
-    text-align: center; /* Текст по центру на маленьких экранах */
+    margin-left: 0; 
+    text-align: center;
   }
 
   .generator-phot1 {
-    margin-right: 0; /* Убираем правый отступ для изображения на маленьких экранах */
-    margin-top: 20px; /* Добавляем отступ сверху для изображения */
-    width: 70%; /* Изображение растягивается на всю ширину экрана */
-    height: auto; /* Пропорциональная высота изображения */
+    margin-right: 0; 
+    margin-top: 20px; 
+    width: 70%; 
+    height: auto; 
   }
 }

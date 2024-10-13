@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; 
+import { useLocation, useNavigate } from 'react-router-dom'; 
 
 export const useGeneratorLogic = () => {
   const [activePlan, setActivePlan] = useState(null); // состояние для отслеживания активного плана
   const location = useLocation(); // получаем текущий URL с хешем
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWorkModalOpen, setIsWorkModalOpen] = useState(false);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
@@ -151,6 +152,14 @@ export const useGeneratorLogic = () => {
 
     // Дополнительно можно обновить состояние
     setFormData(formValues);
+
+    if (activePlan === 2 || activePlan === 3) {
+      navigate(`/payment?plan=${activePlan}`); // перенаправление на страницу оплаты
+    } else {
+      // План 1: просто сохраняем данные
+      console.log('Plan 1 selected, no payment required.');
+    }
+  
   };
 
   return {

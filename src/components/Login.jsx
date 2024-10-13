@@ -26,6 +26,7 @@ function Login() {
     // Данные, которые будут отправлены на сервер
     const userData = { email, password };
 
+    console.log('Sending user data to API:', userData);
     try {
       const response = await fetch('http://localhost:5000/api/message', {
         method: 'POST',
