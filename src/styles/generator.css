@@ -34,6 +34,7 @@
   height: auto; 
 }
 
+
 .generat2 {
   display: flex;
   justify-content: space-between;
@@ -343,19 +344,17 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Три колонки одинаковой ширины */
   grid-gap: 20px; /* Отступы между колонками */
-  padding: 20px 0; /* Отступы только сверху и снизу */
+  padding: 20px 0; 
   margin-left: 125px;
 }
 
-
-/* Стили для колонок */
 .column {
   display: flex;
   flex-direction: column; /* Расположение элементов по вертикали в колонках */
 }
 
 .gener-form-cont1 label{
-    font-weight: bold;
+    font-weight: lighter;
     font-size: 20px;
     display: block;
     margin-bottom: 5px;
@@ -381,7 +380,6 @@ h2 {
 #country{
   width: 320px;
 }
-
 
 .column select {
   width: 250px;
@@ -493,8 +491,6 @@ h2 {
   outline: none; 
   border-color: #81c784; 
 }
-
-
 
 .modal-overlay {
   position: fixed;
@@ -649,8 +645,6 @@ h2 {
   cursor: pointer;
 }
 
-
-
 .infoeducate textarea, .infojob textarea{
   width: 550px; 
   height: 100px; 
@@ -673,8 +667,6 @@ h2 {
   margin-left: 20px;
   color: #4CAF4F;
 }
-
-
 
 .language-level input {
   -webkit-appearance: none;
@@ -712,15 +704,49 @@ h2 {
   margin-top: 20px;
 }
 
+
 @media (max-width: 1200px) {
   .generat2 {
     gap: 20px; 
+  }
+
+  .user-form1 {
+    grid-template-columns: 1fr 1fr; /* Две колонки*/
+  }
+
+  .generator-phot1{
+    margin-top: 20px;
+    width: 70%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .generat-start {
+    flex-direction: column; 
+    align-items: center; 
+    margin-right: 0; 
+  }
+  .gener-txt1 {
+    margin-left: 0; 
+    text-align: center;
+  }
+
+  .generator-phot1 {
+    margin-right: 0; 
+    margin-top: 20px; 
+    width: 70%; 
+    height: auto; 
   }
 }
 
 @media (max-width: 768px) {
   .generat2 {
     gap: 10px; 
+  }
+
+  .user-form1 {
+    grid-template-columns: 1fr; /* Одна колонка на экранах меньше 768px */
+    justify-content: center;
   }
 }
 
@@ -742,25 +768,10 @@ h2 {
   }
 }
 
+@media (max-width: 480px) {
 
-
-
-
-@media (max-width: 1024px) {
-  .generat-start {
-    flex-direction: column; 
-    align-items: center; 
-    margin-right: 0; 
-  }
-  .gener-txt1 {
-    margin-left: 0; 
-    text-align: center;
-  }
-
-  .generator-phot1 {
-    margin-right: 0; 
-    margin-top: 20px; 
-    width: 70%; 
-    height: auto; 
+  .photo-block {
+    width: 250px; /* Фото адаптируется под экран */
+    height: auto; /* Поддержка адаптивной высоты */
   }
 }

@@ -276,15 +276,15 @@ function Generator() {
   </div>
   </div>
 
-  <div class="column">
+  <div className="column">
   <div className="gender">
   <label htmlFor="gender">
     Gender:
   </label>
   <select id="gender" name="gender">
-    <option value="female">Женщина</option>
-    <option value="male">Мужчина</option>
-    <option value="not-specified">Неважно</option>
+    <option value="female">Woman</option>
+    <option value="male">Man</option>
+    <option value="not-specified">Doesn't matter</option>
   </select>
 </div>
 
@@ -293,20 +293,20 @@ function Generator() {
   <div>
     <label for="business-trips">Business trips:</label>
     <select id="business-trips" name="business-trips">
-      <option value="not-specified">Не указано</option>
-      <option value="possible">Возможны</option>
-      <option value="impossible">Невозможны</option>
-      <option value="rarely-possible">Возможны редко</option>
+      <option value="not-specified">Not specified</option>
+      <option value="possible">Possible</option>
+      <option value="impossible">Impossible</option>
+      <option value="rarely-possible">Rarely possible</option>
     </select>
   </div>
 
   <div>
     <label for="employment">Busyness:</label>
     <select id="employment" name="employment">
-      <option value="full">Полная</option>
-      <option value="part-time">Частичная</option>
-      <option value="freelance">Разовая / Подработка</option>
-      <option value="internship">Стажировка</option>
+      <option value="full">Full</option>
+      <option value="part-time">Partial</option>
+      <option value="freelance">One-time / Part-time job</option>
+      <option value="internship">Internship</option>
     </select>
   </div>
 
@@ -314,11 +314,11 @@ function Generator() {
   <div>
     <label for="work-schedule">Work schedule :</label>
     <select id="work-schedule" name="work-schedule">
-      <option value="fixed">Фиксированный</option>
-      <option value="full-day">Полный рабочий день</option>
-      <option value="shift">Сменный</option>
-      <option value="flexible">Гибкий</option>
-      <option value="rotation">Вахтовый метод</option>
+      <option value="fixed">Fixed</option>
+      <option value="full-day">Full time</option>
+      <option value="shift">Removable</option>
+      <option value="flexible">Flexible</option>
+      <option value="rotation">Shift method</option>
     </select>
   </div>
 
@@ -339,7 +339,7 @@ function Generator() {
   </div>
 
   <div className="upload-wrapper">
-  <label htmlFor="file-upload">Загрузка файла:</label>
+  <label htmlFor="file-upload">File upload:</label>
   <div className="upload-block" onClick={() => document.getElementById('file-upload').click()}>
     <input type="file" id="file-upload" name="file-upload" accept=".pdf, .doc, .docx" style={{ display: 'none' }} onChange={handleFileChange}/>
     {fileName ? (
@@ -351,7 +351,7 @@ function Generator() {
 </div>
 
 <div className="upload-wrapper">
-  <label htmlFor="video-upload">Загрузка видео:</label>
+  <label htmlFor="video-upload">Loading video:</label>
   <div className="upload-block" onClick={() => document.getElementById('video-upload').click()}>
     <input type="file" id="video-upload" name="video-upload" accept="video/*" style={{ display: 'none' }} onChange={handleVideoChange}/>
     {videoName ? (
@@ -364,7 +364,7 @@ function Generator() {
 
 
 <div className="gener-textarea">
-    <label for="additional-info">Дополнительная информация:</label>
+    <label for="additional-info">Additional information:</label>
     <textarea id="additional-info" name="additional-info"></textarea>
   </div>
 
