@@ -113,3 +113,28 @@
   border-radius: 30px;
   background-color: #A5D6A7;
 }
+
+@media (max-width: 1224px) {
+
+  .faqBan1 {
+    flex-direction: column; 
+    gap: 50px; 
+    margin-top: 10px;
+  }
+
+  .banner-img1-home {
+    width: 70%; 
+    height: auto;
+  }
+}
+@media (max-width: 768px) {
+
+  .faq-phot1 {
+    width: 70%; 
+    height: auto;
+  }
+
+  .faq-txt1 {
+    font-size: 40px;
+  }
+}

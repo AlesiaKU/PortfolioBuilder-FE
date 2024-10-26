@@ -416,7 +416,9 @@ function Generator() {
                 </div>
                 <div className="infoeducate">
                 <label for="education-info">Дополнительная информация:</label>
-                <textarea id="education-info" name="education-info"></textarea>
+                <textarea  type="text" value={education.educationInfo}
+                onChange={(e) => handleChange(index, 'educationInfo', e.target.value)}
+              />
                 </div>
 
                 <div className="lineBtn">
@@ -476,7 +478,9 @@ function Generator() {
           </div>
           <div className="infojob">
                 <label for="job-info">Additional information:</label>
-                <textarea id="job-info" name="job-info"></textarea>
+                <textarea  type="text" value={job.jobsnInfo}
+                onChange={(e) => handleChange(index, 'jobsnInfo', e.target.value, 'job')}
+              />
                 </div>
 
           {/* Кнопка для удаления текущего набора полей */}

@@ -24,7 +24,7 @@ function Login() {
 
     console.log('Sending user data to API:', userData);
     try {
-      const response = await fetch('http://localhost:5000/api/message', {
+      const response = await fetch('jdbc:postgresql://localhost:5432/MyPortfolioBuilder', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

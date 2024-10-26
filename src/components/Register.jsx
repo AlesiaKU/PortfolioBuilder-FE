@@ -4,14 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { RxExit } from "react-icons/rx";
 
 function Register() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLoginClick = () => {
-    navigate('/login'); 
+    navigate('/login');
   };
 
   const handleExitClick = () => {
@@ -19,48 +20,61 @@ function Register() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Отключаем стандартное поведение формы
+    e.preventDefault();
 
-    // Проверка совпадения паролей
-   /* if (password !== confirmPassword) {
-      alert('Passwords do not match');
+    if (password !== confirmPassword) {
+      setErrorMessage('Passwords do not match');
       return;
-    }*/
+    }
+    setErrorMessage('');
 
-    const userData = { email, password, confirmPassword };
+    const userData = { email, password };
+    console.log(userData);
+
+
+/*====================================================================== */
+    // Имитация успешной регистрации
+    /*console.log(`User with email ${email} registered successfully.`);
+    localStorage.setItem('isAuthenticated', 'true'); // Устанавливаем флаг, что пользователь зарегистрирован
+
+    // Переход на главную страницу
+    navigate('/'); // Перенаправляем на главную страницу после "успешной регистрации"
+  };
+  /*===================================================================== */
     
-    console.log('Sending user data to API:', userData);
-    try {
-      const response = await fetch('http://localhost:5000/api/register', {
+  
+  try {
+      const response = await fetch('http://26.188.13.76:8080/api/register', { // Измените порт на 8080, если бэкенд работает на нем
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData), // Отправляем данные в формате JSON
+        body: JSON.stringify(userData),
       });
 
-      // Обработка ответа от сервера
       if (response.ok) {
         const data = await response.json();
-        console.log('Success:', data); 
-        alert(`Success: ${data.message}`); 
+        alert(data.message);
+        navigate('/'); // Перенаправляем на главную страницу после успешной регистрации
       } else {
-        console.error('Error:', response.statusText);
         alert('Registration failed');
       }
     } catch (error) {
-      console.error('Error:', error);
       alert('Something went wrong');
+      console.error(error);
     }
   };
-
-  return (
+  const handlePasswordFocus = () => {
+    // Сбрасываем сообщение об ошибке при фокусе на полях пароля
+    setErrorMessage('');
+  };
+  return ( 
     <div className="register">
       <div className="formm">
         <div className="image-container"></div>
         <div className="container2">
           <RxExit className="exit-icon" onClick={handleExitClick} style={{ cursor: 'pointer' }} />
-          <form className="reglogform">
+          <form className="reglogform"onSubmit={handleSubmit}>
             <h1>Welcome to Generator</h1>
             <div className="input-box">
               <label className="email">Email</label>
@@ -76,16 +90,18 @@ function Register() {
             <div className="input-box">
               <label className="password">Password</label>
               <input type="password" placeholder="Enter your password" className="form-style" value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
+                onChange={(e) => setPassword(e.target.value)} onFocus={handlePasswordFocus} 
                 required
               />
             </div>
             <div className="input-box">
               <label className="password">Confirm Password</label>
               <input type="password" placeholder="Enter your password" className="form-style"  value={confirmPassword} 
-                onChange={(e) => setConfirmPassword(e.target.value)} 
+                onChange={(e) => setConfirmPassword(e.target.value)}  onFocus={handlePasswordFocus}
                 required
               />
+              {/* Отображение сообщения об ошибке */}
+              {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             </div>
             <button type="submit" className="btn-form">Create Account</button>
 

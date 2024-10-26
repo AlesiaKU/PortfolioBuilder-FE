@@ -13,13 +13,13 @@ export const useGeneratorLogic = () => {
     { name: '', level: 1 }
   ]);
   const [newEducations, setNewEducations] = useState([
-    { specialization: '', institution: '', city: '', startDate: '', endDate: '' }
+    { specialization: '', institution: '', city: '', startDate: '', endDate: '', educationInfo: '' }
   ]);
 
     // Состояние для работы
     const [jobs, setJobs] = useState([]);
     const [newJobs, setNewJobs] = useState([
-      { position: '', company: '', city: '', startDate: '', endDate: '' }
+      { position: '', company: '', city: '', startDate: '', endDate: '', jobsnInfo:'' }
     ]);
 
   useEffect(() => {
@@ -58,11 +58,11 @@ export const useGeneratorLogic = () => {
   };
 
   const addEducationField = () => {
-    setNewEducations([...newEducations, { specialization: '', institution: '', city: '', startDate: '', endDate: '' }]);
+    setNewEducations([...newEducations, { specialization: '', institution: '', city: '', startDate: '', endDate: '', educationInfo: '' }]);
   };
 
   const addWorkField = () => {
-    setNewJobs([...newJobs, { position: '', company: '', city: '', startDate: '', endDate: '' }]);
+    setNewJobs([...newJobs, { position: '', company: '', city: '', startDate: '', endDate: '', jobsnInfo:'' }]);
   };
 
   const openLanguageModal = (event) => {
@@ -120,7 +120,7 @@ export const useGeneratorLogic = () => {
 
   const [formData, setFormData] = useState({}); // состояние для хранения данных формы
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault(); // предотвращает перезагрузку страницы при отправке формы
 
     const form = event.target;
@@ -151,15 +151,36 @@ export const useGeneratorLogic = () => {
 
     setFormData(formValues);
 
-    if (activePlan === 2 || activePlan === 3) {
-      navigate(`/payment?plan=${activePlan}`); // перенаправление на страницу оплаты
-    } else {
-      // План 1: просто сохраняем данные
-      console.log('Plan 1 selected, no payment required.');
-    }
-  
-  };
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxvK6Vuobe29pzf1NsRDSX0pIM7XZUDWWbebimF2YiS6sxuBN832ZaHte49TvTV3Rsg/exec', {
+        method: 'POST',
+        cors: "no-cors", 
+        headers: {
+          'Content-Type': 'application/json', // Указываем формат данных
+           // Explicitly setting CORS mode
+        },
+        body: JSON.stringify(fullFormData) // Преобразуем объект в JSON строку
+      });
+      
+      if (!response.ok) { // Проверяем успешность ответа
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
 
+      const responseData = await response.json(); // Парсим ответ от сервера
+      console.log('Response from server:', responseData); // Ответ от сервера
+
+      // Дополнительные действия после успешной отправки данных
+      if (activePlan === 2 || activePlan === 3) {
+        navigate(`/payment?plan=${activePlan}`); // перенаправление на страницу оплаты
+      } else {
+        // План 1: просто сохраняем данные
+        console.log('Plan 1 selected, no payment required.');
+      }
+
+    } catch (error) {
+      console.error('Error sending data to server:', error); // Обработка ошибок
+    }
+  };
   return {
     activePlan,
     isModalOpen,
