@@ -9,6 +9,7 @@ import Generator from './components/Generator';
 import FAQ from './components/FAQ';
 import Payment from './components/Payment';
 import ScrollToTop from './components/ScrollToTop';
+import Profile from './components/Profile';
 
 function App() {
   const location = useLocation();
@@ -28,6 +29,7 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
 
       {!isAuthPage && <Footer />}

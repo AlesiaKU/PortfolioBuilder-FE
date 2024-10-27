@@ -34,7 +34,7 @@ function Register() {
 
 /*====================================================================== */
     // Имитация успешной регистрации
-    /*console.log(`User with email ${email} registered successfully.`);
+    console.log(`User with email ${email} registered successfully.`);
     localStorage.setItem('isAuthenticated', 'true'); // Устанавливаем флаг, что пользователь зарегистрирован
 
     // Переход на главную страницу
@@ -43,7 +43,7 @@ function Register() {
   /*===================================================================== */
     
   
-  try {
+  /*try {
       const response = await fetch('http://26.188.13.76:8080/api/register', { // Измените порт на 8080, если бэкенд работает на нем
         method: 'POST',
         headers: {
@@ -63,7 +63,7 @@ function Register() {
       alert('Something went wrong');
       console.error(error);
     }
-  };
+  };*/
   const handlePasswordFocus = () => {
     // Сбрасываем сообщение об ошибке при фокусе на полях пароля
     setErrorMessage('');

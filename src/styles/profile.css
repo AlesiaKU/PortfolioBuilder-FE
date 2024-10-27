@@ -1,0 +1,71 @@
+.profileData{
+  width: 100%;
+  margin-top: 40px;
+  background-color: #F5F7FA;
+  height: 635px;
+  display: flex;
+  font-family: "Inter", sans-serif;
+}
+
+.basePofInfo{
+  width: 340px;
+  height: 570px;
+  background-color: white;
+  margin-left: 120px;
+  display: flex;
+  flex-direction: column; /* Выстраиваем элементы по вертикали */
+  align-items: center; /* Центрируем по горизонтали */
+  text-align: center; /* Центрируем текст внутри блока */
+}
+
+.profPhoto{
+  width: 216px;
+  height: 216px;
+  border-radius: 150px;
+  background-color: aquamarine;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.profName{
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.profJob{
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.pageInProf{
+  width: 869px;
+  height: 520px;
+  background-color: white;
+  margin-left: 80px;
+  display: flex;
+  flex-direction: column; /* Выстраиваем элементы по вертикали */
+  align-items: center; /* Центрируем по горизонтали */
+  text-align: center; /* Центрируем текст внутри блока */
+}
+
+.navegPage {
+  display: flex; /* Установите flexbox для основного контейнера */
+  flex-direction: column; /* Расположите элементы в столбик */
+}
+.profile_nav {
+  display: flex; /* Используйте flexbox для расположения элементов в строку */
+  justify-content: space-around; /* Разделите кнопки по горизонтали с равными промежутками */
+  height: 50px;
+  background-color: #F5F7FA;
+  margin-left: 80px;
+}
+
+.profile_nav button {
+  font-size: 20px;
+  padding: 10px 15px; /* Добавьте отступы внутри кнопок */
+  background-color: transparent;
+  border: none; /* Уберите рамку кнопок */
+  border-radius: 5px; /* Закруглите углы кнопок */
+  cursor: pointer; /* Измените указатель на курсор при наведении */
+  transition: background-color 0.3s; /* Плавный переход для изменения цвета */
+}

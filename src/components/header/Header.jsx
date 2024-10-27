@@ -1,10 +1,23 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate} from 'react-router-dom';
 import './header.css';
 import logo from './logo.svg';
+import { FaUserCircle } from 'react-icons/fa';
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    setIsAuthenticated(localStorage.getItem('isAuthenticated') === 'true');
+  }, []);
+
+  // Функция выхода из системы
+  const handleLogout = () => {
+    localStorage.setItem('isAuthenticated', 'false');
+    setIsAuthenticated(false);
+    navigate('/'); // Перенаправляем пользователя на главную страницу после выхода
+  };
 
   return (
     <header className='header'>
@@ -28,8 +41,22 @@ function Header() {
           </nav>
 
           <div className="headerbtn-lr">
-          <Link to="/login" className='btn-log'>Login</Link>
-          <Link to="/register" className='btn-reg'>Register</Link>
+            {isAuthenticated ? (
+              <>
+              <button onClick={handleLogout} className='btn-log'>
+                  Log out
+                </button>
+                <Link to="/profile" className='iconProfile'>
+                  <FaUserCircle size={28} /> {/* Иконка профиля */}
+                </Link>
+                
+              </>
+            ) : (
+              <>
+                <Link to="/login" className='btn-log'>Login</Link>
+                <Link to="/register" className='btn-reg'>Register</Link>
+              </>
+            )}
           </div>
         </div>
       </div>
