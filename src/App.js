@@ -1,15 +1,15 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom'; 
-import Header from './components/header/Header';
-import Footer from './components/Footer';
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
-import Generator from './components/Generator';
-import FAQ from './components/FAQ';
-import Payment from './components/Payment';
-import ScrollToTop from './components/ScrollToTop';
-import Profile from './components/Profile';
+import Header from './components/header/Header.jsx';
+import Footer from './components/Footer.jsx';
+import Home from './components/Home.jsx';
+import Login from './components/Login.jsx';
+import Register from './components/Register.jsx';
+import Generator from './components/Generator.jsx';
+import FAQ from './components/FAQ.jsx';
+import Payment from './components/Payment.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
+import Profile from './components/FAQ.jsx';
 
 function App() {
   const location = useLocation();

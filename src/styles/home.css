@@ -166,14 +166,10 @@
   text-align: justify;
   width: 100%; 
   padding-right: 20px;
+  padding-bottom: 30px;
 }
 
-
-
-.text-banner3 button, .text-banner4 button {
-  margin-top: 32px;
-  width: 151px; 
-  height: 52px;
+.learnMoreBtn{
   padding: 10px 20px;
   background-color: #4CAF4F;
   color: white;
@@ -181,7 +177,10 @@
   cursor: pointer;
   font-size: 16px;
   border-radius: 6px;
+  width: 151px; 
+  height: 52px;
 }
+
 
 .banner5-home {
   width: 100%;

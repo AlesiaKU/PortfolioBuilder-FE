@@ -97,7 +97,7 @@ have full access to customize the design and layout of your portfolio. You can c
 element according to your style and professional needs. Finally, review your portfolio, make the latest
 changes, and you're ready to publish it and share it with potential clients or employers. It's so easy!
           </div>
-          <button>Learn More</button>
+          <Link to="/generator#generat2" className="learnMoreBtn">Learn More</Link>
 
         </div>
       </div>
@@ -114,7 +114,7 @@ First, you choose the plan that suits your needs, free or paid. Then enter data 
 project and customize the layout according to your style. Finally, if you have chosen a paid plan,
 complete the payment and your portfolio is ready to be published worldwide!
           </div>
-          <button>Learn More</button>
+          <Link to="/generator#generat2" className="learnMoreBtn">Learn More</Link>
 
         </div>
       </div>

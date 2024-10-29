@@ -8,6 +8,10 @@ export const useGeneratorLogic = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWorkModalOpen, setIsWorkModalOpen] = useState(false);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  useEffect(() => {
+    setIsAuthenticated(localStorage.getItem('isAuthenticated') === 'true');
+  }, []);
   const [educations, setEducations] = useState([]);
   const [newLanguages, setNewLanguages] = useState([
     { name: '', level: 1 }
@@ -31,6 +35,9 @@ export const useGeneratorLogic = () => {
         if (elementId === 'gener-plan1') setActivePlan(1);
         else if (elementId === 'gener-plan2') setActivePlan(2);
         else if (elementId === 'gener-plan3') setActivePlan(3);
+        else if (elementId === 'generat2') { // Прокрутка до generat2
+          setActivePlan(null); // Сброс плана, так как это не план
+        }
       }
     }
   }, [location]);
@@ -207,5 +214,6 @@ export const useGeneratorLogic = () => {
     saveLanguages,
     deleteLanguageField,
     handleSubmit,
+    isAuthenticated,
   };
 };

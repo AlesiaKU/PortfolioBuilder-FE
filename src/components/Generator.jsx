@@ -6,7 +6,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { TbPhoto } from "react-icons/tb";
 import { MdOutlineFileUpload } from "react-icons/md";
-import { useGeneratorLogic } from '../JavaScript/Generator2'
+import { useGeneratorLogic } from '../JavaScript/Generator2.js'
 
 function Generator() {
   const {
@@ -29,6 +29,7 @@ function Generator() {
     saveEducations,
     saveJobs,
     isLanguageModalOpen,
+    isAuthenticated,
     openLanguageModal, 
     closeLanguageModal, 
     addLanguageField, 
@@ -78,7 +79,7 @@ function Generator() {
         </div>
         <img src={Generator1} className="generator-phot1" alt="Generator" />
       </div>
-      <div className="generat2">
+      <div className="generat2"id="generat2">
         <div className="block-container">
           <h2>Step 1</h2>
           <div className="generated-block">
@@ -110,7 +111,7 @@ function Generator() {
           </div>
         </div>
       </div>
-
+      <div className={`page-content ${!isAuthenticated ? 'blurred' : ''}`}>
       <div className="line-with-text-gener">Step 1</div>
 
       <div className="generstep">
@@ -121,7 +122,7 @@ function Generator() {
 
         <button id="gener-plan1"
           className={`gener-plan plan1 ${activePlan === 1 ? 'active' : ''}`}
-          onClick={() => handlePlanClick(1)}
+          onClick={() => handlePlanClick(1) } disabled={!isAuthenticated}
         >
           <div className="gener-circle-rec">
             <div className="gener-half-circle1"></div>
@@ -153,7 +154,7 @@ function Generator() {
 
         <button id="gener-plan2"
           className={`gener-plan plan2 ${activePlan === 2 ? 'active' : ''}`}
-          onClick={() => handlePlanClick(2)}
+          onClick={() => handlePlanClick(2)} disabled={!isAuthenticated}
         >
           <div className="gener-rectangle">
             <div className="gener-rectang1"></div>
@@ -189,7 +190,7 @@ function Generator() {
 
         <button id="gener-plan3"
           className={`gener-plan plan3 ${activePlan === 3 ? 'active' : ''}`}
-          onClick={() => handlePlanClick(3)}
+          onClick={() => handlePlanClick(3)} disabled={!isAuthenticated}
         >
            <div className="gener-rectangle-pl3">
             <img src={banner6Image1} className="banner6-img1-home" />
@@ -226,38 +227,46 @@ function Generator() {
       <div class="column">
   <div>
     <label for="first-name">Name:</label>
-    <input type="text" id="first-name" name="first-name"></input>
+    <input type="text" id="first-name" name="first-name" disabled={!isAuthenticated}></input>
   </div>
 
   <div>
     <label for="last-name">Surname:</label>
-    <input type="text" id="last-name" name="last-name"></input>
+    <input type="text" id="last-name" name="last-name" disabled={!isAuthenticated}></input>
   </div>
 
   <div>
     <label for="middle-name">Middle name:</label>
-    <input type="text" id="middle-name" name="middle-name"></input>
+    <input type="text" id="middle-name" name="middle-name" disabled={!isAuthenticated}></input>
   </div>
 
   <div>
     <label for="dob">Date of birth:</label>
-    <input type="date" id="dob" name="dob"></input>
+    <input
+  type="date"
+  id="dob"
+  name="dob"
+  min={(new Date(new Date().setFullYear(new Date().getFullYear() - 70))).toISOString().split('T')[0]}
+  max={new Date().toISOString().split('T')[0]}
+  disabled={!isAuthenticated}
+/>
+
   </div>
 
   <div>
     <label for="country">Place of residence (country, city):</label>
-    <input type="text" id="country" name="country"></input>
+    <input type="text" id="country" name="country" disabled={!isAuthenticated}></input>
   </div>
  
 
 
       <div>
     <label for="phone">Phone number:</label>
-    <input type="tel" id="phone" name="phone"></input>
+    <input type="tel" id="phone" name="phone" disabled={!isAuthenticated}></input>
   </div>
   <div>
     <label for="email">Email:</label>
-    <input type="email" id="emailfoot" name="email"></input>
+    <input type="email" id="emailfoot" name="email" disabled={!isAuthenticated}></input>
   </div>
 </div>
 
@@ -265,7 +274,7 @@ function Generator() {
   <div className="photoBlock">
   <label for="photo">Photo(250/250):</label>
   <div  className="photo-block" onClick={() => document.getElementById('photo').click()}>
-   <input type="file" id="photo" name="photo" accept="image/*" style={{ display: 'none' }}  onChange={handlePhotoChange} />
+   <input type="file" id="photo" name="photo" accept="image/*" style={{ display: 'none' }}  onChange={handlePhotoChange}  disabled={!isAuthenticated}/>
    {/* Если фото загружено, отображаем его, если нет - показываем иконку */}
    {photo ? (
           <img src={photo} alt="Selected" className="photo-preview" />
@@ -281,7 +290,7 @@ function Generator() {
   <label htmlFor="gender">
     Gender:
   </label>
-  <select id="gender" name="gender">
+  <select id="gender" name="gender" disabled={!isAuthenticated}>
     <option value="female">Woman</option>
     <option value="male">Man</option>
     <option value="not-specified">Doesn't matter</option>
@@ -292,7 +301,7 @@ function Generator() {
 
   <div>
     <label for="business-trips">Business trips:</label>
-    <select id="business-trips" name="business-trips">
+    <select id="business-trips" name="business-trips" disabled={!isAuthenticated}>
       <option value="not-specified">Not specified</option>
       <option value="possible">Possible</option>
       <option value="impossible">Impossible</option>
@@ -302,7 +311,7 @@ function Generator() {
 
   <div>
     <label for="employment">Busyness:</label>
-    <select id="employment" name="employment">
+    <select id="employment" name="employment" disabled={!isAuthenticated}>
       <option value="full">Full</option>
       <option value="part-time">Partial</option>
       <option value="freelance">One-time / Part-time job</option>
@@ -313,7 +322,7 @@ function Generator() {
 
   <div>
     <label for="work-schedule">Work schedule :</label>
-    <select id="work-schedule" name="work-schedule">
+    <select id="work-schedule" name="work-schedule" disabled={!isAuthenticated}>
       <option value="fixed">Fixed</option>
       <option value="full-day">Full time</option>
       <option value="shift">Removable</option>
@@ -324,24 +333,24 @@ function Generator() {
 
   <div className="education ">
   <label>Education</label>
-  <button className="add-education-button" onClick={openModal}>+</button>
+  <button className="add-education-button" onClick={openModal} disabled={!isAuthenticated}>+</button>
  </div>
 
  <div className="language">
         <label>Languages</label>
-        <button className="add-language-button" onClick={openLanguageModal}>+</button>
+        <button className="add-language-button" onClick={openLanguageModal} disabled={!isAuthenticated}>+</button>
       </div>
 
  <div className="job">
    <label>Job</label>
-   <button className="add-job-button" onClick={openWorkModal}>+</button>
+   <button className="add-job-button" onClick={openWorkModal} disabled={!isAuthenticated}>+</button>
 </div>
   </div>
 
   <div className="upload-wrapper">
   <label htmlFor="file-upload">File upload:</label>
   <div className="upload-block" onClick={() => document.getElementById('file-upload').click()}>
-    <input type="file" id="file-upload" name="file-upload" accept=".pdf, .doc, .docx" style={{ display: 'none' }} onChange={handleFileChange}/>
+    <input type="file" id="file-upload" name="file-upload" accept=".pdf, .doc, .docx" style={{ display: 'none' }} onChange={handleFileChange} disabled={!isAuthenticated}/>
     {fileName ? (
             <span className="file-name">{fileName}</span>
           ) : (
@@ -353,7 +362,7 @@ function Generator() {
 <div className="upload-wrapper">
   <label htmlFor="video-upload">Loading video:</label>
   <div className="upload-block" onClick={() => document.getElementById('video-upload').click()}>
-    <input type="file" id="video-upload" name="video-upload" accept="video/*" style={{ display: 'none' }} onChange={handleVideoChange}/>
+    <input type="file" id="video-upload" name="video-upload" accept="video/*" style={{ display: 'none' }} onChange={handleVideoChange} disabled={!isAuthenticated}/>
     {videoName ? (
             <span className="file-name">{videoName}</span>
           ) : (
@@ -365,17 +374,17 @@ function Generator() {
 
 <div className="gener-textarea">
     <label for="additional-info">Additional information:</label>
-    <textarea id="additional-info" name="additional-info"></textarea>
+    <textarea id="additional-info" name="additional-info" disabled={!isAuthenticated}></textarea>
   </div>
 
   <div className="generformbtn-container">
-  <button type="submit" className="generformbtn">Continue</button>
+  <button type="submit" className="generformbtn" disabled={!isAuthenticated}>Continue</button>
 </div>
   </form>
   </div>
 
+</div>
 
- 
 
   {isModalOpen && (
         <div className="modal-overlay">

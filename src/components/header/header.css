@@ -20,7 +20,7 @@
   font-weight: 400px;
   font-size: 30px;
   line-height: 50px;
-  color: black;
+  color: #4D4D4D;
 }
 
 .header_logo {
@@ -45,6 +45,10 @@
   display: flex;
   justify-content: center;
   flex-grow: 1; /* Навигация будет занимать доступное пространство */
+}
+
+.headerBtn{
+  color: #4D4D4D;
 }
 
 .header_nav ul {

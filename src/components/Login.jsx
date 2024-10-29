@@ -8,6 +8,7 @@ function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleRegisterClick = () => {
     navigate('/register'); 
@@ -21,29 +22,29 @@ function Login() {
     e.preventDefault(); 
 
     const userData = { email, password };
-
     console.log('Sending user data to API:', userData);
     try {
-      const response = await fetch('jdbc:postgresql://localhost:5432/MyPortfolioBuilder', {
+      const response = await fetch('http://26.188.13.76:8080/api/users', {
         method: 'POST',
+       // method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData), 
+        body: JSON.stringify(userData),
+        credentials: 'same-origin' 
       });
 
-      
       if (response.ok) {
         const data = await response.json();
-        console.log('Success:', data); // Выводим ответ сервера в консоль
-        alert(`Success: ${data.message}`); // Показываем сообщение пользователю
-      } else {
-        console.error('Error:', response.statusText);
-        alert('Login failed');
+        localStorage.setItem('isAuthenticated', 'true');
+        console.log('Login successful');
+        navigate('/');
+      } else if (response.status === 401) {
+        setErrorMessage('Invalid email or password');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Something went wrong');
+      setErrorMessage('Something went wrong. Please try again.');
     }
   };
 
@@ -77,6 +78,7 @@ function Login() {
                 required
               />
             </div>
+            {errorMessage && <p style={{ color: 'red'}}>{errorMessage}</p>} {/* Отображение сообщения об ошибке */}
             <button type="submit" className="btn-form">Login</button>
 
             <div className="register-link">

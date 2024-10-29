@@ -30,13 +30,13 @@ function Header() {
 
           <nav className="header_nav">
             <ul>
-              <li className={location.pathname === '/' ? 'active' : ''}><Link to="/">Home</Link></li>
+              <li className={location.pathname === '/' ? 'active' : ''}><Link to="/" className="headerBtn">Home</Link></li>
               <div className='cherta'></div>
-              <li className={location.pathname === '/generator' ? 'active' : ''}><Link to="/generator">Generator</Link></li>
+              <li className={location.pathname === '/generator' ? 'active' : ''}><Link to="/generator" className="headerBtn">Generator</Link></li>
               <div className='cherta'></div>
-              <li className={location.pathname === '/faq' ? 'active' : ''}><Link to="/faq">FAQ</Link></li>
+              <li className={location.pathname === '/faq' ? 'active' : ''}><Link to="/faq" className="headerBtn">FAQ</Link></li>
               <div className='cherta'></div>
-              <li className={location.pathname === '/examples' ? 'active' : ''}><Link to="/examples" className="Examples">Examples</Link></li>
+              <li className={location.pathname === '/examples' ? 'active' : ''}><Link to="/examples" className="headerBtn">Examples</Link></li>
             </ul>
           </nav>
 

@@ -33,39 +33,42 @@ function Register() {
 
 
 /*====================================================================== */
-    // Имитация успешной регистрации
-    console.log(`User with email ${email} registered successfully.`);
-    localStorage.setItem('isAuthenticated', 'true'); // Устанавливаем флаг, что пользователь зарегистрирован
-
-    // Переход на главную страницу
-    navigate('/'); // Перенаправляем на главную страницу после "успешной регистрации"
-  };
+     // Имитация успешной регистрации
+    /* console.log(`User with email ${email} registered successfully.`);
+     localStorage.setItem('isAuthenticated', 'true'); // Устанавливаем флаг, что пользователь зарегистрирован
+ 
+     // Переход на главную страницу
+     navigate('/'); // Перенаправляем на главную страницу после "успешной регистрации"
+   };*/
   /*===================================================================== */
     
   
-  /*try {
-      const response = await fetch('http://26.188.13.76:8080/api/register', { // Измените порт на 8080, если бэкенд работает на нем
+  try {
+      const response = await fetch('http://26.188.13.76:8080/api/users', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(userData),
       });
-
+ 
       if (response.ok) {
         const data = await response.json();
-        alert(data.message);
-        navigate('/'); // Перенаправляем на главную страницу после успешной регистрации
+        console.log('User ID:', data.id);
+        console.log(`User with email ${email} registered successfully.`);
+        alert(data.message|| 'Данные успешно отправлены');
+        localStorage.setItem('isAuthenticated', 'true'); 
+        navigate('/'); 
       } else {
+        const errorData = await response.json();
         alert('Registration failed');
       }
     } catch (error) {
       alert('Something went wrong');
       console.error(error);
     }
-  };*/
+  };
   const handlePasswordFocus = () => {
-    // Сбрасываем сообщение об ошибке при фокусе на полях пароля
     setErrorMessage('');
   };
   return ( 

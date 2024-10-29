@@ -37,11 +37,11 @@ function Profile() {
       <div className='profileData'>
         <div className='basePofInfo'>
           <div className='profPhoto'></div>
-          <p className='profName'>Alisa</p>
-          <p className='profJob'>Designer</p>
+          <p className='profName'>Name</p>
+          <p className='profJob'>Job</p>
           <div className='profPhone'>
             <label>
-              Phone
+              
               <input type="text" readOnly />
             </label>
           </div>
