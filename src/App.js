@@ -9,7 +9,8 @@ import Generator from './components/Generator.jsx';
 import FAQ from './components/FAQ.jsx';
 import Payment from './components/Payment.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
-import Profile from './components/FAQ.jsx';
+import Profile from './components/Profile.jsx';
+import './i18n.js';  // Импорт i18n перед рендером приложения
 
 function App() {
   const location = useLocation();

@@ -9,7 +9,7 @@ function Payment() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const planFromQuery = parseInt(queryParams.get('plan'), 10); // Извлекаем план из URL
-  const [savedPlan, setSavedPlan] = useState(null); // Сохраненный план
+  const [savedPlan, setSavedPlan] = useState(null); 
   const [cardNumber, setCardNumber] = useState('');
   const [expiryMonth, setExpiryMonth] = useState('01'); 
   const [expiryYear, setExpiryYear] = useState('');
@@ -27,7 +27,6 @@ function Payment() {
   }, [planFromQuery]);
 
   const handleButtonClick = (buttonIndex) => {
-    // Если выбранный план отличается от текущего, сбрасываем сохраненный план
     if (activeButton !== buttonIndex) {
       setSavedPlan(null); 
     }
@@ -54,7 +53,7 @@ function Payment() {
         console.log("Selected Plan:", savedPlan);
         console.log("Email:", email);
         console.log("Country:", country);
-        console.log("Card Number:", cardNumber.replace(/\s/g, '')); // Убираем пробелы из номера карты
+        console.log("Card Number:", cardNumber.replace(/\s/g, ''));
         console.log("Expiry Date:", `${expiryMonth}/${expiryYear}`);
         console.log("Security Code (CVC):", securityCode);
       };

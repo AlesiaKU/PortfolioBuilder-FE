@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; 
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const useGeneratorLogic = () => {
-  const [activePlan, setActivePlan] = useState(null); // состояние для отслеживания активного плана
-  const location = useLocation(); // получаем текущий URL с хешем
+  const [activePlan, setActivePlan] = useState(null); 
+  const location = useLocation(); 
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWorkModalOpen, setIsWorkModalOpen] = useState(false);
@@ -20,23 +20,22 @@ export const useGeneratorLogic = () => {
     { specialization: '', institution: '', city: '', startDate: '', endDate: '', educationInfo: '' }
   ]);
 
-    // Состояние для работы
-    const [jobs, setJobs] = useState([]);
-    const [newJobs, setNewJobs] = useState([
-      { position: '', company: '', city: '', startDate: '', endDate: '', jobsnInfo:'' }
-    ]);
+  const [jobs, setJobs] = useState([]);
+  const [newJobs, setNewJobs] = useState([
+    { position: '', company: '', city: '', startDate: '', endDate: '', jobsnInfo: '' }
+  ]);
 
   useEffect(() => {
     if (location.hash) {
-      const elementId = location.hash.substring(1); 
+      const elementId = location.hash.substring(1);
       const element = document.getElementById(elementId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' }); 
+        element.scrollIntoView({ behavior: 'smooth' });
         if (elementId === 'gener-plan1') setActivePlan(1);
         else if (elementId === 'gener-plan2') setActivePlan(2);
         else if (elementId === 'gener-plan3') setActivePlan(3);
-        else if (elementId === 'generat2') { // Прокрутка до generat2
-          setActivePlan(null); // Сброс плана, так как это не план
+        else if (elementId === 'block-container') {
+          setActivePlan(null);
         }
       }
     }
@@ -47,7 +46,7 @@ export const useGeneratorLogic = () => {
   };
 
   const openModal = (event) => {
-    event.preventDefault(); // предотвращаем действие по умолчанию (отправку формы)
+    event.preventDefault();
     setIsModalOpen(true);
   };
 
@@ -69,12 +68,14 @@ export const useGeneratorLogic = () => {
   };
 
   const addWorkField = () => {
-    setNewJobs([...newJobs, { position: '', company: '', city: '', startDate: '', endDate: '', jobsnInfo:'' }]);
+    setNewJobs([...newJobs, { position: '', company: '', city: '', startDate: '', endDate: '', jobsnInfo: '' }]);
   };
 
   const openLanguageModal = (event) => {
     event.preventDefault();
-    setIsLanguageModalOpen(true);} // Открыть окно языка
+    setIsLanguageModalOpen(true);
+  } 
+
   const closeLanguageModal = () => setIsLanguageModalOpen(false); // Закрыть окно языка
 
   const addLanguageField = () => { // Добавить новый язык
@@ -94,7 +95,7 @@ export const useGeneratorLogic = () => {
       const updatedJobs = [...newJobs];
       updatedJobs[index][field] = value;
       setNewJobs(updatedJobs);
-    }else if (type === 'language') {
+    } else if (type === 'language') {
       const updatedLanguages = [...newLanguages];
       updatedLanguages[index][field] = value;
       setNewLanguages(updatedLanguages);
@@ -142,10 +143,10 @@ export const useGeneratorLogic = () => {
     const formData = new FormData(event.target);
 
     // Добавляем данные из модальных окон (образование, языки, работа и т.д.)
-    const educationData = educations; 
-    const jobData = jobs; 
-    const languageData = newLanguages; 
-  
+    const educationData = educations;
+    const jobData = jobs;
+    const languageData = newLanguages;
+
     // Собираем все данные в один объект
     const fullFormData = {
       ...Object.fromEntries(formData),
@@ -153,39 +154,36 @@ export const useGeneratorLogic = () => {
       jobs: jobData,
       languages: languageData
     };
-  
-    console.log('Form Data:', fullFormData); 
+
+    console.log('Form Data:', fullFormData);
 
     setFormData(formValues);
 
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbxvK6Vuobe29pzf1NsRDSX0pIM7XZUDWWbebimF2YiS6sxuBN832ZaHte49TvTV3Rsg/exec', {
+      const response = await fetch('#', {
         method: 'POST',
-        cors: "no-cors", 
         headers: {
-          'Content-Type': 'application/json', // Указываем формат данных
-           // Explicitly setting CORS mode
+          'Content-Type': 'application/json', 
         },
-        body: JSON.stringify(fullFormData) // Преобразуем объект в JSON строку
+        body: JSON.stringify(fullFormData) 
       });
-      
-      if (!response.ok) { // Проверяем успешность ответа
+
+      if (!response.ok) { 
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const responseData = await response.json(); // Парсим ответ от сервера
-      console.log('Response from server:', responseData); // Ответ от сервера
+      const responseData = await response.json(); 
+      console.log('Response from server:', responseData); 
 
-      // Дополнительные действия после успешной отправки данных
       if (activePlan === 2 || activePlan === 3) {
-        navigate(`/payment?plan=${activePlan}`); // перенаправление на страницу оплаты
+        navigate(`/payment?plan=${activePlan}`);
       } else {
         // План 1: просто сохраняем данные
         console.log('Plan 1 selected, no payment required.');
       }
 
     } catch (error) {
-      console.error('Error sending data to server:', error); // Обработка ошибок
+      console.error('Error sending data to server:', error); 
     }
   };
   return {
@@ -208,9 +206,9 @@ export const useGeneratorLogic = () => {
     saveEducations,
     saveJobs,
     isLanguageModalOpen,
-    openLanguageModal, 
-    closeLanguageModal, 
-    addLanguageField, 
+    openLanguageModal,
+    closeLanguageModal,
+    addLanguageField,
     saveLanguages,
     deleteLanguageField,
     handleSubmit,

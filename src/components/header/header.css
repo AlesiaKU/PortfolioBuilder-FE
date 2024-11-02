@@ -95,7 +95,7 @@
 
 .btn-reg {
   margin-right: 50px;
-  width: 95px;
+  width: 105px;
   height: 35px; 
   background-color: #4CAF4F;
   color: white;
@@ -110,6 +110,21 @@
 
 .active {
   font-weight: bold;
+}
+
+.languageToggle {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #18191F;
+}
+
+.languageLabel {
+  margin-left: 5px;
+  font-size: 14px;
+  margin-top: 3px;
 }
 
 @media (max-width: 1024px) {
@@ -127,6 +142,9 @@
 
   .cherta{
     margin: 0 15px;
+  }
+  .btn-reg{
+    margin-right: 20px;
   }
 }
 
@@ -150,5 +168,17 @@
 
   .header_logo {
     order: 1; /* Лого остаётся на первой строке */
+  }
+
+  .btn-reg{
+    margin-right: 10px;
+  }
+
+  .cherta{
+    margin: 0 10px;
+  }
+
+  .headerbtn-lr {
+    column-gap: 10px; 
   }
 }
