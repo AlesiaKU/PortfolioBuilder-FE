@@ -81,26 +81,6 @@ const resources = {
         enterpriseDesc1: "download",
         fiftyPortfolios: "Fifty portfolio generating"
       },
-      profilePage: {
-        title: "Your Profile",
-        editProfile: "Edit Profile",
-        saveChanges: "Save Changes",
-        changePassword: "Change Password"
-      },
-      generatorPage: {
-        title: "Settings",
-        language: "Language",
-        notifications: "Notifications",
-        privacy: "Privacy",
-        saveSettings: "Save Settings"
-      },
-      faqPage: {
-        title: "Settings",
-        language: "Language",
-        notifications: "Notifications",
-        privacy: "Privacy",
-        saveSettings: "Save Settings"
-      },
       header: {
         title: "Your Portfolio",
         home:"Home",
@@ -111,20 +91,6 @@ const resources = {
         loginBtn:"Login",
         registerBtn:"Register",
         logOutBtn:"Log out"
-      },
-      footer: {
-        title: "Settings",
-        language: "Language",
-        notifications: "Notifications",
-        privacy: "Privacy",
-        saveSettings: "Save Settings"
-      },
-      examplesPage: {
-        title: "Settings",
-        language: "Language",
-        notifications: "Notifications",
-        privacy: "Privacy",
-        saveSettings: "Save Settings"
       }
     }
   },
@@ -206,30 +172,16 @@ const resources = {
         enterpriseDesc1: "возможностью загрузки",
         fiftyPortfolios: "Создание 50 портфолио"
     },
-    
-      profilePage: {
-        title: "Ваш Профиль",
-        editProfile: "Редактировать профиль",
-        saveChanges: "Сохранить изменения",
-        changePassword: "Изменить пароль"
-      },
-      header: {
-        title: "Your Portfolio",
-        home:"Главная",
-        generator:"Генератор",
-        faq:"Вопросы",
-        examples:"Примеры",
-        loginBtn:"Вход",
-        registerBtn:"Регистрация",
-        logOutBtn:"Выйти"
-      },
-      settingsPage: {
-        title: "Настройки",
-        language: "Язык",
-        notifications: "Уведомления",
-        privacy: "Конфиденциальность",
-        saveSettings: "Сохранить настройки"
-      }
+    header: {
+      title: "Your Portfolio",
+      home:"Главная",
+      generator:"Генератор",
+      faq:"Вопросы",
+      examples:"Примеры",
+      loginBtn:"Вход",
+      registerBtn:"Регистрация",
+      logOutBtn:"Выйти"
+    }
     }
   }
 };

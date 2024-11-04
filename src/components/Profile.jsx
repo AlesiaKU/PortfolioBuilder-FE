@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/profile.css'; 
 
 function Profile() {
@@ -7,6 +7,56 @@ function Profile() {
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
+
+  const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState('');
+    const ws = useRef(null);
+    const userId = useRef(Date.now() + Math.random().toString());
+
+    useEffect(() => {
+        // Подключаемся к WebSocket-серверу
+        ws.current = new WebSocket('ws://localhost:8001');
+
+        // Обработка входящих сообщений
+        ws.current.onmessage = (event) => {
+            try {
+                const parsedData = JSON.parse(event.data); // Парсим JSON
+                console.log("Received message from server:", parsedData); // Логгирование полученного сообщения
+            
+                // Проверяем, что получено правильное сообщение
+                if (parsedData.type === 'message') {
+                    const messageData = parsedData.data; // Это сообщение, отправленное клиентом
+                    
+                    // Проверяем, что сообщение не пустое и является объектом
+                    if (messageData && messageData.text) {
+                        setMessages(prevMessages => [...prevMessages, messageData]); // Добавляем текст сообщения
+                    } else {
+                        console.error("Получено пустое сообщение:", messageData);
+                    }
+                }
+            } catch (error) {
+                console.error("Ошибка при разборе сообщения:", error);
+            }
+        };
+
+        // Очистка при закрытии WebSocket
+        return () => ws.current.close();
+    }, []);
+
+    // Отправка сообщения на сервер
+    const sendMessage = () => {
+        if (input.trim()) {
+            const message = {
+                id: Date.now(),
+                userId: userId.current,
+                text: input,
+            };
+            ws.current.send(JSON.stringify(message)); // Отправляем сообщение в формате JSON
+            setMessages(prevMessages => [...prevMessages, message]); // Добавляем сообщение в свой список сообщений
+            setInput(''); // Очищаем поле ввода
+        }
+    };
+
 
   // Содержимое для секции "Портфолио"
   const renderPortfolio = () => (
@@ -26,12 +76,27 @@ function Profile() {
 
   // Содержимое для секции "Сообщения"
   const renderMessages = () => (
-    <div>
-      <p>Здесь находятся ваши сообщения.</p>
-      {/* Добавьте элементы формы для отправки сообщений */}
+    <div className="renderMessages">
+        <div className="chat-box">
+            {messages.map((msg) => (
+                <div
+                    key={msg.id}
+                    className={`message ${msg.userId === userId.current ? 'sent' : 'received'}`}
+                >
+                    {msg.text} {/* Здесь отображается текст сообщения */}
+                </div>
+            ))}
+        </div>
+        <div className='btnInput'>
+        <input type="text" value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' ? sendMessage() : null}
+            placeholder="Введите ваше сообщение"
+        />
+        <button onClick={sendMessage}>Отправить</button>
     </div>
-  );
-
+  </div>
+);
   return (
     <div className='profile-page'>
       <div className='profileData'>
