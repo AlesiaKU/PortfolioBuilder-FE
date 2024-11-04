@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/form.css';
 import { useNavigate } from 'react-router-dom';
 import { RxExit } from "react-icons/rx";
+import { FaGoogle, FaFacebook, FaGithub, FaInstagram } from 'react-icons/fa';
 
 function Login() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Login() {
     navigate('/');
   };
 
-  const handleSubmit = async (e) => {
+  /*const handleSubmit = async (e) => {
     e.preventDefault();
 
     const userData = { email, password };
@@ -34,11 +35,24 @@ function Login() {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('jwt', data.jwt); // Сохранение JWT
-        console.log('Login successful');
-        navigate('/');
+        // Попробуем сначала прочитать ответ как JSON
+        let data;
+        try {
+          data = await response.json();
+        } catch (jsonError) {
+          // Если ответ не является JSON, считаем его обычным текстом
+          data = await response.text();
+        }
+
+        if (data.jwt) {
+          localStorage.setItem('isAuthenticated', 'true');
+          localStorage.setItem('jwt', data.jwt); // Сохранение JWT
+          console.log('Login successful');
+          navigate('/');
+        } else {
+          setErrorMessage('Unexpected response format');
+          console.error('Error: Expected JWT token in response, got:', data);
+        }
       } else if (response.status === 401) {
         setErrorMessage('Invalid email or password');
       }
@@ -46,6 +60,55 @@ function Login() {
       console.error('Error:', error);
       setErrorMessage('Something went wrong. Please try again.');
     }
+  };*/
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const userData = { email, password };
+    console.log('Sending user data to API:', userData);
+    try {
+      const response = await fetch('http://26.188.13.76:8080/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+        credentials: 'same-origin'
+      });
+  
+      if (response.ok) {
+        let data;
+  
+        // Проверяем тип содержимого ответа
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          data = await response.json(); // Читаем как JSON, если тип JSON
+        } else {
+          data = { jwt: await response.text() }; // Читаем как текст и оборачиваем в объект для сохранения в data.jwt
+        }
+  
+        if (data.jwt) {
+          localStorage.setItem('isAuthenticated', 'true');
+          localStorage.setItem('jwt', data.jwt); // Сохранение JWT
+          console.log('Login successful');
+          console.log('JWT Token:', data.jwt); // Вывод токена в консоль
+          navigate('/');
+        } else {
+          setErrorMessage('Unexpected response format');
+          console.error('Error: Expected JWT token in response, got:', data);
+        }
+      } else if (response.status === 401) {
+        setErrorMessage('Invalid email or password');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setErrorMessage('Something went wrong. Please try again.');
+    }
+  };
+
+  const handleSocialLogin = (provider) => {
+    window.location.href = socialAuthUrls[provider];
   };
 
   return (
@@ -72,6 +135,7 @@ function Login() {
             <div className="register-link">
               <p>Don't have an account? <button type="button" className='slka' onClick={handleRegisterClick}>Register</button></p>
             </div>
+
           </form>
         </div>
       </div>
