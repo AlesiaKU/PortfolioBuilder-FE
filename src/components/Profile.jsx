@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/profile.css'; 
+import MiniChat from './MiniChat';
 
 function Profile() {
   const [activeSection, setActiveSection] = useState('portfolio'); // Установим начальное значение на 'portfolio'
-
+  const [isChatExpanded, setIsChatExpanded] = useState(false);
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
 
+  const handleExpandChat = () => {
+    setActiveSection('messages');  // Переключаем активную секцию на сообщения
+    setIsChatExpanded(true);       // Устанавливаем состояние развернутого чата
+  };
+  
   const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const ws = useRef(null);
@@ -140,6 +146,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      {!isChatExpanded && <MiniChat onExpand={handleExpandChat} />}
     </div>
   );
 }
