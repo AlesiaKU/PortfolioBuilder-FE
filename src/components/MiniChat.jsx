@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/MiniChat.css';
 
 function MiniChat({ onExpand }) {
-  const [activeSection, setActiveSection] = useState('portfolio'); // Начальная секция
+  //const [activeSection, setActiveSection] = useState('portfolio'); // Начальная секция
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const ws = useRef(null);
@@ -47,9 +47,6 @@ function MiniChat({ onExpand }) {
     <div className="mini-chat">
       <div className="mini-chat-header">
         <span>Chat</span>
-        <button className="expand-button" onClick={onExpand}>
-          Expand
-        </button>
       </div>
       <div className="mini-chat-content">
         <div className="chat-boxMini">
