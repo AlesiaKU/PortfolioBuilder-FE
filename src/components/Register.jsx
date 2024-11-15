@@ -59,7 +59,8 @@ function Register() {
         navigate('/');
       } else {
         const errorData = await response.json();
-        alert('Registration failed');
+        //alert(errorData.message ||'Registration failed');
+        setErrorMessage(errorData.message || 'Registration failed');
       }
     } catch (error) {
       alert('Something went wrong');
@@ -91,7 +92,7 @@ function Register() {
             </div>
             <div className="input-box">
               <label className="password">Confirm Password</label>
-              <input type="password" placeholder="Enter your password" className="form-style" value={confirmPassword}
+              <input type="password" placeholder="Confirm your password" className="form-style" value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)} onFocus={handlePasswordFocus}
                 required
               />
