@@ -10,7 +10,8 @@ export const useGeneratorLogic = () => {
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
-    setIsAuthenticated(localStorage.getItem('isAuthenticated') === 'true');
+    const token = localStorage.getItem('token'); // Получаем токен из localStorage
+    setIsAuthenticated(!!token); // Устанавливаем isAuthenticated в true, если токен существует
   }, []);
   const [educations, setEducations] = useState([]);
   const [newLanguages, setNewLanguages] = useState([

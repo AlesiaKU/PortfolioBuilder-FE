@@ -13,15 +13,26 @@ function Header() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [language, setLanguage] = useState(i18n.language);
-  useEffect(() => {
+/*  useEffect(() => {
     setIsAuthenticated(localStorage.getItem('isAuthenticated') === 'true');
+  }, []);*/
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token); // Проверяем наличие токена
   }, []);
 
   // Функция выхода из системы
-  const handleLogout = () => {
+  /*const handleLogout = () => {
     localStorage.setItem('isAuthenticated', 'false');
     setIsAuthenticated(false);
     navigate('/'); // Перенаправляем пользователя на главную страницу после выхода
+  };*/
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Удаляем токен
+    setIsAuthenticated(false);
+    navigate('/'); // Перенаправляем пользователя на главную страницу
   };
 
   // Функция переключения языка

@@ -54,9 +54,10 @@ function Register() {
 
       if (response.ok) {
         const data = await response.json();
-        alert(data.message || 'Данные успешно отправлены');
-        localStorage.setItem('isAuthenticated', 'true');
-        navigate('/');
+        console.log('JWT Token:', data.token); // Здесь мы предполагаем, что токен возвращается в поле `token`
+            alert(data.message || 'Данные успешно отправлены');
+            localStorage.setItem('isAuthenticated', 'true');
+            navigate('/');
       } else {
         const errorData = await response.json();
         //alert(errorData.message ||'Registration failed');

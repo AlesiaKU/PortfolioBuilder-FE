@@ -14,6 +14,16 @@ function ChatIcon() {
     return null;
   }
 
+
+// Проверяем наличие токена
+const token = localStorage.getItem('token'); // Изменено на 'token'
+
+// Если токена нет, не показываем иконку чата
+if (!token) {
+  return null;
+}
+
+
   const handleClick = () => {
     setIsChatOpen(!isChatOpen);
   };

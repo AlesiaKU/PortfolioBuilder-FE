@@ -3,6 +3,7 @@ import '../styles/profile.css';
 
 function Profile() {
   const [activeSection, setActiveSection] = useState('portfolio'); // Установим начальное значение на 'portfolio'
+  const [username, setUsername] = useState(''); // Состояние для хранения почты
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
@@ -13,6 +14,21 @@ function Profile() {
     const userId = useRef(Date.now() + Math.random().toString());
 
     useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        console.log('JWT Token:', token); // Вывод самого токена
+        try {
+          const payload = token.split('.')[1];
+          const decodedPayload = JSON.parse(atob(payload));
+          console.log('Decoded token payload:', decodedPayload);
+          
+          // Извлечение почты и получение имени пользователя до '@'
+          const email = decodedPayload.sub; 
+          setUsername(email.split('@')[0]); // Установка имени пользователя
+        } catch (error) {
+          console.error('Ошибка при декодировании токена:', error);
+        }
+      }
 
         // Подключаемся к WebSocket-серверу
         ws.current = new WebSocket('ws://localhost:8001');
@@ -102,9 +118,7 @@ function Profile() {
       <div className='profileData'>
         <div className='basePofInfo'>
           <div className='profPhoto'></div>
-          <p className='profName'>Name</p>
-          <p className='profJob'>Job</p>
-          <div className='profPhone'>
+          <p className='profName'>{username || 'Имя пользователя'}</p> {/* Отображение имени пользователя */}          <div className='profPhone'>
             <label>
               
               <input type="text" readOnly />
