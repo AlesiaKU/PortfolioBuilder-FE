@@ -1,6 +1,3 @@
-// utils/logger.js
-
-// Универсальная функция для логирования
 export async function log(type, message, data = null) {
   const timestamp = new Date().toISOString();
   console.log(`[${timestamp}] [${type}] ${message}`, data || '');
