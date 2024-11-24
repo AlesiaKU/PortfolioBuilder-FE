@@ -2,44 +2,85 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/MiniChat.css';
 
 function MiniChat({ onExpand }) {
-  //const [activeSection, setActiveSection] = useState('portfolio'); // Начальная секция
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [file, setFile] = useState(null);
   const ws = useRef(null);
   const userId = useRef(Date.now() + Math.random().toString());
 
   useEffect(() => {
-    // Подключение к WebSocket серверу
-    ws.current = new WebSocket('ws://localhost:8001');
+    ws.current = new WebSocket('ws:http://26.188.13.76:8080');
 
     ws.current.onmessage = (event) => {
       try {
-        const parsedData = JSON.parse(event.data); // Парсим JSON
-        console.log("Received message from server:", parsedData);
+        const parsedData = JSON.parse(event.data);
+        console.log('Received message from server:', parsedData);
 
-        if (parsedData.type === 'message' && parsedData.data?.text) {
-          setMessages(prevMessages => [...prevMessages, parsedData.data]);
+        if (parsedData.type === 'message' && (parsedData.data?.text || parsedData.data?.file)) {
+          setMessages((prevMessages) => [...prevMessages, parsedData.data]);
         } else {
-          console.error("Получено пустое или некорректное сообщение:", parsedData);
+          console.error('Получено пустое или некорректное сообщение:', parsedData);
         }
       } catch (error) {
-        console.error("Ошибка при разборе сообщения:", error);
+        console.error('Ошибка при разборе сообщения:', error);
       }
     };
 
-    return () => ws.current.close(); // Закрываем WebSocket при размонтировании
+    return () => ws.current.close();
   }, []);
 
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const fileMessage = {
+          id: Date.now(),
+          userId: userId.current,
+          file: {
+            name: file.name,
+            type: file.type,
+            content: reader.result, // Base64 контент файла
+          },
+        };
+        // Отправка файла через WebSocket
+        ws.current.send(JSON.stringify({ type: 'file', data: fileMessage }));
+        setMessages((prevMessages) => [...prevMessages, fileMessage]); // Добавляем сообщение с файлом
+      };
+      reader.readAsDataURL(file); // Читаем файл как Base64
+    }
+  };
+
   const sendMessage = () => {
-    if (input.trim()) {
+    if (ws.current.readyState === WebSocket.OPEN && (input.trim() || file)) {
       const message = {
         id: Date.now(),
         userId: userId.current,
-        text: input,
+        text: input || null,
+        file: file || null, // Отправляем файл, если он есть
       };
-      ws.current.send(JSON.stringify({ type: 'message', data: message })); // Отправка сообщения в формате JSON
-      setMessages(prevMessages => [...prevMessages, message]); // Добавляем сообщение в локальный список
-      setInput(''); // Очищаем поле ввода
+
+      ws.current.send(JSON.stringify({ type: 'message', data: message }));
+      setMessages((prevMessages) => [...prevMessages, message]);
+      setInput('');
+      setFile(null); // Сбрасываем файл после отправки
+    } else {
+      console.error('WebSocket is not open yet.');
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setFile({
+          name: selectedFile.name,
+          type: selectedFile.type,
+          content: reader.result, // Кодируем файл в Base64
+        });
+      };
+      reader.readAsDataURL(selectedFile); // Кодируем в Base64 для передачи
     }
   };
 
@@ -50,14 +91,29 @@ function MiniChat({ onExpand }) {
       </div>
       <div className="mini-chat-content">
         <div className="chat-boxMini">
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`messageM ${msg.userId === userId.current ? 'sent' : 'received'}`}
-            >
-              {msg.text}
-            </div>
-          ))}
+        {messages.map((msg) => (
+          <div
+            key={msg.id}
+            className={`message ${msg.userId === userId.current ? 'sent' : 'received'}`}
+          >
+            {msg.text && <p>{msg.text}</p>} {/* Отображение текстового сообщения */}
+            {msg.file && (
+              <div>
+                {msg.file.type.startsWith('image/') ? (
+                  <img
+                    src={msg.file.content}
+                    alt={msg.file.name}
+                    style={{ maxWidth: '200px', borderRadius: '5px', marginTop: '5px' }}
+                  />
+                ) : (
+                  <a href={msg.file.content} download={msg.file.name}>
+                    {msg.file.name}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        ))}
         </div>
         <div className="btnInput">
           <input
@@ -67,6 +123,16 @@ function MiniChat({ onExpand }) {
             onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
             placeholder="Введите ваше сообщение"
           />
+          <input
+          type="file"
+          accept="image/*, .pdf, .docx, .txt" // Разрешенные форматы файлов
+          onChange={handleFileUpload}
+          style={{ display: 'none' }}
+          id="fileInput"
+        />
+        <label htmlFor="fileInput" className="fileUploadButton">
+          📎
+        </label>
           <button onClick={sendMessage}>Отправить</button>
         </div>
       </div>

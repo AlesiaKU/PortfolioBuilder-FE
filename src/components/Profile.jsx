@@ -31,7 +31,7 @@ function Profile() {
       }
 
         // Подключаемся к WebSocket-серверу
-        ws.current = new WebSocket('ws://localhost:8001');
+        ws.current = new WebSocket('ws:http://26.188.13.76:8080');
 
         // Обработка входящих сообщений
         ws.current.onmessage = (event) => {
@@ -73,7 +73,37 @@ function Profile() {
         }
     };
 
+    const deleteProfile = () => {
+      const confirmation = window.confirm('Вы уверены, что хотите удалить профиль?');
+      if (confirmation) {
+        // Логика удаления профиля (может быть вызов API)
+        console.log('Профиль удален');
+      }
+    };
 
+
+    const handleFileUpload = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const fileMessage = {
+            id: Date.now(),
+            userId: userId.current,
+            file: {
+              name: file.name,
+              type: file.type,
+              content: reader.result, // Base64 контент файла
+            },
+          };
+          // Отправка файла через WebSocket
+          ws.current.send(JSON.stringify({ type: 'file', data: fileMessage }));
+          setMessages((prevMessages) => [...prevMessages, fileMessage]); // Добавляем сообщение с файлом
+        };
+        reader.readAsDataURL(file); // Читаем файл как Base64
+      }
+    };
+    
   // Содержимое для секции "Портфолио"
   const renderPortfolio = () => (
     <div>
@@ -93,26 +123,54 @@ function Profile() {
   // Содержимое для секции "Сообщения"
   const renderMessages = () => (
     <div className="renderMessages">
-        <div className="chat-box">
-            {messages.map((msg) => (
-                <div
-                    key={msg.id}
-                    className={`message ${msg.userId === userId.current ? 'sent' : 'received'}`}
-                >
-                    {msg.text} {/* Здесь отображается текст сообщения */}
-                </div>
-            ))}
-        </div>
-        <div className='btnInput'>
-        <input type="text" value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' ? sendMessage() : null}
-            placeholder="Введите ваше сообщение"
+      <div className="chat-box">
+        {messages.map((msg) => (
+          <div
+            key={msg.id}
+            className={`message ${msg.userId === userId.current ? 'sent' : 'received'}`}
+          >
+            {msg.text && <p>{msg.text}</p>} {/* Отображение текстового сообщения */}
+            {msg.file && (
+              <div>
+                {msg.file.type.startsWith('image/') ? (
+                  <img
+                    src={msg.file.content}
+                    alt={msg.file.name}
+                    style={{ maxWidth: '200px', borderRadius: '5px', marginTop: '5px' }}
+                  />
+                ) : (
+                  <a href={msg.file.content} download={msg.file.name}>
+                    {msg.file.name}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="btnInput">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyPress={(e) => (e.key === 'Enter' ? sendMessage() : null)}
+          placeholder="Введите ваше сообщение"
         />
+        <input
+          type="file"
+          accept="image/*, .pdf, .docx, .txt" // Разрешенные форматы файлов
+          onChange={handleFileUpload}
+          style={{ display: 'none' }}
+          id="fileInput"
+        />
+        <label htmlFor="fileInput" className="fileUploadButton">
+          📎
+        </label>
         <button onClick={sendMessage}>Отправить</button>
+      </div>
     </div>
-  </div>
-);
+  );
+  
   return (
     <div className='profile-page'>
       <div className='profileData'>
@@ -120,10 +178,12 @@ function Profile() {
           <div className='profPhoto'></div>
           <p className='profName'>{username || 'Имя пользователя'}</p> {/* Отображение имени пользователя */}          <div className='profPhone'>
             <label>
-              
               <input type="text" readOnly />
             </label>
           </div>
+          <button className="deleteProfileBtn" onClick={deleteProfile}>
+            Удалить профиль
+          </button>
         </div>
 
         <div className='navegPage'>

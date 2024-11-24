@@ -140,3 +140,26 @@
 }
 
 .renderMessages{background-color: #F5F7FA;}
+
+.deleteProfileBtn{
+  margin-top: auto;
+  width: 200px;
+  height: 30px;
+  background-color: #4CAF4F;
+  color: #FFFFFF;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.fileUploadButton {
+  display: inline-block;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #007bff;
+  transition: color 0.3s;
+}
+
+.fileUploadButton:hover {
+  color: #0056b3;
+}
