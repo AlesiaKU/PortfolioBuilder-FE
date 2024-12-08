@@ -9,7 +9,6 @@ function Register() {
   const location = useLocation();
 
   const [step, setStep] = useState(1);
-  const [token, setToken] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -21,16 +20,13 @@ function Register() {
     navigate('/login');
   };
 
-  // Извлекаем email и токен из URL, если есть
+  // Извлечение почты из URL (игнорируем токен)
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const emailFromLink = queryParams.get('email');
-    const tokenFromLink = queryParams.get('token');
-
-    if (emailFromLink && tokenFromLink) {
+    const emailFromLink = queryParams.get('email'); // Получаем только email
+    if (emailFromLink) {
       setEmail(emailFromLink);
-      setToken(tokenFromLink);
-      setStep(2); // Переход на этап установки пароля
+      setStep(2); // Переводим на второй шаг, если email есть
     }
   }, [location.search]);
 
@@ -44,13 +40,20 @@ function Register() {
     setSuccessMessage(''); // Сбрасываем сообщение об успехе
     setErrorMessage(''); // Сбрасываем сообщение об ошибке
 
+    // Преобразуем данные в формат application/x-www-form-urlencoded
+    const bodyData = new URLSearchParams();
+    bodyData.append('email', email);
+
     try {
-      const response = await fetch('http://26.188.13.76:8080/api/users/request-email-verification', {
+      const response = await fetch('http://26.188.13.76:8080/api/users/send-verification-token', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: bodyData.toString(), // отправляем данные как строку
       });
 
+      console.log("Email being sent:", email);
       if (response.ok) {
         log('SUCCESS', 'Email verification link sent', { email });
         setSuccessMessage('Проверьте вашу почту для подтверждения');
@@ -66,7 +69,8 @@ function Register() {
       log('ERROR', 'Unexpected error during email submission', error);
       setErrorMessage('Ошибка отправки письма');
     }
-  };
+};
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,23 +81,10 @@ function Register() {
       log('ERROR', 'Password mismatch during registration', { email });
       return;
     }
-    setErrorMessage('');
+    setErrorMessage(''); // Сбрасываем ошибку
 
     const userData = { email, password };
     log('INFO', 'Attempting user registration', userData);
-    console.log(userData);
-
-
-    /*====================================================================== */
-    // Имитация успешной регистрации
-    /*console.log(`User with email ${email} registered successfully.`);
-    localStorage.setItem('isAuthenticated', 'true'); // Устанавливаем флаг, что пользователь зарегистрирован
- 
-    // Переход на главную страницу
-    navigate('/'); // Перенаправляем на главную страницу после "успешной регистрации"
-  };*/
-    /*===================================================================== */
-
 
     try {
       const response = await fetch('http://26.188.13.76:8080/api/users/register', {
@@ -107,10 +98,11 @@ function Register() {
       if (response.ok) {
         const data = await response.json();
         log('SUCCESS', 'User registered successfully', data);
-        console.log('JWT Token:', data.token); // Здесь мы предполагаем, что токен возвращается в поле `token`
-            alert(data.message || 'Данные успешно отправлены');
-            localStorage.setItem('isAuthenticated', 'true');
-            navigate('/');
+        localStorage.setItem('token', token);
+        console.log('JWT Token:', data.token); // Здесь предполагается, что токен возвращается в поле `token`
+        alert(data.message || 'Данные успешно отправлены');
+        localStorage.setItem('isAuthenticated', 'true');
+        navigate('/');
       } else {
         const errorData = await response.json();
         const errorMsg = errorData.message || 'Registration failed';
@@ -122,6 +114,7 @@ function Register() {
       log('ERROR', 'Unexpected error during registration', error);
     }
   };
+
   const handlePasswordFocus = () => {
     setErrorMessage('');
   };
