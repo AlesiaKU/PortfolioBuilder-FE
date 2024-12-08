@@ -6,6 +6,7 @@ import { FaUserCircle} from 'react-icons/fa';
 import { CiGlobe } from "react-icons/ci";
 import { useTranslation } from 'react-i18next';
 import { log } from '../../JavaScript/logger.js'; 
+import SearchBar from './SearchBar.jsx'
 
 function Header() {
   const location = useLocation();
@@ -61,6 +62,10 @@ function Header() {
           <img src={logo} className="headerlogo" />
             <span>{t('header.title')}</span>
           </div>
+          <div className="header_search">
+  <SearchBar />
+</div>
+
           <nav className="header_nav">
             <ul>
               <li className={location.pathname === '/' ? 'active' : ''}><Link to="/" className="headerBtn" onClick={() => handleNavigation('home')}>{t('header.home')}</Link></li>

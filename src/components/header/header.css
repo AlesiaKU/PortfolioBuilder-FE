@@ -2,6 +2,10 @@
   padding: 0 0 10px;
   background-color: #F5F7FA;
   font-family: "Inter", sans-serif;
+  overflow: hidden;
+}
+.header {
+  overflow: visible;
 }
 
 .container {
@@ -14,6 +18,7 @@
   justify-content: space-between;
   column-gap: 30px;
   flex-wrap: wrap; /* Позволяет перенос элементов на новую строку при уменьшении экрана */
+
 }
 
 .header_logo span {

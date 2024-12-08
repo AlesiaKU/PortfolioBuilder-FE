@@ -1,0 +1,56 @@
+.highlight {
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+}
+
+.global-search {
+  position: relative;
+  right: 10px;
+  left: 10px;
+  z-index: 9999;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-input {
+  width: 250px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-results {
+  position: absolute; /* Убирает из потока документа */
+  top: 100%; /* Расположить список сразу под полем ввода */
+  left: 0; /* Привязать к левому краю поля ввода */
+  width: 100%; /* Сделать ширину равной ширине поля ввода */
+  max-height: 200px; /* Ограничить высоту списка */
+  overflow-y: auto; /* Добавить прокрутку, если список длинный */
+  background-color: white; /* Белый фон для читаемости */
+  border: 1px solid #ccc; /* Граница для визуального отделения */
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень для улучшения дизайна */
+  z-index: 1000; /* Гарантирует отображение над остальными элементами */
+}
+
+
+
+.search-result-item {
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+  background-color: #f0f0f0;
+}
+
+.search-status {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+}
