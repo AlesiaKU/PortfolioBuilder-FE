@@ -13,7 +13,6 @@ jest.mock('react-router-dom', () => ({
 
 describe('Компонент Login', () => {
   beforeEach(() => {
-    // Мокируем глобальный fetch перед каждым тестом
     global.fetch = jest.fn();
     jest.clearAllMocks();
   });
