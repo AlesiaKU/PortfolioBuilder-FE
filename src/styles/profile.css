@@ -18,15 +18,24 @@
   text-align: center; /* Центрируем текст внутри блока */
 }
 
-.profPhoto{
+.profPhoto {
   width: 216px;
   height: 216px;
-  border-radius: 150px;
-  background-color: #d2d2d7;
+  border-radius: 50%; /* Делаем круг */
+  background-color: #d2d2d7; /* Цвет фона, если изображение не загружено */
   margin-top: 25px;
   margin-bottom: 15px;
+  overflow: hidden; /* Скрываем части изображения, выходящие за пределы круга */
+  display: flex; /* Для центрирования изображения */
+  align-items: center; /* Центрируем изображение по вертикали */
+  justify-content: center; /* Центрируем изображение по горизонтали */
 }
 
+.profPhoto img {
+  width: 100%; /* Изображение занимает 100% ширины контейнера */
+  height: 100%; /* Изображение занимает 100% высоты контейнера */
+  object-fit: cover; /* Обрезает изображение, чтобы оно вписывалось в круг */
+}
 .profName{
   font-size: 30px;
   font-weight: 500;

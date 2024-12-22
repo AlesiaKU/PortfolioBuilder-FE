@@ -63,7 +63,7 @@ function Register() {
         const errorMsg = errorData.message || 'Ошибка отправки письма';
         setErrorMessage(errorMsg);
         log('ERROR', 'Failed to send email verification link', errorData);
-        navigate('/');
+        setErrorMessage('Ошибка отправки письма');
       }
     } catch (error) {
       log('ERROR', 'Unexpected error during email submission', error);
@@ -98,12 +98,13 @@ function Register() {
       if (response.ok) {
         const data = await response.json();
         log('SUCCESS', 'User registered successfully', data);
-        localStorage.setItem('token', token);
-        console.log('JWT Token:', data.token); // Здесь предполагается, что токен возвращается в поле `token`
+        const token = data.token; // Извлекаем токен из ответа
+        localStorage.setItem('token', token); // Сохраняем токен
+        console.log('JWT Token:', token); // Логируем токен
         alert(data.message || 'Данные успешно отправлены');
         localStorage.setItem('isAuthenticated', 'true');
         navigate('/');
-      } else {
+    } else {
         const errorData = await response.json();
         const errorMsg = errorData.message || 'Registration failed';
         setErrorMessage(errorMsg);

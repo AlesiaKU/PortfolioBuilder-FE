@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/profile.css'; 
+import Photo from '../img/27685d3c5ffe8936e872afffa3ed6625.jpg'
 
 function Profile() {
   const [activeSection, setActiveSection] = useState('portfolio'); // Установим начальное значение на 'portfolio'
@@ -175,7 +176,9 @@ function Profile() {
     <div className='profile-page'>
       <div className='profileData'>
         <div className='basePofInfo'>
-          <div className='profPhoto'></div>
+          <div className='profPhoto'>
+          <img src={Photo}  alt="Photo" />
+          </div>
           <p className='profName'>{username || 'Имя пользователя'}</p> {/* Отображение имени пользователя */}          <div className='profPhone'>
             <label>
               <input type="text" readOnly />
