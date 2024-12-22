@@ -41,15 +41,38 @@ function Generator() {
   const [photo, setPhoto] = useState(null);
 
 
-  const handlePhotoChange = (event) => {
+  {/*const handlePhotoChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setPhoto(imageUrl);
     }
-  };
+  };*/}
 
-  const [fileName, setFileName] = useState(null);
+  const handlePhotoChange = (event) => {
+    const file = event.target.files[0];
+    
+    if (file) {
+      const isJPG = file.name.toLowerCase().endsWith('.jpg'); // Проверяем расширение файла
+      if (isJPG) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          console.log("File uploaded successfully:", reader.result);  // Логируем Data URL изображения
+          setPhoto(reader.result);  // Устанавливаем Data URL в состояние
+        };
+        reader.readAsDataURL(file);  // Преобразуем файл в Data URL
+      } else {
+        console.error('Please upload a valid JPG file.');
+      }
+    } else {
+      console.error('No file selected.');
+    }
+  };
+  
+  
+  
+
+ /* const [fileName, setFileName] = useState(null);
   const [videoName, setVideoName] = useState(null);
 
   const handleFileChange = (event) => {
@@ -64,7 +87,7 @@ function Generator() {
     if (file) {
       setVideoName(file.name);
     }
-  };
+  };*/
 
   return (
     <div className="generator-page">
@@ -217,25 +240,17 @@ function Generator() {
             <div class="column">
               <div>
                 <label for="first-name">Name:</label>
-                <input type="text" id="first-name" name="first-name" disabled={!isAuthenticated}></input>
+                <input type="text" id="firstName" name="firstName" disabled={!isAuthenticated}></input>
               </div>
 
               <div>
                 <label for="last-name">Surname:</label>
-                <input type="text" id="last-name" name="last-name" disabled={!isAuthenticated}></input>
+                <input type="text" id="lastName" name="lastName" disabled={!isAuthenticated}></input>
               </div>
 
               <div>
-                <label for="middle-name">Middle name:</label>
-                <input type="text" id="middle-name" name="middle-name" disabled={!isAuthenticated}></input>
-              </div>
-
-              <div>
-                <label for="dob">Date of birth:</label>
-                <input type="date" id="dob" name="dob"
-                  min={(new Date(new Date().setFullYear(new Date().getFullYear() - 70))).toISOString().split('T')[0]}
-                  max={new Date().toISOString().split('T')[0]}
-                  disabled={!isAuthenticated} />
+                <label for="desiredPosition">DesiredPosition:</label>
+                <input type="text" id="desiredPosition" name="desiredPosition" disabled={!isAuthenticated}></input>
               </div>
 
               <div>
@@ -247,10 +262,10 @@ function Generator() {
                 <label for="phone">Phone number:</label>
                 <input type="tel" id="phone" name="phone" disabled={!isAuthenticated}></input>
               </div>
-              <div>
+              {/*<div>
                 <label for="email">Email:</label>
                 <input type="email" id="emailfoot" name="email" disabled={!isAuthenticated}></input>
-              </div>
+              </div>*/}
             </div>
 
             <div class="column">
@@ -274,40 +289,38 @@ function Generator() {
                   Gender:
                 </label>
                 <select id="gender" name="gender" disabled={!isAuthenticated}>
-                  <option value="female">Woman</option>
-                  <option value="male">Man</option>
+                  <option value="FEMALE">Woman</option>
+                  <option value="MALE">Man</option>
                   <option value="not-specified">Doesn't matter</option>
                 </select>
               </div>
 
               <div>
                 <label for="business-trips">Business trips:</label>
-                <select id="business-trips" name="business-trips" disabled={!isAuthenticated}>
-                  <option value="not-specified">Not specified</option>
-                  <option value="possible">Possible</option>
-                  <option value="impossible">Impossible</option>
-                  <option value="rarely-possible">Rarely possible</option>
+                <select id="businessTrips" name="businessTrips" disabled={!isAuthenticated}>
+                  <option value="NOT_SPECIFIED">Not specified</option>
+                  <option value="POSSIBLE">Possible</option>
+                  <option value="IMPOSSIBLE">Impossible</option>
+                  <option value="RARELY_POSSIBLE">Rarely possible</option>
                 </select>
               </div>
 
               <div>
                 <label for="employment">Busyness:</label>
                 <select id="employment" name="employment" disabled={!isAuthenticated}>
-                  <option value="full">Full</option>
-                  <option value="part-time">Partial</option>
-                  <option value="freelance">One-time / Part-time job</option>
-                  <option value="internship">Internship</option>
+                  <option value="FULL_TIME">Full</option>
+                  <option value="PART_TIME">Partial</option>
+                  <option value="FREELANCE">One-time / Part-time job</option>
+                  <option value="INTERNSHIP">Internship</option>
                 </select>
               </div>
 
               <div>
-                <label for="work-schedule">Work schedule :</label>
-                <select id="work-schedule" name="work-schedule" disabled={!isAuthenticated}>
-                  <option value="fixed">Fixed</option>
-                  <option value="full-day">Full time</option>
-                  <option value="shift">Removable</option>
-                  <option value="flexible">Flexible</option>
-                  <option value="rotation">Shift method</option>
+                <label for="work-mode">Work mode :</label>
+                <select id="workMode" name="workMode" disabled={!isAuthenticated}>
+                  <option value="OFFICE">Office</option>
+                  <option value="HYBRID">Hybrid</option>
+                  <option value="REMOTE">Remote</option>
                 </select>
               </div>
 
@@ -325,36 +338,6 @@ function Generator() {
                 <label>Job</label>
                 <button className="add-job-button" onClick={openWorkModal} disabled={!isAuthenticated}>+</button>
               </div>
-            </div>
-
-            <div className="upload-wrapper">
-              <label htmlFor="file-upload">File upload:</label>
-              <div className="upload-block" onClick={() => document.getElementById('file-upload').click()}>
-                <input type="file" id="file-upload" name="file-upload" accept=".pdf, .doc, .docx" style={{ display: 'none' }} onChange={handleFileChange} disabled={!isAuthenticated} />
-                {fileName ? (
-                  <span className="file-name">{fileName}</span>
-                ) : (
-                  <MdOutlineFileUpload className="upload-icon" />
-                )}
-              </div>
-            </div>
-
-            <div className="upload-wrapper">
-              <label htmlFor="video-upload">Loading video:</label>
-              <div className="upload-block" onClick={() => document.getElementById('video-upload').click()}>
-                <input type="file" id="video-upload" name="video-upload" accept="video/*" style={{ display: 'none' }} onChange={handleVideoChange} disabled={!isAuthenticated} />
-                {videoName ? (
-                  <span className="file-name">{videoName}</span>
-                ) : (
-                  <MdOutlineFileUpload className="upload-icon" />
-                )}
-              </div>
-            </div>
-
-
-            <div className="gener-textarea">
-              <label for="additional-info">Additional information:</label>
-              <textarea id="additional-info" name="additional-info" disabled={!isAuthenticated}></textarea>
             </div>
 
             <div className="generformbtn-container">
@@ -467,8 +450,8 @@ function Generator() {
                 </div>
                 <div className="infojob">
                   <label for="job-info">Additional information:</label>
-                  <textarea type="text" value={job.jobsnInfo}
-                    onChange={(e) => handleChange(index, 'jobsnInfo', e.target.value, 'job')}
+                  <textarea type="text" value={job.jobsInfo}
+                    onChange={(e) => handleChange(index, 'jobsInfo', e.target.value, 'job')}
                   />
                 </div>
 
@@ -488,40 +471,47 @@ function Generator() {
         </div>
       )}
 
-      {isLanguageModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h2>Languages</h2>
-            {newLanguages.map((language, index) => (
-              <div key={index} className="language-field">
-                <div className="language-name">
-                  <label>Language</label>
-                  <input type="text" placeholder="" value={language.name}
-                    onChange={(e) => handleChange(index, 'name', e.target.value, 'language')}
-                  />
-                </div>
-                <div className="language-level">
-                  <label>Proficiency Level</label>
-                  <input type="range" min="1" max="5" value={language.level}
-                    onChange={(e) => handleChange(index, 'level', e.target.value, 'language')}
-                  />
-                  <span>{["Novice", "Intermediate", "Good", "Very Good", "Fluent"][language.level - 1]}</span>
-                </div>
-                {/* Кнопка для удаления текущего языка */}
-                <div className="lineBtn">
-                  <button className="delete-language-button" onClick={() => deleteLanguageField(index)}>Delete</button>
-                  <div></div>
-                </div>
-              </div>
-            ))}
-            <div className="btnSaveClose">
-              <button onClick={addLanguageField}>Add</button>
-              <button onClick={saveLanguages}>Save</button>
-              <button onClick={closeLanguageModal}>Close</button>
-            </div>
+{isLanguageModalOpen && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <h2>Languages</h2>
+      {newLanguages.map((languageObj, index) => (
+        <div key={index} className="language-field">
+          <div className="language-name">
+            <label>Language</label>
+            <input 
+              type="text" 
+              value={languageObj.language}
+              onChange={(e) => handleChange(index, 'language', e.target.value, 'language')}
+            />
+          </div>
+          <div className="language-level">
+            <label>Proficiency Level</label>
+            <input 
+              type="range" 
+              min="1" 
+              max="5" 
+              value={languageObj.level}
+              onChange={(e) => handleChange(index, 'level', e.target.value, 'language')}
+            />
+            <span>{["Novice", "Intermediate", "Good", "Very Good", "Fluent"][languageObj.level - 1]}</span>
+          </div>
+          <div className="lineBtn">
+          <button className="delete-job-button" onClick={() => deleteLanguageField(index)}>Delete</button>
+          <div></div>
           </div>
         </div>
-      )}
+      ))}
+      <div className="btnSaveClose">
+      <button onClick={addLanguageField}>Add</button>
+      <button onClick={saveLanguages}>Save</button>
+      <button onClick={closeLanguageModal}>Close</button>
+    </div>
+    </div>
+  </div>
+)}
+
+
 
     </div>
   );

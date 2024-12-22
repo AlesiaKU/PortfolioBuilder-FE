@@ -1,0 +1,174 @@
+/* Общие стили для контейнера */
+.portfolio-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f4f4f4;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Навигационные кнопки */
+.portfolio-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1500px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.portfolio-nav-buttons button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.portfolio-nav-buttons button:hover {
+  background-color: #45a049;
+}
+
+/* Контейнер для контента портфолио */
+.portfolio-content {
+  display: flex;
+  flex-direction: row; /* Изменено с column на row */
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 1000px;
+  max-width: 100%;
+  justify-content: space-between; /* Добавлено для распределения пространства между элементами */
+}
+
+/* Прямоугольник для изображения и заголовка */
+/* Прямоугольник для изображения и заголовка */
+.portRect {
+  width: 960px; /* Заставляем блок растягиваться на всю ширину */
+  height: 150px;
+  background-color: #DFD7D3;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0; /* Добавим небольшой отступ сверху и снизу для лучшего визуального восприятия */
+}
+
+/* Заголовок внутри прямоугольника */
+.portRect h1 {
+margin-left: 300px;
+  padding: 10px 0;
+  font-size: 44px;
+  color: #000000;
+  text-align: center; /* Центрируем заголовок по горизонтали */
+  width: 100%; /* Заголовок будет растягиваться на всю ширину */
+}
+
+
+/* Изображение профиля */
+.profile-image {
+  position: relative;
+  display: flex;
+  z-index: 1; /* Отрицательный отступ, чтобы половина изображения заходила на прямоугольник */
+}
+
+.profile-image img {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Название профиля, которое будет поверх изображения */
+.profile-title {
+  position: absolute;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+/* Контактные данные */
+.profile-details {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+/* Контактная информация */
+.portEmail, .portPhon, .portCity {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.portEmail svg, .portPhon svg, .portCity svg {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+/* Блок информации */
+.info-container {
+  position: relative;
+  width: 350px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 100px;
+  flex-grow: 1; /* Растягиваем блок до низа родителя */
+}
+
+/* Секции с дополнительной информацией */
+.info-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;  /* Секция должна быть растянута на оставшееся пространство */
+  padding: 20px;
+  margin-left: 20px; /* Уберите margin-left: 400px; это заставляет секцию смещаться */
+  margin-top: 170px;
+}
+
+/* Стили для каждой секции */
+.section, .section1, .section0 {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.section h3, .section1 h3, .section0 h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.section p, .section1 p, .section0 p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Стили для списка языков */
+.languages-list {
+  margin-left: 20px;
+}
+
+.languages-list li {
+  margin-bottom: 10px;
+}
+
+.section3, .section-employment, .section-work-mode, .section-businessTrips {
+  margin-top: 30px;
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.section4 {
+  margin-top: 30px;
+  margin-left: 20px;
+}

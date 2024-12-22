@@ -1,6 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+const extractEmailFromToken = () => {
+  const token = localStorage.getItem('token'); // Получаем токен из localStorage
+  if (!token) return null;
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1])); // Декодируем payload токена
+    return payload.sub; // Извлекаем email
+  } catch (error) {
+    console.error('Ошибка при декодировании токена:', error);
+    return null;
+  }
+};
+
 export const useGeneratorLogic = () => {
   const [activePlan, setActivePlan] = useState(null); 
   const location = useLocation(); 
@@ -9,23 +22,19 @@ export const useGeneratorLogic = () => {
   const [isWorkModalOpen, setIsWorkModalOpen] = useState(false);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
   useEffect(() => {
     const token = localStorage.getItem('token'); // Получаем токен из localStorage
     setIsAuthenticated(!!token); // Устанавливаем isAuthenticated в true, если токен существует
   }, []);
+
   const [educations, setEducations] = useState([]);
-  const [newLanguages, setNewLanguages] = useState([
-    { name: '', level: 1 }
-  ]);
-  const [newEducations, setNewEducations] = useState([
-    { specialization: '', institution: '', city: '', startDate: '', endDate: '', educationInfo: '' }
-  ]);
-
+  const [language, setLanguages] = useState([]);
+  const [newLanguages, setNewLanguages] = useState([{ language: '', level: 1 }]);
+  const [newEducations, setNewEducations] = useState([{ specialization: '', institution: '', city: '', startDate: '', endDate: '', educationInfo: '' }]);
   const [jobs, setJobs] = useState([]);
-  const [newJobs, setNewJobs] = useState([
-    { position: '', company: '', city: '', startDate: '', endDate: '', jobsnInfo: '' }
-  ]);
-
+  const [newJobs, setNewJobs] = useState([{ position: '', company: '', city: '', startDate: '', endDate: '', jobsInfo: '' }]);
+ 
   useEffect(() => {
     if (location.hash) {
       const elementId = location.hash.substring(1);
@@ -69,18 +78,18 @@ export const useGeneratorLogic = () => {
   };
 
   const addWorkField = () => {
-    setNewJobs([...newJobs, { position: '', company: '', city: '', startDate: '', endDate: '', jobsnInfo: '' }]);
+    setNewJobs([...newJobs, { position: '', company: '', city: '', startDate: '', endDate: '', jobsInfo: '' }]);
   };
 
   const openLanguageModal = (event) => {
     event.preventDefault();
     setIsLanguageModalOpen(true);
-  } 
+  };
 
-  const closeLanguageModal = () => setIsLanguageModalOpen(false); // Закрыть окно языка
+  const closeLanguageModal = () => setIsLanguageModalOpen(false);
 
-  const addLanguageField = () => { // Добавить новый язык
-    setNewLanguages([...newLanguages, { name: '', level: 1 }]);
+  const addLanguageField = () => {
+    setNewLanguages([...newLanguages, { language: '', level: 1 }]); // Инициализируйте уровень с 1
   };
 
   const deleteLanguageField = (index) => {
@@ -124,69 +133,116 @@ export const useGeneratorLogic = () => {
   };
 
   const saveLanguages = () => {
+    console.log('Languages to save:', newLanguages); // Лог для отладки
+    const updatedLanguages = [...language, ...newLanguages];
+    setLanguages(updatedLanguages);
+    //setNewLanguages([{ language: '', level: '1' }]); // Сброс форм
     closeLanguageModal();
   };
 
-  const [formData, setFormData] = useState({}); // состояние для хранения данных формы
-
   const handleSubmit = async (event) => {
-    event.preventDefault(); // предотвращает перезагрузку страницы при отправке формы
+    event.preventDefault();
+  
+    const photoFile = event.target.photo?.files[0]; // Извлекаем файл из input
+    const email = extractEmailFromToken();
+    if (!email) {
+      console.error('Email не найден в токене!');
+      return;
+    }
 
-    const form = event.target;
-    const formDataObj = new FormData(form);
+    const formData = new FormData();
+    formData.append('userEmail', email);
+    formData.append('firstName', event.target.firstName?.value || '');
+    formData.append('lastName', event.target.lastName?.value || '');
+    formData.append('desiredPosition', event.target.desiredPosition?.value || '');
+    formData.append('country', event.target.country?.value || '');
+    formData.append('phone', event.target.phone?.value || '');
+    formData.append('gender', event.target.gender?.value || '');
+    formData.append('businessTrips', event.target.businessTrips?.value || '');
+    formData.append('employment', event.target.employment?.value || '');
+    formData.append('workMode', event.target.workMode?.value || '');
 
-    // Собираем данные формы в объект
-    const formValues = {};
-    formDataObj.forEach((value, key) => {
-      formValues[key] = value;
+    newJobs.forEach((job, index) => {
+      formData.append(`works[${index}].position`, job.position || '');
+      formData.append(`works[${index}].company`, job.company || '');
+      formData.append(`works[${index}].city`, job.city || '');
+      formData.append(`works[${index}].startDate`, job.startDate || '');
+      formData.append(`works[${index}].endDate`, job.endDate || '');
+      formData.append(`works[${index}].jobsInfo`, job.jobsInfo || '');
     });
 
-    const formData = new FormData(event.target);
+    newEducations.forEach((education, index) => {
+      formData.append(`educations[${index}].specialization`, education.specialization || '');
+      formData.append(`educations[${index}].institution`, education.institution || '');
+      formData.append(`educations[${index}].city`, education.city || '');
+      formData.append(`educations[${index}].startDate`, education.startDate || '');
+      formData.append(`educations[${index}].endDate`, education.endDate || '');
+      formData.append(`educations[${index}].educationInfo`, education.educationInfo || '');
+    });
 
-    // Добавляем данные из модальных окон (образование, языки, работа и т.д.)
-    const educationData = educations;
-    const jobData = jobs;
-    const languageData = newLanguages;
+    newLanguages.forEach((lang, index) => {
+      formData.append(`languages[${index}].language`, lang.language || '');
+      formData.append(`languages[${index}].level`, lang.level.toString() || '');
+    });
 
-    // Собираем все данные в один объект
-    const fullFormData = {
-      ...Object.fromEntries(formData),
-      education: educationData,
-      jobs: jobData,
-      languages: languageData
-    };
+  
+    const token = localStorage.getItem('token'); // Получаем токен из localStorage
+    if (!token) {
+      console.error('Ошибка: Токен не найден в localStorage.');
+      return;
+    }
 
-    console.log('Form Data:', fullFormData);
+if (photoFile) {
+  formData.append('photo', photoFile); 
+}
+for (let [key, value] of formData.entries()) {
+  console.log(`${key}:`, value);
+}
 
-    setFormData(formValues);
 
     try {
-      const response = await fetch('#', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', 
-        },
-        body: JSON.stringify(fullFormData) 
-      });
-
-      if (!response.ok) { 
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const responseData = await response.json(); 
-      console.log('Response from server:', responseData); 
-
-      if (activePlan === 2 || activePlan === 3) {
-        navigate(`/payment?plan=${activePlan}`);
+      const response = await fetch(
+        `http://26.188.13.76:8080/api/portfolios/create?email=${encodeURIComponent(email)}`,
+        {
+          method: 'POST',
+          headers: {
+            //'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Только заголовок Authorization
+          },
+          //body: JSON.stringify(fullFormData),
+          body: formData
+        }
+      );
+  
+      let data;
+  
+      if (response.ok) {
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          data = await response.json(); // Читаем ответ как JSON
+        } else {
+          data = { jwt: await response.text() }; // Читаем как текст
+        }
+  
+        if (data.jwt && data.jwt !== 'not ok') {
+          console.log('Existing JWT Token:', token);
+          console.log('Перехлд на страницу');
+          navigate('/PortfolioPage');
+          
+        } else {
+          console.error('Error: Invalid JWT token received:', data.jwt);
+        }
+      } else if (response.status === 401) {
+        console.error('Unauthorized: Invalid credentials');
       } else {
-        // План 1: просто сохраняем данные
-        console.log('Plan 1 selected, no payment required.');
+        console.error('Server response status:', response.status);
       }
-
     } catch (error) {
-      console.error('Error sending data to server:', error); 
+      console.error('Error sending data to server:', error);
     }
   };
+  
+
   return {
     activePlan,
     isModalOpen,

@@ -517,18 +517,22 @@ h2 {
   overflow-y: auto; 
 }
 
-.add-education-button, .add-job-button, .add-language-button{
+.add-education-button, .add-job-button, .add-language-button {
   width: 30px;
   height: 30px;
-  border-radius: 50px;
+  border-radius: 50%; /* Круглая кнопка */
   color: #4CAF4F;
   font-size: 22px;
   background-color: white;
-  align-items: center;
-  justify-content: center;
+  display: flex; /* Включаем Flexbox */
+  align-items: center; /* Центрирование по вертикали */
+  justify-content: center; /* Центрирование по горизонтали */
   border: 2px solid #4CAF4F;
   cursor: pointer;
+  padding: 0; /* Убираем внутренние отступы */
+  box-sizing: border-box; /* Учитываем границы и отступы */
 }
+
 
 .education, .job, .language {
   display: flex;
@@ -610,12 +614,17 @@ h2 {
 
 .delete-education-button, .delete-job-button, .delete-language-button{
   width: 80px;
-  height: 20px;
+  height: 30px; /* Увеличена высота */
   border-radius: 10px;
   background-color: #71c672;
   color: white;
   font-size: 15px;
   cursor: pointer;
+  display: flex;
+  align-items: center; /* Центрирование текста */
+  justify-content: center; /* Центрирование текста */
+  padding: 0; /* Устранение лишних отступов */
+  box-sizing: border-box; /* Гарантия правильного расчета размеров */
 }
 
 .lineBtn{
@@ -637,13 +646,21 @@ h2 {
   gap: 10px; 
   margin-top: 20px; 
 }
-.btnSaveClose button{
+
+.btnSaveClose button {
+  display: flex;
+  align-items: center; /* Центрирование текста по вертикали */
+  justify-content: center; /* Центрирование текста по горизонтали */
   width: 50px;
+  height: 30px; /* Явная высота */
   background-color: #71c672;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  padding: 0; /* Убираем внутренние отступы */
+  box-sizing: border-box; /* Учитываем размеры */
 }
+
 
 .infoeducate textarea, .infojob textarea{
   width: 550px; 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom'; 
 import Header from './components/header/Header.jsx';
-import GlobalSearch from './components/header/SearchBar.jsx';
+import PortfolioPage from './components/PortfolioPage.jsx';
 import Footer from './components/Footer.jsx';
 import Home from './components/Home.jsx';
 import Login from './components/Login.jsx';
@@ -35,6 +35,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/verify-email" element={<VerifyEmailPage />} />
+        <Route path="/portfolioPage" element={<PortfolioPage />} />
       </Routes>
 
       {!isAuthPage && <Footer />}
