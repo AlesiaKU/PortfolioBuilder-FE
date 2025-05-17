@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate} from 'react-router-dom';
 import './header.css';
-import logo from './logo.svg';
+import logo from './Vector.svg';
 import { FaUserCircle} from 'react-icons/fa';
 import { CiGlobe } from "react-icons/ci";
 import { useTranslation } from 'react-i18next';
@@ -72,7 +72,16 @@ function Header() {
               <div className='cherta'></div>
               <li className={location.pathname === '/generator' ? 'active' : ''}><Link to="/generator" className="headerBtn" onClick={() => handleNavigation('generator')}>{t('header.generator')}</Link></li>
               <div className='cherta'></div>
-              <li className={location.pathname === '/faq' ? 'active' : ''}><Link to="/faq" className="headerBtn" onClick={() => handleNavigation('faq')}>{t('header.faq')}</Link></li>
+              <li>
+  <Link
+    to="/#bann7"
+    className="headerBtn"
+    onClick={() => log('USER_ACTION', 'User navigated', { to: '#banner7' })}
+  >
+    {t('header.faq')}
+  </Link>
+</li>
+
               <div className='cherta'></div>
               <li className={location.pathname === '/examples' ? 'active' : ''}><Link to="/examples" className="headerBtn" onClick={() => handleNavigation('examples')}>{t('header.examples')}</Link></li>
             </ul>

@@ -227,7 +227,14 @@ for (let [key, value] of formData.entries()) {
         if (data.jwt && data.jwt !== 'not ok') {
           console.log('Existing JWT Token:', token);
           console.log('Перехлд на страницу');
-          navigate('/PortfolioPage');
+          if (activePlan === 2 || activePlan === 3) {
+            navigate(`/payment?plan=${activePlan}`);
+           } else {
+              // План 1: просто сохраняем данные
+              console.log('Plan 1 selected, no payment required.');
+              navigate('/PortfolioPage');
+            }
+          
           
         } else {
           console.error('Error: Invalid JWT token received:', data.jwt);

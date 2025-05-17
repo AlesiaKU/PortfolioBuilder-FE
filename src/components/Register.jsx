@@ -3,6 +3,8 @@ import '../styles/form.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { RxExit } from "react-icons/rx";
 import { log } from '../JavaScript/logger.js'; // Импорт логирования
+import { FaEnvelope, FaLock } from 'react-icons/fa';
+import MarqueeText from '../JavaScript/MarqueeText.js';
 
 function Register() {
   const navigate = useNavigate();
@@ -122,42 +124,62 @@ function Register() {
   return (
     <div className="register">
       <div className="formm">
-        <div className="image-container"></div>
+      <div className="image-container">
+      <MarqueeText text="PORTFOLIO READY!" reverse={false} />
+<MarqueeText text="SHOW YOUR SKILLS!" reverse={true} />
+<MarqueeText text="YES TO SUCCESS!" reverse={false} />
+<MarqueeText text="NO LIMITS! SAY YES TO GROWTH!" reverse={true} />
+<MarqueeText text="CV UPGRADED!" reverse={false} />
+<MarqueeText text="YOU’VE GOT THIS!" reverse={true} />
+<MarqueeText text="JUST START!" reverse={false} />
+<MarqueeText text="SAY YES TO GROWTH!" reverse={true} />
+<MarqueeText text="OWN YOUR JOURNEY!" reverse={false} />
+<MarqueeText text="LEVEL UP NOW!" reverse={true} />
+<MarqueeText text="PORTFOLIO READY!" reverse={false} />
+<MarqueeText text="SHOW YOUR SKILLS!" reverse={true} />
+<MarqueeText text="YES TO SUCCESS!" reverse={false} />
+<MarqueeText text="NO LIMITS! SAY YES TO GROWTH!" reverse={true} />
+        </div>
         <div className="container2">
           <RxExit className="exit-icon" onClick={handleExitClick} style={{ cursor: 'pointer' }} />
           {step === 1 ? (
           <form className="reglogform" onSubmit={handleEmailSubmit}>
+             <div className="container2Form">
             <h1>Welcome to Generator</h1>
             <div className="input-box">
               <label className="email">Email</label>
+              <div className="input-with-icon">
+                            <FaEnvelope className="input-icon" />
               <input type="email" placeholder="Enter your email" className="form-style"
                 value={email} onChange={(e) => setEmail(e.target.value)} required />
+            </div>
             </div>
             {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
-              <button type="submit" className="btn-form">Отправить</button>
+              <button type="submit" className="btn-form">Register</button>
               <div className="register-link">
               <p>Already have an account? <button type="button" className='slka' onClick={handleLoginClick}>Login</button></p>
+            </div>
             </div>
             </form>
           ) : (
             <form className="reglogform" onSubmit={handleSubmit}>
-              <h1>Завершение регистрации</h1>
+              <h1>Completing registration</h1>
               <div className="input-box">
-              <label className="email">Email</label>
+              <label className="email"></label>
               <input type="email" placeholder="Enter your email" className="form-style"
                 value={email} disabled/>
             </div>
             <div className="input-box">
-              <label className="password">Password</label>
+              <label className="password"></label>
               <input type="password" placeholder="Enter your password" className="form-style" value={password}
                 onChange={(e) => setPassword(e.target.value)} onFocus={handlePasswordFocus}
                 required
               />
             </div>
             <div className="input-box">
-              <label className="password">Confirm Password</label>
+              <label className="password"></label>
               <input type="password" placeholder="Confirm your password" className="form-style" value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)} onFocus={handlePasswordFocus}
                 required

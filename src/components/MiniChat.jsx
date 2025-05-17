@@ -1,154 +1,160 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Client } from '@stomp/stompjs';
 import '../styles/MiniChat.css';
 
-function MiniChat({ onExpand }) {
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
-  const ws = useRef(null);
-  const userId = useRef(Date.now() + Math.random().toString());
-  const [isTyping, setIsTyping] = useState(false); // Флаг для имитации печати
+function MiniChat() {
+  const [messages, setMessages] = useState([]); // Список сообщений
+  const [input, setInput] = useState(''); // Текст сообщения
+  const [users, setUsers] = useState([]); // Список подключённых пользователей
+  const [recipient, setRecipient] = useState('public'); // ID выбранного получателя (или "public" для всех)
+  const [isConnected, setIsConnected] = useState(false); // Статус подключения
+  const client = useRef(null); // STOMP клиент
+
+  // Данные текущего пользователя
+  const userEmail = localStorage.getItem('userEmail'); // Берём email из localStorage
+  const userId = useRef(Date.now().toString()); // Генерация уникального ID пользователя
 
   useEffect(() => {
-    // Инициализация WebSocket
-    ws.current = new WebSocket('ws:http://26.188.13.76:8080');
+    if (!userEmail) {
+      console.error('User is not logged in!');
+      return;
+    }
 
-    ws.current.onmessage = (event) => {
-      try {
-        const parsedData = JSON.parse(event.data);
-        console.log('Received message from server:', parsedData);
+    // Создаём STOMP-клиент
+    client.current = new Client({
+      brokerURL: 'ws://26.188.13.76:8080/chat', // Подключение к вашему серверу WebSocket
+      reconnectDelay: 5000, // Автоматическая попытка переподключения
+      heartbeatIncoming: 4000, // Проверка соединения
+      heartbeatOutgoing: 4000,
+      debug: (str) => console.log(str), // Логирование
+    });
 
-        if (parsedData.type === 'message' && (parsedData.data?.text || parsedData.data?.file)) {
-          setMessages((prevMessages) => [...prevMessages, parsedData.data]);
-        } else {
-          console.error('Получено пустое или некорректное сообщение:', parsedData);
-        }
-      } catch (error) {
-        console.error('Ошибка при разборе сообщения:', error);
-      }
+    // Обработка успешного подключения
+    client.current.onConnect = () => {
+      console.log('Connected to WebSocket server');
+      setIsConnected(true);
+
+      // Подписка на публичные сообщения
+      client.current.subscribe('/topic/messages', (message) => {
+        const parsedMessage = JSON.parse(message.body);
+        console.log('Received public message:', parsedMessage);
+        setMessages((prevMessages) => [...prevMessages, parsedMessage]);
+      });
+
+      // Подписка на приватные сообщения
+      client.current.subscribe(`/user/${userId.current}/topic/privatemessages`, (message) => {
+        const parsedMessage = JSON.parse(message.body);
+        console.log('Received private message:', parsedMessage);
+        setMessages((prevMessages) => [...prevMessages, parsedMessage]);
+      });
+
+      // Подписка на список пользователей
+      client.current.subscribe('/topic/users', (usersMessage) => {
+        const connectedUsers = JSON.parse(usersMessage.body);
+        console.log('Users list updated:', connectedUsers);
+        setUsers(connectedUsers); // Обновляем список пользователей
+      });
+
+      // Отправка информации о пользователе на сервер
+      const user = {
+        id: userId.current,
+        username: userEmail, // Используем email как имя пользователя
+      };
+      client.current.publish({
+        destination: '/app/user',
+        body: JSON.stringify(user),
+      });
     };
 
-    // Добавление приветственного сообщения от сервера при открытии чата
-    setMessages([
-      {
-        id: 'server-welcome',
-        userId: 'server',
-        text: 'Добрый день! Могу я вам чем-то помочь?',
-      },
-    ]);
+    // Обработка ошибок подключения
+    client.current.onWebSocketError = (error) => {
+      console.error('WebSocket error:', error);
+    };
 
-    return () => ws.current.close();
-  }, []);
+    // Обработка ошибок STOMP
+    client.current.onStompError = (frame) => {
+      console.error('STOMP error:', frame.headers['message'], frame.body);
+    };
+
+    // Активация клиента
+    client.current.activate();
+
+    return () => {
+      if (client.current) client.current.deactivate();
+    };
+  }, [userEmail]);
 
   const sendMessage = () => {
     if (input.trim()) {
       const message = {
-        id: Date.now(),
-        userId: userId.current,
-        text: input,
+        user: { id: userId.current, username: userEmail },
+        comment: input,
+        action: recipient === 'public' ? 'NEW_MESSAGE' : 'NEW_PRIVATE_MESSAGE',
+        timestamp: new Date().toISOString(),
+        receiverId: recipient === 'public' ? null : recipient, // Если приватное сообщение, добавляем ID получателя
       };
-      ws.current.send(JSON.stringify(message)); // Отправляем сообщение в формате JSON
-      setMessages((prevMessages) => [...prevMessages, message]); // Добавляем сообщение в свой список сообщений
-      handleAutoReply(input.trim());
-      setInput(''); // Очищаем поле ввода
-    }
-  };
 
-  const handleAutoReply = (userMessage) => {
-    if (userMessage.toLowerCase().includes('могу я узнать номер поддержки')) {
-      setIsTyping(true); // Показываем "печать"
-      setTimeout(() => {
-        setIsTyping(false); // Убираем "печать"
-        const autoReply = {
-          id: Date.now(),
-          userId: 'server',
-          text: '+375(29) 123 45 69',
-        };
-        setMessages((prevMessages) => [...prevMessages, autoReply]);
-      }, 5000); // Задержка 5 секунд
-    }
-  };
+      // Публикация сообщения на сервер
+      client.current.publish({
+        destination: recipient === 'public' ? '/app/message' : '/app/privatemessage',
+        body: JSON.stringify(message),
+      });
 
-
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const fileMessage = {
-          id: Date.now(),
-          userId: userId.current,
-          file: {
-            name: file.name,
-            type: file.type,
-            content: reader.result, // Base64 контент файла
-          },
-        };
-        ws.current.send(JSON.stringify({ type: 'file', data: fileMessage }));
-        setMessages((prevMessages) => [...prevMessages, fileMessage]);
-      };
-      reader.readAsDataURL(file);
+      setInput(''); // Очистка поля ввода
     }
   };
 
   return (
     <div className="mini-chat">
       <div className="mini-chat-header">
-        <span>Chat</span>
+        {isConnected ? (
+          <div>
+            <span>Подключен как: {userEmail}</span>
+          </div>
+        ) : (
+          <span>Подключение...</span>
+        )}
       </div>
-      <div className="mini-chat-content">
-        <div className="chat-boxMini">
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`message ${msg.userId === userId.current ? 'sent' : 'received'}`}
+      {isConnected && (
+        <div className="mini-chat-content">
+          <div className="chat-boxMini">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`messageM ${msg.user.username === userEmail ? 'sent' : 'received'}`}
+              >
+                {msg.user.username !== userEmail && (
+                  <strong>{msg.user.username}:</strong>
+                )}
+                {msg.comment}
+              </div>
+            ))}
+          </div>
+          <div className="btnInput">
+            <select
+              value={recipient}
+              onChange={(e) => setRecipient(e.target.value)}
             >
-              {msg.text && <p>{msg.text}</p>}
-              {msg.file && (
-                <div>
-                  {msg.file.type.startsWith('image/') ? (
-                    <img
-                      src={msg.file.content}
-                      alt={msg.file.name}
-                      style={{ maxWidth: '200px', borderRadius: '5px', marginTop: '5px' }}
-                    />
-                  ) : (
-                    <a href={msg.file.content} download={msg.file.name}>
-                      {msg.file.name}
-                    </a>
-                  )}
-                </div>
+              <option value="public">Всем</option>
+              {users.map((user) =>
+                user.id !== userId.current ? (
+                  <option key={user.id} value={user.id}>
+                    {user.username}
+                  </option>
+                ) : null
               )}
-            </div>
-          ))}
-          {isTyping && (
-            <div className="message typing-indicator">
-              <span>.</span>
-              <span>.</span>
-              <span>.</span>
-            </div>
-          )}
+            </select>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+              placeholder="Введите ваше сообщение"
+            />
+            <button onClick={sendMessage}>Отправить</button>
+          </div>
         </div>
-        <div className="btnInput">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
-            placeholder="Введите ваше сообщение"
-          />
-          <input
-            type="file"
-            accept="image/*, .pdf, .docx, .txt"
-            onChange={handleFileUpload}
-            style={{ display: 'none' }}
-            id="fileInput"
-          />
-          <label htmlFor="fileInput" className="fileUploadButton">
-            📎
-          </label>
-          <button onClick={sendMessage}>Отправить</button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

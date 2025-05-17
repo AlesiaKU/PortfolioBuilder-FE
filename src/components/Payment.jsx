@@ -162,7 +162,7 @@ function Payment() {
           <div className="pay-line"></div>
         </div>
         <div className="cont2-txt4">
-          <div>By proceeding to purchase, you are entering into an agreement with Corp. Ilya&Masha under the</div>
+          <div>By proceeding to purchase, you are entering into an agreement with Corp under the</div>
           <div>terms specified below.</div>
           <div className="cont2-txt4-1">Personal data required in the order form is needed for entering into the agreement with us and</div>
           <div>delivery of the products or services (unless marked optional). We will process the personal data as</div>

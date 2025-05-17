@@ -46,15 +46,26 @@
   font-weight: 100;
 }
 
-.pageInProf{
+/*.pageInProf{
   width: 869px;
   height: 520px;
   background-color: white;
   margin-left: 80px;
   display: flex;
-  flex-direction: column; /* Выстраиваем элементы по вертикали */
-  align-items: center; /* Центрируем по горизонтали */
-  text-align: center; /* Центрируем текст внутри блока */
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center;
+}*/
+
+.pageInProf {
+  width: 869px;
+  height: 520px;
+  background-color: white;
+  margin-left: 80px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* предотвращает выход контента */
+  padding: 20px;
 }
 
 .navegPage {
@@ -87,7 +98,7 @@
   padding: 20px;
   background-color: #ffffff; /* Цвет фона чата */
   border-radius: 10px;
-  height: 480px; /* Максимальная высота для чата */
+  height: 460px; /* Максимальная высота для чата */
   overflow-y: auto; /* Прокрутка по вертикали */
   width: 865px;
 }
@@ -104,7 +115,7 @@
 /* Стили для отправленного сообщения */
 .sent {
   align-self: flex-end; /* Выравнивание по правому краю */
-  background-color: #bff3bf; /* Цвет фона для отправленных сообщений */
+  background-color: #95daff; /* Цвет фона для отправленных сообщений */
   color: #000; /* Цвет текста для отправленных сообщений */
 }
 
@@ -119,7 +130,7 @@
 .renderMessages input {
   width: calc(100% - 80px); /* Ширина поля ввода */
   padding: 10px; /* Отступы внутри поля */
-  border: 1px solid #ccc; /* Рамка вокруг поля ввода */
+  border: 1px solid #aadcff; /* Рамка вокруг поля ввода */
   border-radius: 5px; /* Закругление углов поля ввода */
   margin-right: 10px; /* Отступ справа от поля ввода */
   outline: none;
@@ -132,7 +143,7 @@
 
 .renderMessages button {
   padding: 10px 15px; /* Отступы внутри кнопки */
-  background-color: #4CAF4F; /* Цвет фона кнопки */
+  background-color: #77a6f7; /* Цвет фона кнопки */
   color: white; /* Цвет текста кнопки */
   border: none; /* Убираем рамку у кнопки */
   border-radius: 5px; /* Закругление углов кнопки */
@@ -141,7 +152,11 @@
 }
 
 .renderMessages button:hover {
-  background-color: #acedac; /* Цвет кнопки при наведении */
+  background-color: #acdbed; /* Цвет кнопки при наведении */
+}
+
+.blue-button{
+  background-color: #77a6f7;
 }
 
 .btnInput{
@@ -154,7 +169,7 @@
   margin-top: auto;
   width: 200px;
   height: 30px;
-  background-color: #4CAF4F;
+  background-color: #77a6f7;
   color: #FFFFFF;
   border-radius: 10px;
   cursor: pointer;
@@ -171,4 +186,138 @@
 
 .fileUploadButton:hover {
   color: #0056b3;
+}
+
+
+/* Стили для формы данных пользователя */
+/* Стили для формы данных пользователя */
+.form-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto; /* прокрутка по высоте */
+}
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.form-groupProf {
+  flex: 0 0 48%; /* два столбца */
+  margin-bottom: 10px;
+}
+
+.form-groupProf label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-groupProf input {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-groupProf input:focus {
+  border-color: #77a6f7;
+  outline: none;
+}
+.profile-form__add-button {
+  display: inline-block;
+  margin-top: 12px;
+  margin-bottom: 40px;
+  padding: 8px 16px;
+  background-color: #f0f4ff;
+  color: #2a4f9c;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #b3c7f9;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.profile-form__add-button:hover {
+  background-color: #d9e6ff;
+  color: #1e3a8a;
+}
+
+.profile-form__submit-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background-color: #2a4f9c;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.profile-form__submit-button:hover {
+  background-color: #1d3973;
+}
+
+.form-section {
+  background-color: #f8f9fc;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 15px;
+  margin-bottom: 12px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fdfdfd;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-section input:focus,
+.form-section select::focus,
+.form-section textarea:focus {
+  border-color: #77a6f7;
+  outline: none;
+}
+
+.form-section textarea {
+  resize: vertical;
+  min-height: 40px;
+}
+.form-row {
+  /*display: flex;*/
+  gap: 20px;
+  margin-bottom: 12px;
+  margin-right: 10px;
+}
+
+.form-row input,
+.form-row textarea {
+  flex: 1;
+}
+.button-group {
+  display: flex;
+  gap: 12px; /* расстояние между кнопками */
+  flex-wrap: wrap; /* если не влезают — переносятся на новую строку */
+  margin-bottom: 24px; /* отступ снизу от группы */
 }

@@ -16,34 +16,86 @@
 .image-container {
         height: 100vh;
         flex: 1; /* Занимает все доступное пространство */
-        background-image: url('../img/form.svg'); 
-        background-size: cover; 
-        background-position: center; 
-
+        /*background-image: url('../img/form.svg');*/
+        background-image: linear-gradient(to right, #b1cdff, #77a6f7); 
+       /* background-size: cover; 
+        background-position: center; */
+        position: relative;
+    overflow: hidden;
     }
 
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+  }
+  
+  .marquee {
+    display: flex;
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+    animation: marquee 30s linear infinite;
+  }
+
+  
+.marquee span {
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: 0; /* убираем отступ */
+}
+  
+  .reverse .marquee {
+      animation: marquee-reverse 30s linear infinite;
+  }
+  
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-33.333%); /* если 3 повтора */
+    }
+  }
+  
+  @keyframes marquee-reverse {
+    from {
+      transform: translateX(-33.333%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
   .container2 {
-        width: 700px;
+        width: 1000px;
         height: 100vh;
         background-color: rgb(255, 255, 255);
         margin: 0 0 0 auto;
         transition: max-height 1s ease, padding 0.5s ease; /* Плавный переход для высоты и отступов */
     }
 
+.container2Form{
+  align-items: center;
+  justify-content: center;
+}
+
 .exit-icon{
-  color: #4CAF4F;
-  margin-left: 650px;
+  color: #77a6f7;
+  margin-left: 950px;
   margin-top: 10px;
   height: 30px;
   width: 30px;
 }
 
 h1{
+  
   font-weight: 700;
     color: black;
     margin-bottom: 50px;
     margin-top: 60px;
-    font-size: 46px;
+    font-size: 56px;
 }
 
 .form-section {
@@ -53,7 +105,7 @@ h1{
 
 .reglogform {
     margin: 0 0 0 auto;
-    width: 700px;
+    width: 1000px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -62,6 +114,7 @@ h1{
 
 .input-box {
     margin-bottom: 15px; 
+    position: relative;
 }
 
 .input-box label {
@@ -69,12 +122,28 @@ h1{
     font-weight: 200; 
     color: black; 
     font-size: 15px;
+    margin-left: 80px;
 }
 
 .input-box input {
-  height: 45px;
-    width: 350px; 
+  height: 50px;
+    width: 450px; 
     border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.input-with-icon {
+  display: flex;
+  align-items: center; /* Выравнивание иконки и инпута по центру */
+  position: relative;
+  margin-left: 80px;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px; /* Позиция иконки внутри поля */
+  color: #838383;
+  font-size: 18px;
 }
 
 .input-box p{
@@ -84,6 +153,7 @@ h1{
 .form-style {
     padding: 13px 20px;
     height: 20px;
+    padding-left: 40px;
     font-weight: 500;
     font-size: 15px;
     line-height: 22px;
@@ -93,25 +163,27 @@ h1{
     background-color: #EFF0F2;
     border: none;
     transition: all 200ms linear;
-    box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+    /*box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);*/
     align-items: center;
 }
 
-.form-style:focus,
+/*.form-style:focus,
 .form-style:active {
-    box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
-}
+    /*box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
+}*/
 
 .btn-form {
     width: 250px; 
     height: 50px;
     padding: 10px;
-    background-color: #4CAF4F;
+    background: linear-gradient(to right, #b1cdff, #77a6f7);
     color: white;
     border: none;
     cursor: pointer;
     margin-top: 80px;
     font-size: 20px;
+    border-radius: 30px;
+    margin-left: 190px;
 }
 
 .slka{
@@ -120,7 +192,7 @@ h1{
   cursor: pointer; 
   margin: 0 0 0 auto;
   font-size: 15px;
-  color: #4CAF4F;
+  color:black;
 }
 
 .register-link {
@@ -145,7 +217,29 @@ h1{
   color: red; 
   font-size: 16px; 
   margin-top: 0px;
+  margin-left: 150px;
 }
+
+@media (max-width: 1024px) {
+  .container2 {
+      margin: 0 5px 0 5px;
+      width: 100%;
+  }
+  
+  .reglogform {
+      width: 100%;
+  }
+  
+
+  h1 {
+      font-size: 46px; 
+      text-align: center;
+      margin-left: 30px; 
+  }
+
+}
+
+
 
 @media (max-width: 768px) {
   .container2 {
@@ -164,7 +258,8 @@ h1{
 
   h1 {
       font-size: 36px; 
-      text-align: center; 
+      text-align: center;
+      margin-left: 30px; 
   }
 
   .input-box input {
@@ -177,6 +272,15 @@ h1{
 
   .register-link {
       font-size: 14px;
+  }
+  .input-with-icon{
+    margin-left: 50px;
+  }
+  .input-box label {
+    margin-left: 50px;
+  }
+  .btn-form {
+    margin-left: 100px;
   }
 }
 

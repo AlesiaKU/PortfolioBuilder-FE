@@ -19,7 +19,7 @@
 }
 
 .gener-txt1-3 {
-  color: #4CAF4F;
+  color:  #77a6f7;
 }
 
 .gener-txt1-4 {
@@ -54,7 +54,7 @@
 .generated-block {
   width: 400px;
   height: 400px;
-  background-color: #E8F5E9;
+  background-color: #bfd6ff;
   margin-top: 10px;
   border-radius: 51px;
   padding-top: 50px;
@@ -136,7 +136,7 @@ h2 {
 .gener-home-name1{
   font-size: 18px;
   font-weight: bold;
-  color: #4CAF4F;
+  color: #77a6f7;
   font-family: "DM Sans", sans-serif;
 }
 .gener-home-name2{
@@ -161,7 +161,7 @@ h2 {
 
 
 .gener-plan.active {
-  background-color: #4CAF4F;
+  background-color: #8ab3fa;
   color: #ffffff;
 }
 
@@ -198,7 +198,7 @@ h2 {
   margin-top: 50px;
   margin-left: 40px;
   border-radius: 10px;
-  background-color: #E8F5E9;
+  background-color: #d0e1ff;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -211,7 +211,7 @@ h2 {
 .gener-half-circle1 {
   width: 19px;
   height: 38px;
-  background-color: #4CAF50; 
+  background-color: #77a6f7; 
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
   border-top-right-radius: 0;
@@ -221,7 +221,7 @@ h2 {
 .gener-half-circle2 {
   width: 19px;
   height: 38px;
-  background-color: #A5D6A7;
+  background-color: #bcd2f9;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 100px;
@@ -231,7 +231,7 @@ h2 {
 .gener-rectang1{
   width: 19px;
   height: 38px;
-  background-color: #4CAF4F;
+  background-color: #77a6f7;
 }
 .gener-rectang-container {
   display: flex;
@@ -241,12 +241,12 @@ h2 {
 .gener-rectang2{
   width: 19px;
   height: 19px;
-  background-color: #A5D6A7;
+  background-color: #a0c3ff;
 }
 .gener-rectang3{
   width: 19px;
   height: 19px;
-  background-color: #C8E6C9;
+  background-color: #c0d7ff;
 }
 
 .gener-text-plan1-1, .gener-text-plan2-1, .gener-text-plan3-1{
@@ -303,7 +303,7 @@ h2 {
 .gener-eleps-chek{
   height: 26px;
   width: 26px;
-  color: #4CAF50;
+  color: #7be67f;
   margin-left: 3px;
 }
 
@@ -365,7 +365,7 @@ h2 {
   width: 250px;
   height: 20px;
     border: none;
-    border-bottom: 2px solid #4CAF4F;
+    border-bottom: 2px solid #8ab3fa;
     margin-bottom: 20px;
     padding: 3px;
     background-color: #ffffff; 
@@ -373,7 +373,7 @@ h2 {
 }
 
 .column input:focus {
-  border-bottom: 3px solid #4CAF4F; 
+  border-bottom: 3px solid #8ab3fa; 
   outline: none; 
 }
 
@@ -384,28 +384,28 @@ h2 {
 .column select {
   width: 250px;
   height: 30px;
-  border: 2px solid #4CAF4F; 
+  border: 2px solid #8ab3fa; 
   padding: 3px;
   background-color: #fff; 
   outline: none;
   margin-bottom: 25px;
   border-radius: 10px;
-  color: #4CAF4F; 
+  color: #8ab3fa; 
 }
 
 
 .column select:focus {
-  border-bottom: 3px solid #4CAF4F; 
+  border-bottom: 3px solid #8ab3fa; 
   outline: none;
 }
 
 .column select:hover {
-  border-color: #81c784; 
+  border-color: #8ab3fa; 
 }
 
 .select option:hover,
 .select option:focus {
-  background-color: lightgreen;
+  background-color: c0d7ff;
 }
 
 .upload-wrapper, .gener-textarea{
@@ -414,7 +414,7 @@ h2 {
 .upload-block {
   width: 250px;
   height: 100px; 
-  border: 2px solid #4CAF50; 
+  border: 2px solid #8ab3fa; 
   background-color: #fff; 
   border-radius: 10px; 
   position: relative;
@@ -428,12 +428,12 @@ h2 {
 }
 
 .upload-block:hover {
-  background-color: #e8f5e9; 
+  background-color: #c3d9ff; 
 }
 
 .upload-icon {
   font-size: 35px; 
-  color: #4CAF50; 
+  color: #8ab3fa; 
 }
 
 .file-name {
@@ -449,7 +449,7 @@ h2 {
 .photo-block {
   width: 250px;
   height: 250px;
-  border: 2px solid #4CAF50; 
+  border: 2px solid #8ab3fa; 
   background-color: #fff; 
   border-radius: 10px;
   position: relative; /* Относительное позиционирование для иконки */
@@ -461,12 +461,12 @@ h2 {
 }
 
 .photo-block:hover {
-  background-color: #e8f5e9; 
+  background-color: #c2d8ff; 
 }
 
 .photo-icon {
   font-size: 48px; 
-  color: #4CAF50; 
+  color: #8ab3fa; 
 }
 
 .photo-preview {
@@ -481,7 +481,7 @@ h2 {
   height: 100px; 
   resize: none; 
   border-radius: 10px;
-  border: 2px solid #4CAF4F;
+  border: 2px solid #8ab3fa;
   padding: 10px;
   overflow-y: auto; 
   font-size: 16px;
@@ -489,7 +489,7 @@ h2 {
 
 .gener-textarea textarea:focus {
   outline: none; 
-  border-color: #81c784; 
+  border-color: #8ab3fa; 
 }
 
 .modal-overlay {
@@ -511,7 +511,7 @@ h2 {
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 600px; 
-  border: 5px solid #4CAF4F;
+  border: 5px solid #8ab3fa;
   border-radius: 20px;
   max-height: 80vh; 
   overflow-y: auto; 
@@ -521,13 +521,13 @@ h2 {
   width: 30px;
   height: 30px;
   border-radius: 50%; /* Круглая кнопка */
-  color: #4CAF4F;
+  color: #8ab3fa;
   font-size: 22px;
   background-color: white;
   display: flex; /* Включаем Flexbox */
   align-items: center; /* Центрирование по вертикали */
   justify-content: center; /* Центрирование по горизонтали */
-  border: 2px solid #4CAF4F;
+  border: 2px solid #8ab3fa;
   cursor: pointer;
   padding: 0; /* Убираем внутренние отступы */
   box-sizing: border-box; /* Учитываем границы и отступы */
@@ -544,12 +544,12 @@ h2 {
 .add-education-button:hover,
 .add-job-button:hover,
 .add-language-button:hover{
-  background-color: #4CAF4F; 
+  background-color: #8ab3fa; 
   color: white;
 }
 
 .modal-content h2{
-  color: #4CAF4F;
+  color: #8ab3fa;
 }
 
 .education-field, .job-field, .infoeducate, .language-level{
@@ -565,7 +565,7 @@ h2 {
 }
 
 .education-field input, .job-field input, .language-field input{
-  border: 2px solid #4CAF4F;
+  border: 2px solid #8ab3fa;
   padding: 3px;
   background-color: #ffffff; 
   outline: none;
@@ -579,7 +579,7 @@ h2 {
 .specialization input:focus,
 .position input:focus
 .language-name input:focus {
-  border: 3px solid #4CAF4F; 
+  border: 3px solid #8ab3fa; 
   outline: none; 
 }
 
@@ -616,7 +616,7 @@ h2 {
   width: 80px;
   height: 30px; /* Увеличена высота */
   border-radius: 10px;
-  background-color: #71c672;
+  background-color: #8ab3fa;
   color: white;
   font-size: 15px;
   cursor: pointer;
@@ -635,7 +635,7 @@ h2 {
 .lineBtn div{
   width: 100%;
   height: 1px;
-  background-color: #4CAF4F;
+  background-color: #8ab3fa;
   margin-top: 10px;
   margin-left: 10px;
 }
@@ -653,7 +653,7 @@ h2 {
   justify-content: center; /* Центрирование текста по горизонтали */
   width: 50px;
   height: 30px; /* Явная высота */
-  background-color: #71c672;
+  background-color: #8ab3fa;
   color: white;
   border-radius: 5px;
   cursor: pointer;
@@ -667,7 +667,7 @@ h2 {
   height: 100px; 
   resize: none; 
   border-radius: 10px;
-  border: 2px solid #4CAF4F;
+  border: 2px solid #8ab3fa;
   padding: 10px;
   overflow-y: auto; 
   font-size: 16px;
@@ -677,19 +677,19 @@ h2 {
 .infoeducate textarea:focus,
 .infojob textarea:focus  {
   outline: none; 
-  border-color: #81c784; 
+  border-color: #8ab3fa; 
 }
 
 .language-level span{
   margin-left: 20px;
-  color: #4CAF4F;
+  color: #8ab3fa;
 }
 
 .language-level input {
   -webkit-appearance: none;
   width: 300px;
   height: 10px;
-  background: linear-gradient(to right, green 0%, green calc((var(--value) - 1) * 25%), #ccc calc((var(--value) - 1) * 25%), #ccc 100%);
+  background: linear-gradient(to right, #8ab3fa 0%, #8ab3fa calc((var(--value) - 1) * 25%), #ccc calc((var(--value) - 1) * 25%), #ccc 100%);
   border-radius: 5px;
 }
 
@@ -698,7 +698,7 @@ h2 {
   appearance: none;
   width: 20px;
   height: 20px;
-  background: green;
+  background: #8ab3fa;
   cursor: pointer;
   border-radius: 50%;
 }
@@ -706,7 +706,7 @@ h2 {
 .language-level input::-moz-range-thumb {
   width: 20px;
   height: 20px;
-  background: green;
+  background: #8ab3fa;
   cursor: pointer;
   border-radius: 50%;
 }
@@ -716,7 +716,7 @@ h2 {
   height: 50px;
   font-size: 20px;
   border-radius: 10px;
-  background-color: #4CAF4F;
+  background-color: #8ab3fa;
   color: white;
   margin-top: 20px;
 }

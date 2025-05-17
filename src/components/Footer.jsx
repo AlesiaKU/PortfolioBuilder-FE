@@ -6,7 +6,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
-import Footerlogo from '../img/logo.svg';
+import Footerlogo from '../img/VectorLogo.svg';
 
 function Footer() {
   const location = useLocation(); 

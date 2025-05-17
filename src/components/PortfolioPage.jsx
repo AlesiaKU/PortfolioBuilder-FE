@@ -7,6 +7,31 @@ import myImage from '../img/funny-klev-club-7ved-p-smeshnie-kartinki-avatarki-ne
 import jsPDF from 'jspdf'; // Импорт библиотеки jsPDF
 import html2canvas from 'html2canvas'; // Для захвата содержимого как изображения
 
+// Локальные данные для заглушки
+/*const mockData = {
+  firstName: 'Иван',
+  lastName: 'Иванов',
+  email: 'ivanov@example.com',
+  phoneNumber: '+7 123 456 7890',
+  country: 'Россия',
+  photo: null, // Использовать изображение по умолчанию
+  languages: [
+    { language: 'Русский', level: 'Родной' },
+    { language: 'Английский', level: 'Средний' }
+  ],
+  employment: 'Полная занятость',
+  workMode: 'Удаленно',
+  businessTrips: 'Готов к командировкам',
+  header: 'Я опытный разработчик, ищущий новые возможности.',
+  educations: [
+    { specialization: 'Программирование', institution: 'МГТУ', startDate: '2015', endDate: '2020' }
+  ],
+  works: [
+    { company: 'ООО "Технологии"', position: 'Frontend Developer', startDate: '2020', endDate: 'настоящее время', jobsInfo: 'Разработка пользовательских интерфейсов.' }
+  ]
+};
+*/
+
 // Функция для извлечения email из токена
 const extractEmailFromToken = () => {
   const token = localStorage.getItem('token'); // Получаем токен из localStorage
@@ -25,11 +50,18 @@ const PortfolioPage = () => {
   const [portfolioData, setPortfolioData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPortfolioIndex, setCurrentPortfolioIndex] = useState(0); // Добавлено состояние для индекса портфолио
+  const portfolioViews = [
+    { view: 'standard' },
+    { view: 'detailed' }
+  ];
+  
+
 
   const fetchPortfolioData = async () => {
     const email = extractEmailFromToken();
     if (!email) {
       console.error('Email не найден в токене');
+      /*setPortfolioData(mockData);*/
       setLoading(false);
       return;
     }
@@ -43,6 +75,7 @@ const PortfolioPage = () => {
       setPortfolioData(data);
     } catch (error) {
       console.error('Ошибка при загрузке данных:', error);
+      /*setPortfolioData(mockData);*/
     } finally {
       setLoading(false);
     }
@@ -62,10 +95,10 @@ const PortfolioPage = () => {
 
   const switchPortfolio = (direction) => {
     setCurrentPortfolioIndex((prevIndex) => {
-      const newIndex = prevIndex + direction;
-      // Логика для циклического переключения
-      if (newIndex < 0) return 0; // Не даем уйти в минус
-      return newIndex; // Возвращаем новый индекс
+      let newIndex = prevIndex + direction;
+      if (newIndex >= portfolioViews.length) newIndex = 0; // Зацикливаем при достижении конца массива
+      if (newIndex < 0) newIndex = portfolioViews.length - 1; // Зацикливаем при достижении начала массива
+      return newIndex;
     });
   };
 
@@ -84,15 +117,12 @@ const PortfolioPage = () => {
     pdf.save('portfolio.pdf');
   };
 
-  return (
-    <div className={`portfolio-container`}>
-      <div className="portfolio-nav-buttons">
-        <button onClick={() => switchPortfolio(-1)}>&lt; Назад</button>
-        <button onClick={downloadPortfolioAsPDF}>Скачать</button>
-        <button onClick={() => switchPortfolio(1)}>Вперед &gt;</button>
-      </div>
+  const renderPortfolioView = () => {
+    const currentView = portfolioViews[currentPortfolioIndex];
 
-      <div className="portfolio-content">
+    if (currentView.view === "standard") {
+      return (
+        <div className="portfolio-content">
         <div className="profile-section">
           <div className='portRect'>
             <h1>
@@ -172,6 +202,90 @@ const PortfolioPage = () => {
           </div>
         </div>
       </div>
+      );
+    } else if (currentView.view === "detailed") {
+      return (
+        <div className="modern-cv">
+<div className="modern-header">
+  <div className="modern-name">
+    <h1>{portfolioData.firstName} <strong>{portfolioData.lastName}</strong></h1>
+    <h3>ESL Teacher</h3>
+  </div>
+  
+  <img className="modern-avatar" src={portfolioData.photo ? `data:image/jpeg;base64,${portfolioData.photo}` : myImage} alt="Profile" />
+  
+  <div className="modern-contact">
+    <p><LiaCitySolid /> {portfolioData.country}</p>
+    <p><BsTelephoneOutbound /> {portfolioData.phoneNumber}</p>
+    <p><MdOutlineMarkEmailRead /> {portfolioData.email}</p>
+  </div>
+</div>
+
+
+      <div className="modern-body">
+        <div className="modern-left">
+          <section>
+            <h4>PROFILE SUMMARY</h4>
+            <p>{portfolioData.header}</p>
+          </section>
+
+          <section>
+            <h4>SOCIAL</h4>
+            <ul>
+              <li>Skype profile</li>
+              <li>LinkedIn URL</li>
+              <li>Twitter profile</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>SKILLS</h4>
+            <ul>
+              <li>Survival</li>
+              <li>Communication</li>
+              <li>Report Writing</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>EDUCATION</h4>
+            {portfolioData.educations.map((edu, i) => (
+              <div key={i}>
+                <strong>{edu.specialization}</strong>
+                <p>{edu.institution}</p>
+                <p>{edu.startDate} - {edu.endDate}</p>
+              </div>
+            ))}
+          </section>
+        </div>
+
+        <div className="modern-right">
+          <h4>PROFESSIONAL EXPERIENCE</h4>
+          {portfolioData.works.map((work, i) => (
+            <div key={i} className="job">
+              <p><strong>{work.company}</strong> | {work.position}</p>
+              <p>{work.startDate} - {work.endDate}</p>
+              <p>{work.jobsInfo}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+      );
+    }
+  };
+
+  return (
+    <div className={`portfolio-container`}>
+      <div className="portfolio-nav-buttons">
+        <button onClick={() => switchPortfolio(-1)}>&lt; Назад</button>
+        <button onClick={downloadPortfolioAsPDF}>Скачать</button>
+        <button onClick={() => switchPortfolio(1)}>Вперед &gt;</button>
+      </div>
+      <div className="portfolio-content">
+        {renderPortfolioView()}
+      </div>
+      
     </div>
   );
 };

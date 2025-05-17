@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #81c784;
+  background-color: #77a6f7;
   color: #fff;
   border-radius: 50%;
   padding: 12px;
@@ -12,5 +12,5 @@
 }
 
 .chat-icon:hover {
-  background-color: #4CAF50;
+  background-color: #4085fc;
 }

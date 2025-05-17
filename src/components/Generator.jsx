@@ -1,5 +1,5 @@
 import '../styles/generator.css';
-import Generator1 from '../img/generator1.svg';
+import Generator1 from '../img/Group39550.svg';
 import banner6Image1 from '../img/Group39506.svg';
 import React, { useState, useEffect } from 'react';
 import { FaCheckCircle } from "react-icons/fa";

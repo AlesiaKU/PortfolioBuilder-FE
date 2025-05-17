@@ -36,7 +36,7 @@
 .cont1-plan1.active,
 .cont1-plan2.active,
 .cont1-plan3.active {
-  border-color: #4CAF50; 
+  border-color: #77a6f7; 
   font-weight: normal;
 }
 
@@ -83,7 +83,7 @@
   width: 203px;
   height: 60px;
   color: #ffffff;
-  background-color: #4CAF50;
+  background-color: #77a6f7;
   border-radius: 81px;
   margin-left: 183px;
   margin-top: 170px;
@@ -132,7 +132,7 @@
   position: absolute;
   margin-left: 400px;
   margin-top: 120px;
-  border: 2px solid #4CAF50;
+  border: 2px solid #77a6f7;
   border-radius: 5px;
 }
 
@@ -140,7 +140,7 @@
   width: 300px;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #4CAF50;
+  border: 2px solid #77a6f7;
   border-radius: 5px;
   display: flex;
   position: absolute;
@@ -235,7 +235,7 @@
 
 .pay-line{
   height: 1px;
-  background-color: #4CAF50;
+  background-color: #77a6f7;
   width: 800px;
   margin-top: 42px;
 }
@@ -265,7 +265,7 @@
   appearance: none;
   width: 20px; 
   height: 20px; 
-  border: 2px solid green; 
+  border: 2px solid #77a6f7; 
   border-radius: 4px;
   cursor: pointer;
   margin-right: 8px; 
@@ -275,7 +275,7 @@
 }
 
 .checkbox:checked {
-  background-color: green; 
+  background-color: #77a6f7; 
 }
 
 .checkbox:checked::before {
@@ -293,7 +293,7 @@
   width: 203px;
   height: 61px;
   border-radius: 81px;
-  background-color: #4CAF50;
+  background-color: #77a6f7;
   font-size: 16px;
   color: #ffffff;
   cursor: pointer;

@@ -172,3 +172,86 @@ margin-left: 300px;
   margin-top: 30px;
   margin-left: 20px;
 }
+
+
+.modern-cv {
+  font-family: 'Segoe UI', sans-serif;
+  background: white;
+  color: #333;
+  border: 1px solid #ccc;
+  max-width: 1000px; /* сделай уже, например 700px или даже 600px */
+  margin: 0 auto; /* центрирует по горизонтали */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* опционально – для красивой тени */
+  padding: 20px; /* опционально – чтобы контент не прилипал к краям */
+}
+
+
+.modern-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #d8d4f1;
+  border-bottom: 2px solid #ddd;
+}
+
+.modern-name {
+  flex: 1;
+  text-align: left;
+}
+
+.modern-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+ /* margin: 0 20px;*/
+}
+
+.modern-contact {
+  flex: 1;
+  text-align: right;
+}
+
+.modern-title h1 {
+  margin: 5px 0;
+}
+
+.modern-contact p {
+  margin: 3px 0;
+}
+
+.modern-body {
+  display: flex;
+  padding: 20px;
+}
+
+.modern-left {
+  width: 35%;
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.modern-left section {
+  margin-bottom: 20px;
+}
+
+.modern-left h4 {
+  color: #005baa;
+  margin-bottom: 8px;
+}
+
+.modern-right {
+  width: 65%;
+  padding-left: 20px;
+}
+
+.modern-right .job {
+  margin-bottom: 20px;
+}
+
+.modern-right h4 {
+  color: #005baa;
+  margin-bottom: 10px;
+}

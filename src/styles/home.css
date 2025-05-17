@@ -25,7 +25,7 @@
 }
 
 .min15 {
-  color: #4CAF4F;
+  color:  #77a6f7;
 }
 
 .we-help {
@@ -37,7 +37,7 @@
   margin-top: 32px;
   width: 162px;
   height: 52px;
-  background-color: #4CAF4F;
+  background-color:  #77a6f7;
   color: white;
   border: none;
   cursor: pointer;
@@ -50,19 +50,38 @@
 
 /* Картинка */
 .banner-img1-home {
-  width: 391px;
+  width: 600px;
   height: 407px;
 }
 
 
 .banner2-home {
   width: 100%;
-  margin-top: 66px;
+  margin-top: 130px;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
 }
+
+
+.icon-text-ban2-1,
+.icon-text-ban2-2,
+.icon-text-ban2-3 {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  background-color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.icon-text-ban2-1:hover,
+.icon-text-ban2-2:hover,
+.icon-text-ban2-3:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
 
 .text-ban2 {
   text-align: center;
@@ -124,12 +143,14 @@
   text-align: center;
 }
 
+.banner3-home{
+  background-color: #F5F7FA;
+}
 
-
-.banner3-home, .banner4-home {
+.banner3-home{
   width: 100%;
   height: auto;
-  margin-top: 66px;
+  margin-top: 180px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -137,18 +158,62 @@
   box-sizing: border-box;
   color: #4D4D4D;
 }
+/*.banner3-home.photo-strips,*/
 
-.banner3-home img, .banner4-home img {
+.photo-strips {
   max-width: 442px; 
   width: 100%; 
   height: auto;
   margin-left: 144px;
+  display: flex;
+  gap: 20px;
 }
 
-.text-banner3, .text-banner4 {
+.photo-track {
+  width: 350px;
+  height: 730px;
+  overflow: hidden;
+  border-radius: 12px;
+  
+  position: relative;
+}
+
+.track-1,
+.track-2 {
+  display: flex;
+  flex-direction: column;
+  animation: scrollUp 20s linear infinite;
+}
+
+.track-2 {
+  animation-duration: 15s;
+}
+
+.photo-track img {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+
+.text-banner3 {
   max-width: 661px;
   width: 100%;
   font-family: "Inter", sans-serif;
+}
+
+.text-banner4{
+  margin-top: 100px;
 }
 
 .text-ban3-1, .text-ban4-1 {
@@ -171,7 +236,7 @@
 
 .learnMoreBtn{
   padding: 10px 20px;
-  background-color: #4CAF4F;
+  background-color: #77a6f7;
   color: white;
   border: none;
   cursor: pointer;
@@ -204,7 +269,7 @@
 }
 
 .great {
-  color: #4CAF4F;
+  color: #77a6f7;
 }
 
 .we {
@@ -216,7 +281,7 @@
 .banner5-home-icons {
   width: 55px;
   height: 55px;
-  color: #4CAF4F;
+  color: #77a6f7;
 }
 
 .icon-text-ban5 {
@@ -256,7 +321,7 @@
   justify-content: center;
   align-items: center;
   gap: 35px;
-  margin-bottom: 330px;
+  margin-bottom: 150px;
   font-family: "DM Sans", sans-serif;
   flex-wrap: wrap; 
   box-sizing: border-box;
@@ -272,7 +337,7 @@
 .ban6-home-name1{
   font-size: 18px;
   font-weight: bold;
-  color: #4CAF4F;
+  color: #77a6f7;
   font-family: "DM Sans", sans-serif;
 }
 .ban6-home-name2{
@@ -297,7 +362,7 @@
 
 
 .plan.active {
-  background-color: #4CAF4F;
+  background-color: #8ab3fa;
   color: #ffffff;
 }
 
@@ -332,7 +397,7 @@
   width: 308px;
   height: 72px;
   border-radius: 96px;
-  background-color: #4CAF4F; 
+  background-color: #77a6f7; 
   margin-bottom: 50px; 
   margin-top: 461px;
   margin-left: 75px;
@@ -348,7 +413,7 @@
 
 .inner-btn.active-btn {
   background-color: white; 
-  color: #4CAF4F; 
+  color: #77a6f7; 
 }
 
 .circle-rec, .rectangle, .rectangle-pl3{
@@ -357,7 +422,7 @@
   margin-top: 50px;
   margin-left: 40px;
   border-radius: 10px;
-  background-color: #E8F5E9;
+  background-color: #d0e1ff;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -370,7 +435,7 @@
 .half-circle1 {
   width: 19px;
   height: 38px;
-  background-color: #4CAF50; 
+  background-color: #77a6f7; 
   border-top-left-radius: 100px;
   border-bottom-left-radius: 100px;
   border-top-right-radius: 0;
@@ -380,7 +445,7 @@
 .half-circle2 {
   width: 19px;
   height: 38px;
-  background-color: #A5D6A7;
+  background-color: #bcd2f9;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 100px;
@@ -390,7 +455,7 @@
 .rectang1{
   width: 19px;
   height: 38px;
-  background-color: #4CAF4F;
+  background-color: #77a6f7;
 }
 .rectang-container {
   display: flex;
@@ -400,12 +465,12 @@
 .rectang2{
   width: 19px;
   height: 19px;
-  background-color: #A5D6A7;
+  background-color: #a0c3ff;
 }
 .rectang3{
   width: 19px;
   height: 19px;
-  background-color: #C8E6C9;
+  background-color: #c0d7ff;
 }
 
 .text-plan1-1, .text-plan2-1, .text-plan3-1{
@@ -462,7 +527,7 @@
 .eleps-chek{
   height: 26px;
   width: 26px;
-  color: #4CAF50;
+  color: #7be67f;
   margin-left: 3px;
 }
 
@@ -698,5 +763,152 @@
   .text-banner3, .text-banner4 {
    margin-left: 30px;
     margin-right: 30px;
+  }
+}
+.faq-container {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  font-family: "Inter", sans-serif;
+  justify-content: center; /* Центрируем содержимое по вертикали */
+  margin-top: 70px;
+}
+
+.question {
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  width: 750px;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.question h3{
+  margin-left: 20px;
+  font-weight: lighter;
+  font-size: 17px;
+}
+
+.answer {
+  display: none;
+  background-color: #bcd2f9;
+  width: 648px;
+  height: 280px;
+  margin-left: 20px;
+  justify-content: center; /* Центрируем содержимое по вертикали */
+  margin-top: 5px;
+  padding: 20px 0 20px 0;
+  border-radius: 10px;
+}
+
+.queArrow{
+  margin: 0 0 0 auto;
+  color: #bcd2f9;
+  font-size: 25px;
+}
+.answer div{
+  width: 500px;
+  margin-left: 80px;
+}
+
+.answer.visible {
+  display: block;
+}
+
+.question.active {
+  font-weight: bold;
+  background-color: #FAFBFF;
+}
+
+.question.active .queCircle{
+  background-color: #77a6f7;
+}
+
+.question.active .queArrow{
+  color: #77a6f7;
+}
+
+.ansN{
+  margin-top: 30px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.queCircle{
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  background-color: #bcd2f9;
+}
+
+.bann7{
+  margin-bottom: 100px;
+}
+
+
+@media (max-width: 1024px) {
+  .faq-container {
+    flex-direction: column;  /* Stack questions vertically */
+    align-items: center;     /* Center the questions */
+    padding: 10px;
+    margin-top: 50px;
+    
+  }
+
+  .question {
+    width: 90%;   /* Make each question take up 90% of the container width */
+    margin: 10px 0; /* Add more spacing between questions */
+  }
+
+  .answer {
+    width: 90%;  /* Make answers take up 90% of the container width */
+    margin-left: 0;  /* Remove left margin */
+  }
+
+  .question h3 {
+    font-size: 16px;  /* Smaller font size for smaller screens */
+  }
+
+  .queArrow {
+    font-size: 20px;  /* Smaller arrow icon */
+  }
+
+  .answer div {
+    width: 100%;  /* Answer text should take up full width */
+    margin-left: 0;  /* Remove left margin */
+  }
+
+  .ansN {
+    font-size: 14px;  /* Smaller font size for answers */
+  }
+}
+
+/* When the screen width is less than or equal to 480px (Mobile phones) */
+@media (max-width: 550px) {
+  .faq-container {
+    padding: 5px;
+  }
+
+  .question {
+    width: 100%;  /* Make questions take up the full container width */
+  }
+
+  .answer {
+    width: 100%;  /* Answers should take up the full container width */
+  }
+
+  .question h3 {
+    font-size: 14px;  /* Further reduce font size for smaller screens */
+  }
+
+  .queArrow {
+    font-size: 18px;  /* Adjust arrow size for smaller screens */
+  }
+
+  .ansN {
+    font-size: 13px;  /* Smaller font size for answers */
   }
 }
